@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html th:replace="~{/layout/index :: dynamic(~{::main})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<main>
+    <div class="container"  style="width: 88%;margin: auto;">
+        <div class="main" id="main-content">
+            <router-outlet>
+
+            </router-outlet>
+            <app-page-not-found>
+                <div class="main">
+                    <div class="container404">
+                        <div class="page404" id="left">
+                            <img alt="Trang bạn đang tìm kiếm không tồn tại!" id="img404" src="https://asset.vuahanghieu.com/assets/images/notfound.png">
+                        </div><div class="page404" id="right">
+                        <div class="text-container">
+                            <h1>Chúng tôi xin lỗi!</h1>
+                            <h2>Trang bạn đang tìm kiếm không tồn tại!</h2>
+                            <ul>
+                                <li>Bạn có thể làm theo các hướng dẫn sau:</li>
+                                <li>- Bạn có thể quay lại
+                                    <a title="Về trang chủ" href="/trangchu">Trang chủ</a>
+                                    để tiếp tục mua hàng</li>
+                                <li>- Sử dụng thanh tìm kiếm ở đầu trang để tìm kiếm sản phẩm.</li>
+                                <li>- Hoặc click vào sản phẩm ở dưới để tìm sản phẩm dễ dàng hơn.</li>
+                                <li>
+                                    <strong>Trân trọng!</strong>
+                                </li>
+                            </ul>
+                            <p class="cart-report-box" style="max-width: 100%; margin: 12px 0 10px; justify-content: flex-start;">
+                                <img alt="Báo lỗi" src="https://asset.vuahanghieu.com/assets/images/report-icon.svg">
+                                <span>Bạn không thêm được sản phẩm vào giỏ hàng? Hãy
+                                    <span class="link">báo lỗi</span> cho chúng tôi.
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </app-page-not-found>
+        </div>
+    </div>
+
+    <style>
+        .main {
+            margin: 0;
+            min-height: 350px;
+            text-align: left;
+        }
+        img {
+            border: 0;
+            vertical-align: top;
+            -o-object-fit: contain;
+            object-fit: contain;
+            background-color: #F5F5F5;
+        }
+
+        .container404 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 12px;
+        }
+
+        .container404 div#left {
+            width: 40%;
+        }
+
+        .container404 div#left img#img404 {
+            width: 100%;
+            display: block;
+            margin: 0 auto;
+            max-height: 300px;
+        }
+
+        .container404 div#right {
+            width: 55%;
+        }
+
+        .container404 div#right h1 {
+            font-size: 39px;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            font-family: Georgia,'Times New Roman',Times,serif;
+            font-style: oblique;
+        }
+
+        .container404 div#right h2 {
+            font-size: calc(21px + (23 - 21) * ((100vw - 300px)/ (1920 - 300)));
+            line-height: 1.1;
+            color: #313131;
+        }
+
+        .page404 ul {
+            font-size: 17px;
+            color:  #313131;
+            margin: 7px 0 15px;
+        }
+
+        .container404 div#right p {
+            font-size: 17px;
+            padding: 10px 0;
+        }
+
+        .page404 ul li {
+            margin-top: 3px;
+        }
+
+        a {
+            color: #0997a0;
+        }
+
+        .cart-report-box img {
+            width: 30px;
+            min-width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        img {
+            border: 0;
+            vertical-align: top;
+            -o-object-fit: contain;
+            object-fit: contain;
+        }
+
+        .cart-report-box span {
+            text-align: left;
+        }
+
+        .cart-report-box .link {
+            cursor: pointer;
+            color: #0039cf;
+        }
+
+        ol, ul {
+            list-style: none;
+        }
+    </style>
+</main>
+
+</body>
+</html>

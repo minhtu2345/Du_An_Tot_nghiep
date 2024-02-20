@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<html th:replace="~{/layout/index :: dynamic(~{::main})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<main>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item" style="margin-bottom: 5px">
+                        <a style="
+            background-color: #3D464D;border-radius: 5px;color: white" class="nav-link" href="/qltk-kh/thong-tin">Thông
+                            tin tài
+                            khoản</a>
+                    </li>
+                    <li class="nav-item" style="margin-bottom: 5px">
+                        <a style="
+            background-color: #3D464D;border-radius: 5px;color: white" class="nav-link" href="/qltk-kh/doi-mat-khau">Đổi
+                            mật khẩu</a>
+                    </li>
+                    <li class="nav-item" style="margin-bottom: 5px">
+                        <a style="
+            background-color: #3D464D;border-radius: 5px;color: white" class="nav-link" href="/qltk-kh/dia-chi">Địa chỉ</a>
+                    </li>
+                    <li class="nav-item" style="margin-bottom: 5px">
+                        <a style="
+            background-color: #3D464D;border-radius: 5px;color: white" class="nav-link" href="/qltk-kh/don-hang">Đơn hàng</a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-9">
+                <form th:action="@{|/qltk-kh/cap-nhat-dia-chi/${diaChi.madc}|}" method="post" th:object="${diaChi}">
+                    <div class="row">
+                        <input th:field="*{khachHang.id}" hidden>
+                        <div class="form-group col-6">
+                            <label for="formGroupExampleInput2">Mã</label>
+                            <input type="text" th:field="*{madc}" class="form-control"
+                                   id="formGroupExampleInput2"
+                                   placeholder="Mã">
+                        </div>
+
+                        <div class="form-group col-6">
+                            <label>Địa chỉ</label>
+                            <input type="text" th:field="*{tendiachi}" class="form-control"
+                                   id="formGroupExampleInput2"
+                                   placeholder="Tên địa chỉ">
+                        </div>
+
+                        <div class="form-group col-4">
+                            <label>Tỉnh/Thành phố</label>
+                            <select class="form-control" id="province" th:field="*{thanhpho}">
+                                <option th:value="${diaChi.thanhpho}" th:text="${diaChi.thanhpho}"></option>
+
+                            </select>
+                        </div>
+
+                        <div class="form-group col-4">
+                            <label>Quận/Huyện</label>
+                            <select class="form-control " id="district" th:field="*{huyen}">
+                                <option th:value="${diaChi.huyen}" th:text="${diaChi.huyen}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-4">
+                            <label>Xã/Phường</label>
+                            <select class="form-control" id="ward" th:field="*{xa}">
+                                <option th:value="${diaChi.xa}" th:text="${diaChi.xa}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <button style="
+            background-color: #3D464D;border-radius: 5px;color: white" class="nav-link">Cập nhật địa chỉ
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/popper.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"
+        integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    const host = "https://provinces.open-api.vn/api/";
+    var callAPI = (api) => {
+        return axios.get(api)
+            .then((response) => {
+                renderData(response.data, "province", "Tỉnh/Thành phố");
+            });
+    }
+    callAPI('https://provinces.open-api.vn/api/?depth=1');
+
+    var callApiDistrict = (api) => {
+        return axios.get(api)
+            .then((response) => {
+                renderData(response.data.districts, "district", "Quận/Huyện");
+            });
+    }
+    var callApiWard = (api) => {
+        return axios.get(api)
+            .then((response) => {
+                renderData(response.data.wards, "ward", "Xã/Phường");
+            });
+    }
+
+    var renderData = (array, select, type) => {
+        let row = ' <option disable th:value="${diaChi.thanhpho}" selected>[[${diaChi.thanhpho}]]</option>';
+        array.forEach(element => {
+            row += `<option value="${element.name}" data-code="${element.code}">${element.name}</option>`
+        });
+        document.querySelector("#" + select).innerHTML = row
+    }
+
+    $("#province").change(() => {
+        const selectedCode = $("#province option:selected").data("code");
+        callApiDistrict(host + "p/" + selectedCode + "?depth=2");
+        printResult();
+    });
+    $("#district").change(() => {
+        const selectedCode = $("#district option:selected").data("code");
+        callApiWard(host + "d/" + selectedCode + "?depth=2");
+        printResult();
+    });
+    $("#ward").change(() => {
+        printResult();
+    })
+
+    var printResult = () => {
+        if ($("#district").val() != "" && $("#province").val() != "" &&
+            $("#ward").val() != "") {
+            let result = $("#province option:selected").text() +
+                " | " + $("#district option:selected").text() + " | " +
+                $("#ward option:selected").text();
+            $("#result").text(result)
+        }
+    }
+
+
+</script>

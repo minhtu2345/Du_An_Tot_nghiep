@@ -1,0 +1,1299 @@
+<!doctype html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Giảm Giá Hóa Đơn</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <style>
+        .error-border {
+            border: 1px solid red;
+        }
+
+        .custom-error-bg {
+            border: 1px solid red; /* Định nghĩa màu viền là màu đỏ */
+        }
+    </style>
+
+</head>
+<body>
+<div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+        <div class="custom-menu">
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                <i class="fa fa-bars"></i>
+                <span class="sr-only">Toggle Menu</span>
+            </button>
+        </div>
+        <div class="p-4">
+            <h1><a href="kieu_dang.html" class="logo">DLFV</a></h1>
+            <ul class="list-unstyled components mb-5">
+                <li class="active">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span
+                            class="fa fa-home mr-3"></span>Thống Kê</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="/admin/thong-ke">Thông kê doanh thu</a>
+                        </li>
+                        <li>
+                            <a href="/admin/thong-ke-top-ban-chay">Thông kê top</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="/admin/ban-hang" ><span class="fa fa-user mr-3"></span> Quản Lý Đơn Hàng</a>
+
+                </li>
+                <li>
+                    <a href="/admin/ban-hang-tai-quay"><span class="fa fa-briefcase mr-3"></span> Bán Hàng Tại Quầy</a>
+                </li>
+                <li>
+                    <a href="#homeSubmenu2"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span class="fa fa-sticky-note mr-3"></span> Quản Lý Sản Phẩm</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu2">
+                        <li>
+                            <a href="/admin/sanpham">Sản Phẩm</a>
+                        </li>
+                        <li>
+                            <a href="/admin/camgiac">Cảm Giác</a>
+                        </li>
+                        <li>
+                            <a href="/admin/chatlieu">Chất Liệu</a>
+                        </li>
+                        <li>
+                            <a href="/admin/danhmuc">Danh Mục</a>
+                        </li>
+                        <li>
+                            <a href="/admin/degiay">Đế Giày</a>
+                        </li>
+                        <li>
+                            <a href="/admin/diahinh">Địa Hình</a>
+                        </li>
+                        <li>
+                            <a href="/admin/docaogiay">Độ Cao Giày</a>
+                        </li>
+                        <li>
+                            <a href="/admin/gioitinh">Giới Tính</a>
+                        </li>
+                        <li>
+                            <a href="/admin/mausac">Màu Sắc</a>
+                        </li>
+                        <li>
+                            <a href="/admin/thoitietthichhop">Thời Tiết Thích Hợp</a>
+                        </li>
+                        <li>
+                            <a href="/admin/thuonghieu">Thương Hiệu</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#homeSubmenu3"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span class="fa fa-paper-plane mr-3"></span> Quản Lý Tài Khoản</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu3">
+                        <li>
+                            <a href="/admin/nhan-vien">Nhân Viên</a>
+                        </li>
+                        <li>
+                            <a href="/admin/khachhang">Khách Hàng</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#homeSubmenu4"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span class="fa fa-cubes mr-3"></span>Khuyến Mại</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu4">
+                        <li>
+                            <a href="/admin/chuong-trinh-giam-gia-sp">Sản Phẩm</a>
+                        </li>
+                        <li>
+                            <a href="/admin/giamgiahoadon">Hóa Đơn</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="mb-5">
+                <h3 class="h6 mb-3">Subscribe for newsletter</h3>
+                <form action="#" class="subscribe-form">
+                    <div class="form-group d-flex">
+                        <div class="icon"><span class="icon-paper-plane"></span></div>
+                        <input type="text" class="form-control" placeholder="Enter Email Address">
+                    </div>
+                </form>
+            </div>
+
+            <div class="footer">
+                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+            </div>
+
+        </div>
+    </nav>
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 pt-5 bg-secondary">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-top: -50px;">
+            <div class="container-fluid" style="display: flex;justify-content: end;">
+                <ul class="navbar-nav">
+                    <!-- Avatar -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#"
+                           id="navbarDropdownMenuLink"
+                           role="button" data-toggle="dropdown" aria-expanded="false">
+                            <img
+                                    class="rounded-circle"
+                                    th:src="@{|/images/${nhanVienLogin.anh}|}"
+                                    height="72" alt="Avatar" loading="lazy"/>
+                        </a>
+                        <div class="dropdown-menu" style="margin-left: -88px;">
+                            <a class="dropdown-item" href="#">Đăng Xuất</a>
+                            <a class="dropdown-item" href="#">Thông Tin Cá Nhân</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--        Phần Giảm Giá Hóa đơn-->
+        <div class="container-lg bg-light border">
+            <div style="padding: 15px">
+                <!--            Phần thêm mới giảm giá hóa đơn-->
+                <div style="margin: 20px">
+                    <div class="row">
+                        <div class="col-8">
+                            <h4 style="text-transform: uppercase; color: black; text-align: left;">
+                                Danh Sách Các CT Giảm Giá Hóa Đơn
+                            </h4>
+                        </div>
+                        <!--                    NÚT THÊM MỚI HÓA ĐƠN-->
+                        <div class="col-4 text-right">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                    class="bi bi-plus-square"></i> Thêm mới
+                            </button>
+                        </div>
+                        <!--                    End  NÚT THÊM MỚI HÓA ĐƠN-->
+                    </div>
+                    <hr style="color: black">
+                    <!--            Model thêm mới-->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content bg-light">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-center" id="exampleModalLabel">Thêm Mới Giảm Giá Hóa
+                                        Đơn</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="myForm" action="/admin/giamgiahoadon/create" method="post"
+                                          th:object="${giamgiahoadon}">
+                                        <input type="text" hidden th:field="*{id}">
+                                        <div class="row p-3">
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <label for="formGroupExampleInputMa">
+                                                        Mã
+                                                        <abbr style="color: red;text-decoration: none" title="Bắt buộc">*</abbr>
+                                                    </label>
+                                                    <input type="text" th:field="*{ma}"
+                                                           class="form-control bg-secondary"
+                                                           id="formGroupExampleInputMa">
+                                                    <div id="maError" class="text-danger"></div>
+                                                    <div id="ma1Error1" class="text-danger"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <label for="formGroupExampleInputTen">Tên<abbr
+                                                            style="color: red;text-decoration: none"
+                                                            title="Bắt buộc">*</abbr></label>
+                                                    <input type="text" th:field="*{ten}"
+                                                           class="form-control bg-secondary"
+                                                           id="formGroupExampleInputTen">
+                                                    <div id="tenError" class="text-danger"></div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <label for="formGroupExampleInputDieuKien">Điều Kiện<abbr
+                                                            style="color: red;text-decoration: none"
+                                                            title="Bắt buộc">*</abbr></label>
+                                                    <input type="number" th:field="*{dieu_kien}"
+                                                           class="form-control bg-secondary"
+                                                           id="formGroupExampleInputDieuKien">
+                                                    <div id="dieuKienError" class="text-danger"></div>
+                                                    <div id="dieuKien1Error1" class="text-danger"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="formGroupExampleInputNgayBatDau">Ngày Bắt Đầu<abbr
+                                                            style="color: red;text-decoration: none"
+                                                            title="Bắt buộc">*</abbr></label>
+                                                    <input type="date" th:field="*{ngay_bat_dau}"
+                                                           class="form-control bg-secondary"
+                                                           id="formGroupExampleInputNgayBatDau">
+                                                    <div id="ngayBatDauError" class="text-danger"></div>
+                                                    <div id="ngayBatDau1Error1" class="text-danger"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="formGroupExampleInputNgayKetThuc">Ngày Kết Thúc<abbr
+                                                            style="color: red;text-decoration: none"
+                                                            title="Bắt buộc">*</abbr></label>
+                                                    <input type="date" th:field="*{ngay_ket_thuc}"
+                                                           class="form-control bg-secondary"
+                                                           id="formGroupExampleInputNgayKetThuc">
+                                                    <div id="ngayKetThucError" class="text-danger"></div>
+                                                    <div id="ngayKetThuc1Error1" class="text-danger"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <label for="formGroupExampleInputSoTienGiamMax">Số Tiền Giảm
+                                                        Max<abbr style="color: red;text-decoration: none"
+                                                                 title="Bắt buộc">*</abbr></label>
+                                                    <input type="number" th:field="*{so_tien_giam_max}"
+                                                           class="form-control bg-secondary"
+                                                           id="formGroupExampleInputSoTienGiamMax"
+                                                           step="any">
+                                                    <div id="soTienGiamMaxError" class="text-danger"></div>
+                                                    <div id="soTienGiamMax1Error1" class="text-danger"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <label for="formGroupExampleInputPhanTramGiam">Phần Trăm
+                                                        Giảm<abbr style="color: red;text-decoration: none"
+                                                                  title="Bắt buộc">*</abbr></label>
+                                                    <input type="number" th:field="*{phan_tram_giam}"
+                                                           class="form-control bg-secondary"
+                                                           id="formGroupExampleInputPhanTramGiam"
+                                                           step="any">
+                                                    <div id="phanTramGiamError" class="text-danger"></div>
+                                                    <div id="phanTramGiam1Error1" class="text-danger"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <label for="formGroupExampleInputSoLuong">Số Lượng<abbr
+                                                            style="color: red;text-decoration: none"
+                                                            title="Bắt buộc">*</abbr></label>
+                                                    <input type="number" th:field="*{so_luong}"
+                                                           class="form-control bg-secondary"
+                                                           id="formGroupExampleInputSoLuong">
+                                                    <div id="soLuongError" class="text-danger"></div>
+                                                    <div id="soLuong1Error1" class="text-danger"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <fieldset class="form-group">
+                                                    <div class="row">
+                                                        <legend class="col-form-label col-sm-3 pt-0">Trạng Thái<abbr
+                                                                style="color: red;text-decoration: none"
+                                                                title="Bắt buộc">*</abbr>
+                                                        </legend>
+                                                        <div class="col-sm-9">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio"
+                                                                       th:field="*{trangthai}" id="gridRadios1"
+                                                                       th:value="1" checked>
+                                                                <label class="form-check-label" for="gridRadios1">
+                                                                    Hoạt Động
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio"
+                                                                       th:field="*{trangthai}" id="gridRadios2"
+                                                                       th:value="0">
+                                                                <label class="form-check-label" for="gridRadios2">
+                                                                    Không Hoạt Động
+                                                                </label>
+                                                            </div>
+                                                            <div id="trangthaiError" class="text-danger"></div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                            <button class="btn btn-primary col-12" id="submitBtn" type="submit">
+                                                <div class="text-center">
+                                                    Thêm Mới
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <a th:href="@{|/admin/giamgiahoadon|}">
+                                        <button type="button" class="btn btn-secondary">Close</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--            End modal thêm mới-->
+                </div>
+                <!--            End Phần thêm mới giảm giá hóa đơn-->
+
+                <!--            Phần lọc-->
+                <div class="row">
+                    <!--                lọc theo ngày-->
+                    <div class="col-5">
+                        <form th:action="@{/admin/giamgiahoadon/loc-theo-ngay}" method="get"
+                              style="margin-bottom: 20px;" id="dateForm">
+                            <div class="form-group row">
+                                <div class="col-sm-5">
+                                    <label for="ngay_bat_dau" style="margin-top: 0.5rem; margin-right: 0.5rem;">Ngày bắt
+                                        đầu:</label>
+                                    <div th:if="${ngayBatDauDetail == null}">
+                                        <input type="date" class="form-control" id="ngay_bat_dau" name="ngay_bat_dau"
+                                               onchange="checkAndSubmitForm()" required>
+                                    </div>
+                                    <div th:if="${ngayBatDauDetail != null}">
+                                        <input type="date" class="form-control" id="ngay_bat_dau" name="ngay_bat_dau"
+                                               th:value="${ngayBatDauDetail}" onchange="checkAndSubmitForm()" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <label for="ngay_ket_thuc" style="margin-top: 0.5rem; margin-right: 0.5rem;">Ngày
+                                        kết
+                                        thúc:</label>
+                                    <div th:if="${ngayKetThucDetail == null}">
+                                        <input type="date" class="form-control" id="ngay_ket_thuc" name="ngay_ket_thuc"
+                                               onchange="checkAndSubmitForm()" required>
+                                    </div>
+                                    <div th:if="${ngayKetThucDetail != null}">
+                                        <input type="date" class="form-control" id="ngay_ket_thuc" name="ngay_ket_thuc"
+                                               th:value="${ngayKetThucDetail}" onchange="checkAndSubmitForm()" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!--                end lọc theo ngày-->
+                    <!--                lọc theo trạng thái-->
+                    <div class="col-2">
+                        <form id="filterForm" action="/admin/giamgiahoadon/loc-theo-trangthai" method="get"
+                              style="margin-bottom: 20px;">
+                            <label for="trangthai" style="margin-top: 0.5rem; margin-right: 0.5rem;">Lọc theo Trạng
+                                Thái:</label>
+                            <select class="form-control" id="trangthai" name="trangthai" onchange="submitFilterForm()">
+                                <option value="2" th:selected="${trangthaidetail == 2}">Tất Cả</option>
+                                <option value="1" th:selected="${trangthaidetail == 1}">Hoạt Động</option>
+                                <option value="0" th:selected="${trangthaidetail == 0}">Ngừng Hoạt Động</option>
+                            </select>
+                        </form>
+                    </div>
+                    <!--                end lọc theo trạng thái-->
+                    <!--                lọc theo tên-->
+                    <div class="col-4" style="display: flex; align-items: center;">
+                        <form th:action="@{/admin/giamgiahoadon/loc-theo-ten}" method="get"
+                              style="margin-bottom: 20px; flex: 1;">
+                            <div class="form-group row">
+                                <div class="col-sm-9">
+                                    <label for="ten" style="margin-top: 0.5rem; margin-right: 0.5rem;">Tìm Theo
+                                        Tên</label>
+                                    <input type="text" class="form-control" id="ten" name="ten"
+                                           th:value="${loctheotenDetail}" placeholder="Nhập tên cần tìm kiếm">
+                                </div>
+                                <div class="col-sm-3" style="display: flex; align-items: flex-end;">
+                                    <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                        <button class="btn btn-primary" type="submit"
+                                style="display: inline;margin-left: 10px;margin-top: 0.5rem">
+                            <a href="/admin/giamgiahoadon" style="text-decoration: none;color: white;"><i
+                                    class="bi bi-arrow-clockwise"></i></a>
+                        </button>
+                    </div>
+                    <!--                end lọc theo tên-->
+                </div>
+                <!--            End phần lọc-->
+
+                <!--            Phần table giảm giá hóa đơn-->
+                <table id="TableGGHD" class="table table-hover" style="margin: 20px 0;">
+                    <thead class="thead-light text-center">
+                    <tr>
+                        <th scope="col">Mã</th>
+                        <th scope="col">Tên Chương Trình</th>
+                        <th scope="col">Điều Kiện</th>
+                        <th scope="col">Phần trăm giảm</th>
+                        <th scope="col">Số Lượng</th>
+                        <th scope="col">Trạng Thái</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:if="${listPGiamGiaHoaDon.content.isEmpty()}" class="text-center">
+                        <td colspan="9">
+                            <i style="font-size: 3rem"
+                               class="bi bi-inboxes d-flex justify-content-center align-items-center"></i>
+                            <div class="text-center d-flex justify-content-center align-items-center">No Data</div>
+                        </td>
+                    </tr>
+                    <tr th:each="item:${listPGiamGiaHoaDon.content}" class="text-center">
+                        <td scope="row">[[${item.ma}]]</td>
+                        <td class="align-middle">[[${item.ten}]]</td>
+                        <td class="align-middle">[[${item.dieu_kien}]]</td>
+                        <td class="align-middle">[[${item.phan_tram_giam}]] %</td>
+                        <td class="align-middle">[[${item.so_luong}]]</td>
+                        <td class="align-middle"
+                            th:text="${item.trangthai == 1 ? 'Hoạt Động' : 'Ngừng Hoạt Động'}"></td>
+                        <td class="align-middle">
+                            <a class="btn-sm btn-warning" th:href="@{|/admin/giamgiahoadon/detail/${item.ma}|}">
+                                <i style="color: white" class="bi bi-eye"></i>
+                            </a>
+                            <a class="btn-detail btn-sm btn-success" href="#" data-bs-toggle="modal"
+                               data-bs-target="#exampleModal1" th:ma="${item.ma}">
+                                <i style="color: white" class="bi bi-pencil-square"></i>
+                            </a>
+                            <a href="" id="delete-btn" class="delete-btn btn-sm btn-danger" th:data-id="${item.id}">
+                                <i style="color: white" class="bi bi-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <!--            nav-->
+                <nav aria-label="Page navigation example" style="display: flex;justify-content: space-between;">
+                    <div style="margin-left: 20px">
+                        <p>Bạn đang xem [[${listPGiamGiaHoaDon.numberOfElements}]] trên tổng số
+                            [[${listPGiamGiaHoaDon.totalElements}]]</p>
+                    </div>
+                    <ul class="pagination" style="margin-right: 24px;">
+                        <li class="page-item">
+                            <a class="page-link" th:if="${listPGiamGiaHoaDon.number > 0}"
+                               th:href="@{|/admin/giamgiahoadon?page=${listPGiamGiaHoaDon.number-1}|}"
+                               aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+
+                        <li th:each="tongtrang,status:${#numbers.sequence(1, listPGiamGiaHoaDon.totalPages)}"
+                            class="page-item"><a class="page-link"
+                                                 th:href="@{|/admin/giamgiahoadon?page=${status.index}|}">[[${status.index+1}]]</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link"
+                               th:if="${listPGiamGiaHoaDon.number < listPGiamGiaHoaDon.totalPages - 1}"
+                               th:href="@{|/admin/giamgiahoadon?page=${listPGiamGiaHoaDon.number+1}|}"
+                               aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!--            end nav-->
+                <!--         end table GGHD-->
+            </div>
+            <!--    Phần modal update giảm giá hóa đơn:-->
+            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content bg-light" style="background-color: #e0e0e0">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel1">Update Giảm Giá Hóa Đơn</h5>
+                        </div>
+                        <div class="modal-body">
+                            <form id="myFormUpdate" action="/admin/giamgiahoadon/update" method="post"
+                                  th:object="${giamgiahoadon}">
+                                <input type="text" hidden th:field="*{id}">
+                                <div class="row p-3">
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="formGroupExampleInputMaUpdate">Mã<abbr
+                                                    style="color: red;text-decoration: none"
+                                                    title="Bắt buộc">*</abbr></label>
+                                            <input type="text" th:field="*{ma}" class="form-control bg-secondary"
+                                                   id="formGroupExampleInputMaUpdate" readonly>
+                                            <div id="maUpdateError" class="text-danger"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="formGroupExampleInputTenUpdate">Tên<abbr
+                                                    style="color: red;text-decoration: none"
+                                                    title="Bắt buộc">*</abbr></label>
+                                            <input type="text" th:field="*{ten}" class="form-control bg-secondary"
+                                                   id="formGroupExampleInputTenUpdate">
+                                            <div id="tenUpdateError" class="text-danger"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="formGroupExampleInputDieuKienUpdate">Điều Kiện<abbr
+                                                    style="color: red;text-decoration: none"
+                                                    title="Bắt buộc">*</abbr></label>
+                                            <input type="text" th:field="*{dieu_kien}" class="form-control bg-secondary"
+                                                   id="formGroupExampleInputDieuKienUpdate">
+                                            <div id="dieuKienUpdateError" class="text-danger"></div>
+                                            <div id="dieuKienUpdate1Error1" class="text-danger"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="formGroupExampleInputNgayBatDauUpdate">Ngày Bắt Đầu<abbr
+                                                    style="color: red;text-decoration: none"
+                                                    title="Bắt buộc">*</abbr></label>
+                                            <input type="date" th:field="*{ngay_bat_dau}"
+                                                   class="form-control bg-secondary"
+                                                   id="formGroupExampleInputNgayBatDauUpdate">
+                                            <div id="ngayBatDauUpdateError" class="text-danger"></div>
+                                            <div id="ngayBatDauUpdate1Error1" class="text-danger"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="formGroupExampleInputNgayKetThucUpdate">Ngày Kết Thúc<abbr
+                                                    style="color: red;text-decoration: none"
+                                                    title="Bắt buộc">*</abbr></label>
+                                            <input type="date" th:field="*{ngay_ket_thuc}"
+                                                   class="form-control bg-secondary"
+                                                   id="formGroupExampleInputNgayKetThucUpdate">
+                                            <div id="ngayKetThucUpdateError" class="text-danger"></div>
+                                            <div id="ngayKetThucUpdate1Error1" class="text-danger"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="formGroupExampleInputSoTienGiamMaxUpdate">Số Tiền Giảm Max<abbr
+                                                    style="color: red;text-decoration: none"
+                                                    title="Bắt buộc">*</abbr></label>
+                                            <input type="number" th:field="*{so_tien_giam_max}"
+                                                   class="form-control bg-secondary"
+                                                   id="formGroupExampleInputSoTienGiamMaxUpdate"
+                                                   step="any">
+                                            <div id="soTienGiamMaxUpdateError" class="text-danger"></div>
+                                            <div id="soTienGiamMaxUpdate1Error1" class="text-danger"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="formGroupExampleInputPhanTramGiamUpdate">Phần Trăm Giảm<abbr
+                                                    style="color: red;text-decoration: none"
+                                                    title="Bắt buộc">*</abbr></label>
+                                            <input type="number" th:field="*{phan_tram_giam}"
+                                                   class="form-control bg-secondary"
+                                                   id="formGroupExampleInputPhanTramGiamUpdate"
+                                                   step="any">
+                                            <div id="phanTramGiamUpdateError" class="text-danger"></div>
+                                            <div id="phanTramGiamUpdate1Error1" class="text-danger"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="formGroupExampleInputSoLuongUpdate">Số Lượng<abbr
+                                                    style="color: red;text-decoration: none"
+                                                    title="Bắt buộc">*</abbr></label>
+                                            <input type="number" th:field="*{so_luong}"
+                                                   class="form-control bg-secondary"
+                                                   id="formGroupExampleInputSoLuongUpdate">
+                                            <div id="soLuongUpdateError" class="text-danger"></div>
+                                            <div id="soLuongUpdate1Error1" class="text-danger"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <fieldset class="form-group">
+                                            <div class="row">
+                                                <legend class="col-form-label col-sm-2 pt-0">Trạng Thái<abbr
+                                                        style="color: red;text-decoration: none"
+                                                        title="Bắt buộc">*</abbr></legend>
+                                                <div class="col-sm-10">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio"
+                                                               th:field="*{trangthai}" id="gridRadios3"
+                                                               th:value="1">
+                                                        <label class="form-check-label" for="gridRadios3">
+                                                            Hoạt Động
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio"
+                                                               th:field="*{trangthai}" id="gridRadios4"
+                                                               th:value="0">
+                                                        <label class="form-check-label" for="gridRadios4">
+                                                            Không Hoạt Động
+                                                        </label>
+                                                    </div>
+                                                    <div id="trangThaiUpdateError" class="text-danger"></div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <button class="btn btn-primary col-12" id="submitBtn2" type="submit">
+                                        <div class="text-center">
+                                            Sửa
+                                        </div>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <a th:href="@{|/admin/giamgiahoadon|}">
+                                <button type="button" class="btn btn-secondary">Close</button>
+                            </a>
+                        </div>
+                    </div>
+                    <!--            End modal thêm mới-->
+                </div>
+            </div>
+            <!--    end modal update GGHD-->
+        </div>
+        <!--    End phần Giảm Giá Hóa Đơn-->
+    </div>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="/assets/js/popper.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/main.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<!--Begin confirm delete giảm giá hóa đơn-->
+<script>
+    $(document).ready(function () {
+        // Xử lý sự kiện khi người dùng click vào nút "Xóa"
+        $(document).on('click', '.delete-btn', function (e) {
+            e.preventDefault(); // Ngăn chặn hành động mặc định của thẻ <a>
+
+            var itemId = $(this).data('id');
+
+            swal({
+                title: "Bạn có chắc chắn?",
+                text: "Sau khi xóa, bạn sẽ không thể khôi phục!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            url: '/admin/giamgiahoadon/delete/' + itemId,
+                            method: 'DELETE',
+                            success: function (response) {
+                                swal("Xóa thành công!", {
+                                    icon: "success",
+                                });
+                                // Tải lại bảng dữ liệu sau khi xóa
+                                $('#TableGGHD').load(location.href + ' #TableGGHD');
+                            },
+                            error: function (xhr, status, error) {
+                                // Sử dụng SweetAlert trong else khi xóa thất bại
+                                swal({
+                                    title: "Xóa thất bại!",
+                                    text: "Bạn có muốn ngừng hoạt động chương trình này không?",
+                                    icon: "error",
+                                    buttons: ["Không", "Có"],
+                                }).then((willDisable) => {
+                                    if (willDisable) {
+                                        // Tạo một form ẩn và gửi dữ liệu thông qua phương thức POST
+                                        var form = $('<form action="/admin/giamgiahoadon/set-ngung-hoat-dong" method="POST">' +
+                                            '<input type="hidden" name="idGGHD" value="' + itemId + '">' +
+                                            '</form>');
+                                        $('body').append(form);
+                                        form.submit();
+                                    }
+                                });
+                            }
+                        });
+                    } else {
+                        swal("Bạn đã từ chối!");
+                    }
+                });
+        });
+    });
+</script>
+<!--End confirm delete giảm giá hóa đơn-->
+
+<!--Begin script cho phần update-->
+<script>
+    function submitFilterForm() {
+        document.getElementById("filterForm").submit();
+    }
+
+    $(document).ready(function () {
+        $(".btn-detail").click(function () {
+            var ma = $(this).attr("ma");
+            var form = $("#exampleModal1");
+            $.ajax({
+                url: "http://localhost:2020/rest/giamgiahoadon/" + ma,
+                method: "GET",
+                dataType: "json",
+                success: function (data) {
+                    form.find('[name="id"]').val(data.id);
+                    form.find('[name="ma"]').val(data.ma);
+                    form.find('[name="ten"]').val(data.ten);
+                    form.find('[name="ngaySinh"]').val(data.ngaySinh);
+                    form.find('[name="dieu_kien"]').val(data.dieu_kien);
+                    form.find('[name="so_tien_giam_max"]').val(data.so_tien_giam_max);
+                    form.find('[name="phan_tram_giam"]').val(data.phan_tram_giam);
+                    form.find('[name="ngay_bat_dau"]').val(data.ngay_bat_dau);
+                    form.find('[name="ngay_ket_thuc"]').val(data.ngay_ket_thuc);
+                    form.find('[name="so_luong"]').val(data.so_luong);
+                    form.find('[name="trangthai"]').filter('[value="' + data.trangthai + '"]').prop('checked', true);
+                },
+                error: function (error) {
+                    console.log("Lỗi khi tải dữ liệu: " + error);
+                }
+            });
+        });
+    });
+</script>
+<!--End script cho phần update-->
+
+<!--Begin script cho phần lọc theo ngày-->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var ngayBatDauInput = document.getElementById("ngay_bat_dau");
+        var ngayKetThucInput = document.getElementById("ngay_ket_thuc");
+
+        ngayBatDauInput.addEventListener("change", checkAndSubmitForm);
+        ngayKetThucInput.addEventListener("change", checkAndSubmitForm);
+
+        function checkAndSubmitForm() {
+            var ngay_bat_dau = ngayBatDauInput.value;
+            var ngay_ket_thuc = ngayKetThucInput.value;
+
+            if (ngay_bat_dau && ngay_ket_thuc) {
+                document.forms["dateForm"].submit();
+            }
+        }
+    });
+</script>
+<!--End script cho phần lọc theo ngày-->
+
+<!--Begin validate create form-->
+<script>
+    function checkMaTrung(ma) {
+        var isMaTrung = false;
+
+        $.ajax({
+            type: 'GET',
+            url: '/admin/giamgiahoadon/checkMaTrung',
+            data: {ma: ma},
+            async: false,
+            success: function (response) {
+                isMaTrung = response;
+            },
+            error: function (error) {
+                // Xử lý lỗi nếu cần
+            }
+        });
+
+        return isMaTrung;
+    }
+
+    $(document).ready(function () {
+        $('#submitBtn').click(function (e) {
+            clearErrorMessages();
+
+            var ma = $('#formGroupExampleInputMa').val();
+            var ten = $('#formGroupExampleInputTen').val();
+            var dieuKien = $('#formGroupExampleInputDieuKien').val();
+            var ngayBatDau = $('#formGroupExampleInputNgayBatDau').val();
+            var ngayKetThuc = $('#formGroupExampleInputNgayKetThuc').val();
+            var soTienGiamMax = $('#formGroupExampleInputSoTienGiamMax').val();
+            var phanTramGiam = $('#formGroupExampleInputPhanTramGiam').val();
+            var soLuong = $('#formGroupExampleInputSoLuong').val();
+            var trangthai = $('input[name="trangthai"]:checked').val();
+
+            var errors = validateInput(ma, ten, dieuKien, ngayBatDau, ngayKetThuc, soTienGiamMax, phanTramGiam, soLuong, trangthai);
+
+            if (errors.length > 0) {
+                displayErrorMessages(errors);
+                e.preventDefault();
+            } else {
+                if (checkMaTrung(ma)) {
+                    $('#formGroupExampleInputMa').addClass('error-border');
+                    $('#maError').text('Mã đã tồn tại');
+                    e.preventDefault();
+                } else {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/admin/giamgiahoadon/create',
+                        data: $('#myForm').serialize(),
+                        success: function (response) {
+                            $('#exampleModal').modal('show');
+                        },
+                        error: function (error) {
+                            // Xử lý lỗi nếu cần
+                        }
+                    });
+                }
+            }
+        });
+    });
+
+    function validateInput(ma, ten, dieuKien, ngayBatDau, ngayKetThuc, soTienGiamMax, phanTramGiam, soLuong, trangthai) {
+        var errors = [];
+
+        if (!ma) {
+            errors.push('ma');
+        } else if (checkMaTrung(ma)) {
+            errors.push('ma1');
+        }
+
+        if (!ten) {
+            errors.push('ten');
+        }
+
+        if (!dieuKien) {
+            errors.push('dieuKien');
+        } else if (dieuKien < 0) {
+            errors.push('dieuKien1');
+        }
+
+
+        if (!ngayBatDau) {
+            errors.push('ngayBatDau');
+        }
+
+        var startDate = new Date(ngayBatDau);
+        var endDate = new Date(ngayKetThuc);
+
+        if (startDate >= endDate) {
+            errors.push('ngayKetThuc1');
+        }
+
+        if (!ngayKetThuc) {
+            errors.push('ngayKetThuc');
+        }
+
+        if (!soTienGiamMax) {
+            errors.push('soTienGiamMax');
+        } else if (soTienGiamMax < 0) {
+            errors.push('soTienGiamMax1');
+        }
+
+        if (!phanTramGiam) {
+            errors.push('phanTramGiam');
+        } else if (phanTramGiam < 0) {
+            errors.push('phanTramGiam1');
+        }
+
+        if (!soLuong) {
+            errors.push('soLuong');
+        } else if (soLuong < 0) {
+            errors.push('soLuong1');
+        }
+
+        if (!trangthai) {
+            errors.push('trangthai');
+        }
+
+        return errors;
+    }
+
+    function clearErrorMessages() {
+        var ma = $('#formGroupExampleInputMa').val();
+        var ten = $('#formGroupExampleInputTen').val();
+        var dieuKien = $('#formGroupExampleInputDieuKien').val();
+        var ngayBatDau = $('#formGroupExampleInputNgayBatDau').val();
+        var ngayKetThuc = $('#formGroupExampleInputNgayKetThuc').val();
+        var soTienGiamMax = $('#formGroupExampleInputSoTienGiamMax').val();
+        var phanTramGiam = $('#formGroupExampleInputPhanTramGiam').val();
+        var soLuong = $('#formGroupExampleInputSoLuong').val();
+        var trangthai = $('input[name="trangthai"]:checked').val();
+
+        if (ma.trim() !== '') {
+            $('#formGroupExampleInputMa').removeClass('error-border');
+            $('.text-danger').text('');
+        } else if (checkMaTrung(ma)) {
+            $('#formGroupExampleInputMa').removeClass('error-border');
+            $('.text-danger').text('');
+        }
+
+        if (ten.trim() !== '') {
+            $('#formGroupExampleInputTen').removeClass('error-border');
+            $('.text-danger').text('');
+        }
+
+        if (dieuKien.trim() !== '') {
+            $('#formGroupExampleInputDieuKien').removeClass('error-border');
+            $('.text-danger').text('');
+        } else if (dieuKien < 0) {
+            $('#formGroupExampleInputDieuKien').removeClass('error-border');
+            $('.text-danger').text('');
+        }
+
+        if (ngayBatDau.trim() !== '') {
+            $('#formGroupExampleInputNgayBatDau').removeClass('error-border');
+            $('.text-danger').text('');
+        }
+
+        if (ngayKetThuc.trim() !== '') {
+            $('#formGroupExampleInputNgayKetThuc').removeClass('error-border');
+            $('.text-danger').text('');
+        }
+
+        if (soTienGiamMax.trim() !== '') {
+            $('#formGroupExampleInputMatKhau').removeClass('error-border');
+            $('.text-danger').text('');
+        } else if (soTienGiamMax < 0) {
+            $('#formGroupExampleInputSoTienGiamMax').removeClass('error-border');
+            $('.text-danger').text('');
+        }
+
+        if (phanTramGiam.trim() !== '') {
+            $('#formGroupExampleInputPhanTramGiam').removeClass('error-border');
+            $('.text-danger').text('');
+        } else if (phanTramGiam < 0) {
+            $('#formGroupExampleInputPhanTramGiam').removeClass('error-border');
+            $('.text-danger').text('');
+        }
+
+        if (soLuong.trim() !== '') {
+            $('#formGroupExampleInputSoLuong').removeClass('error-border');
+            $('.text-danger').text('');
+        } else if (soLuong < 0) {
+            $('#formGroupExampleInputSoLuong').removeClass('error-border');
+            $('.text-danger').text('');
+        }
+
+        $('#gridRadios1').removeClass('error-border');
+        $('#gridRadios2').removeClass('error-border');
+        $('#trangthaiError').text('');
+    }
+
+    function displayErrorMessages(errors) {
+        for (var i = 0; i < errors.length; i++) {
+            var ma = $('#formGroupExampleInputMa').val();
+            var ten = $('#formGroupExampleInputTen').val();
+            var dieuKien = $('#formGroupExampleInputDieuKien').val();
+            var ngayBatDau = $('#formGroupExampleInputNgayBatDau').val();
+            var ngayKetThuc = $('#formGroupExampleInputNgayKetThuc').val();
+            var soTienGiamMax = $('#formGroupExampleInputSoTienGiamMax').val();
+            var phanTramGiam = $('#formGroupExampleInputPhanTramGiam').val();
+            var soLuong = $('#formGroupExampleInputSoLuong').val();
+            var trangthai = $('input[name="trangthai"]:checked').val();
+
+            if (ma.trim() === '') {
+                $('#formGroupExampleInputMa').addClass('error-border');
+                $('#' + errors[i] + 'Error').text('Không được để trống thông tin');
+            } else if (checkMaTrung(ma)) {
+                $('#formGroupExampleInputMa').addClass('error-border');
+                $('#' + errors[i] + 'Error1').text('Mã Giảm Giá đã tổn tại');
+            }
+
+            if (ten.trim() === '') {
+                $('#formGroupExampleInputTen').addClass('error-border');
+                $('#' + errors[i] + 'Error').text('Không được để trống thông tin');
+            }
+
+            if (dieuKien.trim() === '') {
+                $('#formGroupExampleInputDieuKien').addClass('error-border');
+                $('#' + errors[i] + 'Error').text('Không được để trống thông tin');
+            } else if (dieuKien < 0) {
+                $('#formGroupExampleInputDieuKien').addClass('error-border');
+                $('#' + errors[i] + 'Error1').text('Thông tin không hợp lệ');
+            }
+
+            if (ngayBatDau.trim() === '') {
+                $('#formGroupExampleInputNgayBatDau').addClass('error-border');
+                $('#' + errors[i] + 'Error').text('Không được để trống thông tin');
+            }
+
+            if (ngayKetThuc.trim() === '') {
+                $('#formGroupExampleInputNgaySinh').addClass('error-border');
+                $('#' + errors[i] + 'Error').text('Không được để trống thông tin');
+            }
+
+            if (ngayKetThuc.trim() === '') {
+                $('#formGroupExampleInputNgayKetThuc').addClass('error-border');
+                $('#' + errors[i] + 'Error').text('Không được để trống thông tin');
+            } else if (errors[i] === 'ngayKetThuc1') {
+                $('#formGroupExampleInputNgayKetThuc').addClass('error-border');
+                $('#' + errors[i] + 'Error1').text('Ngày kết thúc phải sau ngày bắt đầu');
+            }
+
+            if (soTienGiamMax.trim() === '') {
+                $('#formGroupExampleInputSoTienGiamMax').addClass('error-border');
+                $('#' + errors[i] + 'Error').text('Không được để trống thông tin');
+            } else if (soTienGiamMax < 0) {
+                $('#formGroupExampleInputSoTienGiamMax').addClass('error-border');
+                $('#' + errors[i] + 'Error1').text('Thông tin không hợp lệ');
+            }
+
+            if (phanTramGiam.trim() === '') {
+                $('#formGroupExampleInputPhanTramGiam').addClass('error-border');
+                $('#' + errors[i] + 'Error').text('Không được để trống thông tin');
+            } else if (phanTramGiam < 0) {
+                $('#formGroupExampleInputPhanTramGiam').addClass('error-border');
+                $('#' + errors[i] + 'Error1').text('Thông tin không hợp lệ');
+            }
+            if (soLuong.trim() === '') {
+                $('#formGroupExampleInputSoLuong').addClass('error-border');
+                $('#' + errors[i] + 'Error').text('Không được để trống thông tin');
+            } else if (soLuong < 0) {
+                $('#formGroupExampleInputSoLuong').addClass('error-border');
+                $('#' + errors[i] + 'Error1').text('Thông tin không hợp lệ');
+            }
+            if (errors[i] === 'trangthai') {
+                $('#gridRadios1').addClass('error-border');
+                $('#gridRadios2').addClass('error-border');
+                $('#' + errors[i] + 'Error').text('Không được để trống thông tin');
+            }
+        }
+    }
+</script>
+<!--End validate create form-->
+
+<!--Begin validate update form-->
+<script>
+    $(document).ready(function () {
+        $('#submitBtn2').click(function (e) {
+            clearErrorMessages1();
+
+            var maUpdate = $('#formGroupExampleInputMaUpdate').val();
+            var tenUpdate = $('#formGroupExampleInputTenUpdate').val();
+            var dieuKienUpdate = $('#formGroupExampleInputDieuKienUpdate').val();
+            var ngayBatDauUpdate = $('#formGroupExampleInputNgayBatDauUpdate').val();
+            var ngayKetThucUpdate = $('#formGroupExampleInputNgayKetThucUpdate').val();
+            var soTienGiamMaxUpdate = $('#formGroupExampleInputSoTienGiamMaxUpdate').val();
+            var phanTramGiamUpdate = $('#formGroupExampleInputPhanTramGiamUpdate').val();
+            var soLuongUpdate = $('#formGroupExampleInputSoLuongUpdate').val();
+            var trangThaiUpdate = $('input[name="trangthai"]:checked').val();
+
+            var errors = validateInput1(maUpdate, tenUpdate, dieuKienUpdate, ngayBatDauUpdate, ngayKetThucUpdate, soTienGiamMaxUpdate, phanTramGiamUpdate, soLuongUpdate, trangThaiUpdate);
+
+            if (errors.length > 0) {
+                displayErrorMessages1(errors);
+                e.preventDefault();
+            } else {
+                $.ajax({
+                    type: 'POST',
+                    url: '/admin/giamgiahoadon/update',
+                    data: $('#myFormUpdate').serialize(),
+                    success: function (response) {
+                        $('#exampleModal1').modal('show');
+                    },
+                    error: function (error) {
+                        // Xử lý lỗi nếu cần
+                    }
+                });
+            }
+        });
+    });
+
+    function validateInput1(maUpdate, tenUpdate, dieuKienUpdate, ngayBatDauUpdate, ngayKetThucUpdate, soTienGiamMaxUpdate, phanTramGiamUpdate, soLuongUpdate, trangThaiUpdate) {
+        var errors = [];
+
+        if (!maUpdate) {
+            errors.push('maUpdate');
+        }
+
+        if (!tenUpdate) {
+            errors.push('tenUpdate');
+        }
+
+        if (!dieuKienUpdate) {
+            errors.push('dieuKienUpdate');
+        } else if (dieuKienUpdate < 0) {
+            errors.push('dieuKienUpdate1');
+        }
+
+        if (!ngayBatDauUpdate) {
+            errors.push('ngayBatDauUpdate');
+        }
+
+        var startDate = new Date(ngayBatDauUpdate);
+        var endDate = new Date(ngayKetThucUpdate);
+
+        if (startDate >= endDate) {
+            errors.push('ngayKetThucUpdate1');
+        }
+
+        if (!ngayKetThucUpdate) {
+            errors.push('ngayKetThucUpdate');
+        }
+
+        // Kiểm tra email
+        if (!soTienGiamMaxUpdate) {
+            errors.push('soTienGiamMaxUpdate');
+        } else if (soTienGiamMaxUpdate < 0) {
+            errors.push('soTienGiamMaxUpdate1');
+        }
+
+        if (!phanTramGiamUpdate) {
+            errors.push('phanTramGiamUpdate');
+        } else if (phanTramGiamUpdate < 0) {
+            errors.push('phanTramGiamUpdate1');
+        }
+
+        if (!soLuongUpdate) {
+            errors.push('soLuongUpdate');
+        } else if (soLuongUpdate < 0) {
+            errors.push('soLuongUpdate1');
+        }
+
+        if (!trangThaiUpdate) {
+            errors.push('trangThaiUpdate');
+        }
+
+        return errors;
+    }
+
+    function clearErrorMessages1() {
+        var maUpdate = $('#formGroupExampleInputMaUpdate').val();
+        var tenUpdate = $('#formGroupExampleInputTenUpdate').val();
+        var dieuKienUpdate = $('#formGroupExampleInputDieuKienUpdate').val();
+        var ngayBatDauUpdate = $('#formGroupExampleInputNgayBatDauUpdate').val();
+        var ngayKetThucUpdate = $('#formGroupExampleInputNgayKetThucUpdate').val();
+        var soTienGiamMaxUpdate = $('#formGroupExampleInputSoTienGiamMaxUpdate').val();
+        var phanTramGiamUpdate = $('#formGroupExampleInputPhanTramGiamUpdate').val();
+        var soLuongUpdate = $('#formGroupExampleInputSoLuongUpdate').val();
+        var trangthaiUpdate = $('input[name="trangthai"]:checked').val();
+
+        if (maUpdate.trim() !== '') {
+            $('#formGroupExampleInputMaUpdate').removeClass('error-border');
+            $('.text-danger').text('');
+        }
+
+        if (tenUpdate.trim() !== '') {
+            $('#formGroupExampleInputTenUpdate').removeClass('error-border');
+            $('.text-danger').text('');
+        }
+
+        if (dieuKienUpdate.trim() !== '') {
+            $('#formGroupExampleInputDieuKienUpdate').removeClass('error-border');
+            $('.text-danger').text('');
+        } else if (dieuKienUpdate < 0) {
+            $('#formGroupExampleInputDieuKienUpdate').removeClass('error-border');
+            $('.text-danger').text('');
+        }
+
+        if (ngayBatDauUpdate.trim() !== '') {
+            $('#formGroupExampleInputNgayBatDauUpdate').removeClass('error-border');
+            $('.text-danger').text('');
+        }
+
+        if (ngayKetThucUpdate.trim() !== '') {
+            $('#formGroupExampleInputNgayKetThucUpdate').removeClass('error-border');
+            $('.text-danger').text('');
+        }
+
+        if (soTienGiamMaxUpdate.trim() !== '') {
+            $('#formGroupExampleInputSoTienGiamMaxUpdate').removeClass('error-border');
+            $('.text-danger').text('');
+        } else if (soTienGiamMaxUpdate < 0) {
+            $('#formGroupExampleInputSoTienGiamMaxUpdate').removeClass('error-border');
+            $('.text-danger').text('');
+        }
+
+        if (phanTramGiamUpdate.trim() !== '') {
+            $('#formGroupExampleInputPhanTramGiamUpdate').removeClass('error-border');
+            $('.text-danger').text('');
+        } else if (phanTramGiamUpdate < 0) {
+            $('#formGroupExampleInputPhanTramGiamUpdate').removeClass('error-border');
+            $('.text-danger').text('');
+        }
+
+        if (soLuongUpdate.trim() !== '') {
+            $('#formGroupExampleInputSoLuongUpdate').removeClass('error-border');
+            $('.text-danger').text('');
+        } else if (soLuongUpdate < 0) {
+            $('#formGroupExampleInputSoLuongUpdate').removeClass('error-border');
+            $('.text-danger').text('');
+        }
+
+        $('#gridRadios3').removeClass('error-border');
+        $('#gridRadios4').removeClass('error-border');
+        $('#trangThaiError').text('');
+    }
+
+    function displayErrorMessages1(errors) {
+        for (var i = 0; i < errors.length; i++) {
+            var maUpdate = $('#formGroupExampleInputMaUpdate').val();
+            var tenUpdate = $('#formGroupExampleInputTenUpdate').val();
+            var dieuKienUpdate = $('#formGroupExampleInputDieuKienUpdate').val();
+            var ngayBatDauUpdate = $('#formGroupExampleInputNgayBatDauUpdate').val();
+            var ngayKetThucUpdate = $('#formGroupExampleInputNgayKetThucUpdate').val();
+            var soTienGiamMaxUpdate = $('#formGroupExampleInputSoTienGiamMaxUpdate').val();
+            var phanTramGiamUpdate = $('#formGroupExampleInputPhanTramGiamUpdate').val();
+            var soLuongUpdate = $('#formGroupExampleInputSoLuongUpdate').val();
+            var trangThaiUpdate = $('input[name="trangthai"]:checked').val();
+
+            if (maUpdate.trim() === '') {
+                $('#formGroupExampleInputMaUpdate').addClass('error-border');
+                $('#' + errors[i] + 'Error').text('Không được để trống thông tin');
+            }
+
+            if (tenUpdate.trim() === '') {
+                $('#formGroupExampleInputTenUpdate').addClass('error-border');
+                $('#' + errors[i] + 'Error').text('Không được để trống thông tin');
+            }
+
+            if (dieuKienUpdate.trim() === '') {
+                $('#formGroupExampleInputDieuKienUpdate').addClass('error-border');
+                $('#' + errors[i] + 'Error').text('Không được để trống thông tin');
+            } else if (dieuKienUpdate < 0) {
+                $('#formGroupExampleInputDieuKienUpdate').addClass('error-border');
+                $('#' + errors[i] + 'Error1').text('Thông tin không hợp lệ');
+            }
+
+            if (ngayBatDauUpdate.trim() === '') {
+                $('#formGroupExampleInputNgayBatDauUpdate').addClass('error-border');
+                $('#' + errors[i] + 'Error').text('Không được để trống thông tin');
+            }
+
+            if (ngayKetThucUpdate.trim() === '') {
+                $('#formGroupExampleInputNgayBatDauUpdate').addClass('error-border');
+                $('#' + errors[i] + 'Error').text('Không được để trống thông tin');
+            }
+
+            if (ngayKetThucUpdate.trim() === '') {
+                $('#formGroupExampleInputNgayKetThucUpdate').addClass('error-border');
+                $('#' + errors[i] + 'Error').text('Không được để trống thông tin');
+            } else if (errors[i] === 'ngayKetThucUpdate1') {
+                $('#formGroupExampleInputNgayKetThucUpdate').addClass('error-border');
+                $('#' + errors[i] + 'Error1').text('Ngày kết thúc phải sau ngày bắt đầu');
+            }
+
+            if (soTienGiamMaxUpdate.trim() === '') {
+                $('#formGroupExampleInputSoTienGiamMaxUpdate').addClass('error-border');
+                $('#' + errors[i] + 'Error').text('Không được để trống thông tin');
+            } else if (soTienGiamMaxUpdate < 0) {
+                $('#formGroupExampleInputSoTienGiamMaxUpdate').addClass('error-border');
+                $('#' + errors[i] + 'Error1').text('Thông tin không hợp lệ');
+            }
+
+            if (phanTramGiamUpdate.trim() === '') {
+                $('#formGroupExampleInputPhanTramGiamUpdate').addClass('error-border');
+                $('#' + errors[i] + 'Error').text('Không được để trống thông tin');
+            } else if (phanTramGiamUpdate < 0) {
+                $('#formGroupExampleInputPhanTramGiamUpdate').addClass('error-border');
+                $('#' + errors[i] + 'Error1').text('Thông tin không hợp lệ');
+            }
+            if (soLuongUpdate.trim() === '') {
+                $('#formGroupExampleInputSoLuongUpdate').addClass('error-border');
+                $('#' + errors[i] + 'Error').text('Không được để trống thông tin');
+            } else if (soLuongUpdate < 0) {
+                $('#formGroupExampleInputSoLuongUpdate').addClass('error-border');
+                $('#' + errors[i] + 'Error1').text('Thông tin không hợp lệ');
+            }
+            if (errors[i] === 'trangThaiUpdate') {
+                $('#gridRadios3').addClass('error-border');
+                $('#gridRadios4').addClass('error-border');
+                $('#' + errors[i] + 'Error').text('Không được để trống thông tin');
+            }
+        }
+    }
+</script>
+<!--End validate update form-->
+
+</body>
+</html>

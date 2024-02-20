@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bán Hàng Tại Quầy</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+<div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+        <div class="custom-menu">
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                <i class="fa fa-bars"></i>
+                <span class="sr-only">Toggle Menu</span>
+            </button>
+        </div>
+        <div class="p-4">
+            <h1><a href="kieu_dang.html" class="logo">DLFV</a></h1>
+            <ul class="list-unstyled components mb-5">
+                <li class="active">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span
+                            class="fa fa-home mr-3"></span>Thống Kê</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="/admin/thong-ke">Thông kê doanh thu</a>
+                        </li>
+                        <li>
+                            <a href="/admin/thong-ke-top-ban-chay">Thông kê top</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="/admin/ban-hang" ><span class="fa fa-user mr-3"></span> Quản Lý Đơn Hàng</a>
+
+                </li>
+                <li>
+                    <a href="/admin/ban-hang-tai-quay"><span class="fa fa-briefcase mr-3"></span> Bán Hàng Tại Quầy</a>
+                </li>
+                <li>
+                    <a href="#homeSubmenu2"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span class="fa fa-sticky-note mr-3"></span> Quản Lý Sản Phẩm</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu2">
+                        <li>
+                            <a href="/admin/sanpham">Sản Phẩm</a>
+                        </li>
+                        <li>
+                            <a href="/admin/camgiac">Cảm Giác</a>
+                        </li>
+                        <li>
+                            <a href="/admin/chatlieu">Chất Liệu</a>
+                        </li>
+                        <li>
+                            <a href="/admin/danhmuc">Danh Mục</a>
+                        </li>
+                        <li>
+                            <a href="/admin/degiay">Đế Giày</a>
+                        </li>
+                        <li>
+                            <a href="/admin/diahinh">Địa Hình</a>
+                        </li>
+                        <li>
+                            <a href="/admin/docaogiay">Độ Cao Giày</a>
+                        </li>
+                        <li>
+                            <a href="/admin/gioitinh">Giới Tính</a>
+                        </li>
+                        <li>
+                            <a href="/admin/mausac">Màu Sắc</a>
+                        </li>
+                        <li>
+                            <a href="/admin/thoitietthichhop">Thời Tiết Thích Hợp</a>
+                        </li>
+                        <li>
+                            <a href="/admin/thuonghieu">Thương Hiệu</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#homeSubmenu3"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span class="fa fa-paper-plane mr-3"></span> Quản Lý Tài Khoản</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu3">
+                        <li>
+                            <a href="/admin/nhan-vien">Nhân Viên</a>
+                        </li>
+                        <li>
+                            <a href="/admin/khachhang">Khách Hàng</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#homeSubmenu4"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span class="fa fa-cubes mr-3"></span>Khuyến Mại</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu4">
+                        <li>
+                            <a href="/admin/chuong-trinh-giam-gia-sp">Sản Phẩm</a>
+                        </li>
+                        <li>
+                            <a href="/admin/giamgiahoadon">Hóa Đơn</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="mb-5">
+                <h3 class="h6 mb-3">Subscribe for newsletter</h3>
+                <form action="#" class="subscribe-form">
+                    <div class="form-group d-flex">
+                        <div class="icon"><span class="icon-paper-plane"></span></div>
+                        <input type="text" class="form-control" placeholder="Enter Email Address">
+                    </div>
+                </form>
+            </div>
+
+            <div class="footer">
+                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+            </div>
+
+        </div>
+    </nav>
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 pt-5">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-top: -50px;">
+            <div class="container-fluid" style="display: flex;justify-content: end;">
+                <ul class="navbar-nav">
+                    <!-- Avatar -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#"
+                           id="navbarDropdownMenuLink"
+                           role="button" data-toggle="dropdown" aria-expanded="false">
+                            <img
+                                    class="rounded-circle"
+                                    th:src="@{|/images/${nhanVienLogin.anh}|}"
+                                    height="72" alt="Avatar" loading="lazy"/>
+                        </a>
+                        <div class="dropdown-menu" style="margin-left: -88px;">
+                            <a class="dropdown-item" href="#">Đăng Xuất</a>
+                            <a class="dropdown-item" href="#">Thông Tin Cá Nhân</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <h1 class="page-title" style="text-align: center; font-size: 200%">Danh Sách Các Hóa Đơn</h1>
+        <br>
+        <!--        Danh sách các hóa đơn có trạng thái chưa thanh toán-->
+        <div class="container" style="border: 1px solid black; border-radius: 10px; padding: 20px;">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card-box" style="display: flex;justify-content:center ">
+                        <div class="col-xl-8">
+                            <form th:action="@{/admin/ban-hang-tai-quay/tim-kiem-hoa-don}" method="get">
+                                <div class="form-inline mt-3" style="display: flex">
+                                    <input type="text" name="keyword" placeholder="Tìm đơn hàng"
+                                           class="form-control form-control-sm"
+                                           style="width: 150px; height: 40px; margin-right: 10px;"/>
+                                    <button type="submit" class="btn btn-primary">
+                                        <span class="btn-label"><i class="bi bi-search"></i></span>
+                                        Tìm Kiếm
+                                    </button>
+                                    <button class="btn btn-primary" type="submit" style="margin-left: 10px">
+                                        <a href="/admin/ban-hang-tai-quay" style="text-decoration: none;color: white"><i
+                                                class="bi bi-arrow-clockwise"></i></a>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-xl-4">
+                            <div class="dataTables_filter" style="padding-top: 17px">
+                                <form action="/admin/ban-hang-tai-quay/tao-don-hang" method="post">
+                                    <button type="submit" class="btn btn-primary"
+                                            style="float: right; margin-left: 10px">
+                                        <span class="btn-label">
+                                            <i class="bi bi-plus-circle"></i>
+                                        </span>
+                                        Tạo Đơn Hàng
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 30px"></div>
+        <div class="container" style="border: 1px solid black; border-radius: 10px; padding: 20px;">
+
+            <!--            phần table-->
+            <table id="datatable-buttons"
+                   class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline"
+                   style="border-collapse: collapse; border-spacing: 0px; height: 200%;"
+                   role="grid" aria-describedby="datatable-buttons_info">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">Mã Hóa đơn</th>
+                    <th scope="col">Ngày Tạo</th>
+                    <th scope="col">Nhân Viên</th>
+                    <th scope="col">Khách Hàng</th>
+                    <th scope="col">Tổng Tiền</th>
+                    <th scope="col">TT</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody style="max-height: 300px; overflow-y: auto;">
+                <!-- Dữ liệu của tbody -->
+                <tr th:if="${hoaDonListchuaTT.content.isEmpty()}">
+                    <td colspan="7">
+                        <i style="font-size: 3rem"
+                           class="bi bi-inboxes d-flex justify-content-center align-items-center"></i>
+                        <div class="text-center d-flex justify-content-center align-items-center">
+                            No Data
+                        </div>
+                    </td>
+                </tr>
+                <tr th:each="hd:${hoaDonListchuaTT.content}">
+                    <th>
+                        <span th:if="${hd.ma == null}" class="badge badge-pill badge-danger">Chưa có tt</span>
+                        <span th:if="${hd.ma != null}" th:text="${hd.ma}"></span>
+                    </th>
+                    <th>
+                        <span th:if="${hd.ngay_tao == null}"
+                              class="badge badge-pill badge-warning">Đang Chờ</span>
+                        <span th:if="${hd.ngay_tao != null}" th:text="${hd.ngay_tao}"></span>
+                    </th>
+                    <th>
+                        <span th:if="${hd.nhanVien == null}" class="badge badge-pill badge-warning">Chưa có tt</span>
+                        <span th:if="${hd.nhanVien != null}"
+                              th:text="${hd.nhanVien.hoTen}"></span>
+                    </th>
+                    <th>
+                        <span th:if="${hd.khachHang == null}" class="badge badge-pill badge-primary">Khách Lẻ</span>
+                        <span th:if="${hd.khachHang != null}"
+                              th:text="${hd.khachHang.hoten}"></span>
+                    </th>
+                    <th class="giaBan" th:text="${hd.tong_tien != null ? hd.tong_tien : 0}"></th>
+                    <th>
+                        <span th:if="${hd.trangthai == 0}" class="badge badge-pill badge-sm"
+                              style="background-color: #d39cff">Chờ xác nhận</span>
+                        <span th:if="${hd.trangthai == 1}" class="badge badge-pill badge-sm"
+                              style="background-color: #4545ff">Chờ giao</span>
+                        <span th:if="${hd.trangthai == 2}" class="badge badge-pill badge-sm"
+                              style="background-color: yellow">Vận chuyển</span>
+                        <span th:if="${hd.trangthai == 3}" class="badge badge-pill badge-sm"
+                              style="background-color: #00a219">Hoàn thành</span>
+                        <span th:if="${hd.trangthai == 4}" class="badge badge-pill badge-sm"
+                              style="background-color: orangered">Đã hủy</span>
+                    </th>
+
+                    <th>
+                        <a onclick="return confirm('Bạn có chắc chắn muốn hủy?')"
+                           th:href="@{|/admin/ban-hang-tai-quay/delete/${hd.id}|}"><i style="color: red"
+                                                                                      class="bi bi-trash"></i></a>
+                        <a th:href="@{|/admin/ban-hang-tai-quay/view-cart/${hd.ma}|}"><i style="color: #a2a237"
+                                                                                         class="bi bi-pencil-square"></i></a>
+                    </th>
+                </tr>
+                </tbody>
+            </table>
+            <!--            end phần table-->
+            <!--            nav-->
+            <nav aria-label="Page navigation example" style="display: flex;justify-content: space-between;">
+                <div style="margin-left: 20px">
+                    <p>Bạn đang xem [[${hoaDonListchuaTT.numberOfElements}]] trên tổng số
+                        [[${hoaDonListchuaTT.totalElements}]]</p>
+                </div>
+                <ul class="pagination" style="margin-right: 24px;">
+                    <li class="page-item">
+                        <a class="page-link" th:if="${hoaDonListchuaTT.number > 0}"
+                           th:href="@{|/admin/ban-hang-tai-quay?page=${hoaDonListchuaTT.number-1}|}"
+                           aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+
+                    <li th:each="tongtrang,status:${#numbers.sequence(1, hoaDonListchuaTT.totalPages)}"
+                        class="page-item"><a class="page-link"
+                                             th:href="@{|/admin/ban-hang-tai-quay?page=${status.index}|}">[[${status.index+1}]]</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" th:if="${hoaDonListchuaTT.number < hoaDonListchuaTT.totalPages - 1}"
+                           th:href="@{|/admin/ban-hang-tai-quay?page=${hoaDonListchuaTT.number+1}|}"
+                           aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!--            nav-->
+        </div>
+        <!--        end Danh sách các hóa đơn đã được áp mã-->
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/assets/js/popper.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/main.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var giaBanElements = document.querySelectorAll('.giaBan');
+        giaBanElements.forEach(function (element) {
+            var giaBanText = element.textContent.trim();
+            var giaBan = parseFloat(giaBanText.replace('Giá Bán:', '').trim());
+            var giaBanFormatted = giaBan.toLocaleString('vi-VN'); // Định dạng giá
+
+            // Cập nhật lại văn bản đã định dạng trong phần tử
+            element.textContent = giaBanFormatted + " VNĐ";
+        });
+    });
+</script>
+</body>
+</html>

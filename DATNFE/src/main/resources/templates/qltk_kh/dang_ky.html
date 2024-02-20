@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login V4</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="/assets/images/icons/favicon.ico"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <!--    <link rel="stylesheet" type="text/css" href="/assets/vendor/bootstrap/css/bootstrap.min.css">-->
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/assets/fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/assets/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/assets/vendor/css-hamburgers/hamburgers.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/assets/vendor/animsition/css/animsition.min.css">
+    <!--    <link rel="stylesheet" type="text/css" href="/assets/fonts/iconic/css/material-design-iconic-font.min.css">-->
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/assets/vendor/select2/select2.min.css">
+    <!--    <link rel="stylesheet" type="text/css" href="/assets/vendor/animate/animate.css">-->
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/assets/vendor/daterangepicker/daterangepicker.css">
+    <!--    <link rel="stylesheet" type="text/css" href="/assets/vendor/css-hamburgers/hamburgers.min.css">-->
+    <!--    &lt;!&ndash;===============================================================================================&ndash;&gt;-->
+    <!--    <link rel="stylesheet" type="text/css" href="/assets/vendor/animsition/css/animsition.min.css">-->
+    <!--    &lt;!&ndash;===============================================================================================&ndash;&gt;-->
+    <!--    <link rel="stylesheet" type="text/css" href="/assets/vendor/select2/select2.min.css">-->
+    <!--    &lt;!&ndash;===============================================================================================&ndash;&gt;-->
+    <!--    <link rel="stylesheet" type="text/css" href="/assets/vendor/daterangepicker/daterangepicker.css">-->
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/assets/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+    <!--===============================================================================================-->
+    <style>
+        .err {
+            color: red;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('/assets/images/bg-01.jpg');">
+        <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+            <form action="/dang-ky-khach-hang" class="login100-form validate-form" method="post" id="formDk"
+                  th:object="${khachHang}">
+					<span class="login100-form-title p-b-49">
+						Đăng ký
+					</span>
+
+                <div class="wrap-input100 m-b-23">
+                    <span class="label-input100">Họ Và Tên</span>
+                    <input class="input100" th:field="*{hoten}" id="hoTenInput" type="text"
+                           placeholder="Nhập họ và tên">
+                    <p id="hoTenErr" class="err"></p>
+                    <span class="focus-input100" data-symbol="&#xf206;"></span>
+                </div>
+                <p id="hoTenErr" class="err"></p>
+
+                <div class="wrap-input100 m-b-23">
+                    <span class="label-input100">Ngày Sinh</span>
+                    <input class="input100" th:field="*{ngaysinh}" type="date" id="ngaySinhInput"
+                           placeholder="Chọn ngày sinh">
+                    <p id="ngaySinhErr" class="err"></p>
+                    <span class="focus-input100" data-symbol="&#xf332;"></span>
+                </div>
+                <p id="ngaySinhErr" class="err"></p>
+
+                <div class="wrap-input100m-b-23">
+
+                    <div class="wrap-input100 m-b-23">
+                        <span class="label-input100">Email</span>
+                        <input class="input100" th:field="*{email}" id="emailInput" type="text"
+                               placeholder="Nhập email">
+                        <p id="emailErr" class="err"></p>
+                        <span class="focus-input100" data-symbol="&#xf15a;"></span>
+                    </div>
+                    <p id="emailErr" class="err"></p>
+
+
+                    <div class="wrap-input100">
+                        <div class="wrap-input100 m-b-23">
+                            <span class="label-input100">Mật khẩu</span>
+                            <input class="input100" th:field="*{matkhau}" id="matKhauInput" type="password"
+                                   placeholder="Nhập mật khẩu">
+                            <p id="matKhauErr" class="err"></p>
+                            <span class="focus-input100" data-symbol="&#xf190;"></span>
+                        </div>
+                        <p id="matKhauErr" class="err"></p>
+
+
+                        <div class="wrap-input100">
+                            <div class="wrap-input100 m-b-23">
+                                <span class="label-input100">Số điện thoại</span>
+                                <input class="input100" type="text" th:field="*{sdt}" id="sdtInput"
+                                       placeholder="Nhập số điện thoại">
+                                <p id="sdtErr" class="err"></p>
+                                <span class="focus-input100" data-symbol="&#xf2be;"></span>
+                            </div>
+
+                            <p id="sdtErr" class="err"></p>
+
+                            <div class="container-login100-form-btn">
+                                <div class="wrap-login100-form-btn">
+                                    <div class="login100-form-bgbtn"></div>
+                                    <button class="login100-form-btn" onclick="validateForm()">
+                                        Tạo tài khoản
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="txt1 text-center p-t-54 p-b-20">
+						<span>
+							Or Sign Up Using
+						</span>
+            </div>
+
+            <div class="flex-c-m">
+                <a href="#" class="login100-social-item bg1">
+                    <i class="fa fa-facebook"></i>
+                </a>
+
+                <a href="#" class="login100-social-item bg2">
+                    <i class="fa fa-twitter"></i>
+                </a>
+
+                <a href="#" class="login100-social-item bg3">
+                    <i class="fa fa-google"></i>
+                </a>
+            </div>
+
+            <div class="flex-col-c p-t-155">
+						<span class="txt1 p-b-17">
+							Hoặc
+						</span>
+                <a href="/login" class="txt2">
+                    Đăng nhập
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+<script src="/assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="/assets/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script src="/assets/vendor/bootstrap/js/popper.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="/assets/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="/assets/vendor/daterangepicker/moment.min.js"></script>
+<script src="/assets/vendor/daterangepicker/daterangepicker.js"></script>
+<!--<script src="/assets/vendor/jquery/jquery-3.2.1.min.js"></script>-->
+<!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+<!--<script src="/assets/vendor/animsition/js/animsition.min.js"></script>-->
+<!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+<!--<script src="/assets/vendor/bootstrap/js/popper.js"></script>-->
+<!--<script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>-->
+<!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+<!--<script src="/assets/vendor/select2/select2.min.js"></script>-->
+<!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+<!--<script src="/assets/vendor/daterangepicker/moment.min.js"></script>-->
+<!--<script src="/assets/vendor/daterangepicker/daterangepicker.js"></script>-->
+<!--&lt;!&ndash;===============================================================================================&ndash;&gt;-->
+<!--<script src="/assets/vendor/countdowntime/countdowntime.js"></script>-->
+<!--===============================================================================================-->
+<script src="/assets/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+<script src="/assets/js/main3.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="/assets/js/main3.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
+
+<script>
+    var formDk = document.getElementById('formDk');
+
+    var hoTen = document.getElementById('hoTenInput');
+    var hoTenErr = document.getElementById('hoTenErr');
+
+    var ngaySinh = document.getElementById('ngaySinhInput');
+    var ngaySinhErr = document.getElementById('ngaySinhErr');
+
+    var email = document.getElementById('emailInput');
+    var emailErr = document.getElementById('emailErr');
+
+    var matKhau = document.getElementById('matKhauInput');
+    var matKhauErr = document.getElementById('matKhauErr');
+
+    var sdt = document.getElementById('sdtInput');
+    var sdtErr = document.getElementById('sdtErr');
+
+    function reset() {
+        hoTenErr.innerText = '';
+        ngaySinhErr.innerText = '';
+        emailErr.innerText = '';
+        matKhauErr.innerText = '';
+        sdtErr.innerText = '';
+    }
+
+    function checkEmail(email) {
+        var result;
+        $.ajax({
+            url: '/khIsExist/' + email,
+            type: 'GET',
+            async: false, // Make the request synchronous
+            success: function (data) {
+                result = data;
+            },
+            error: function (error) {
+                throw new Error(error);
+            }
+        });
+        return result;
+    }
+
+    //  function checkEmail(email) {
+    //     return new Promise((resolve, reject) => {
+    //         $.ajax({
+    //             url: '/khIsExist/' + email,
+    //             type: 'GET',
+    //             success: function (data) {
+    //                 resolve(data);
+    //             },
+    //             error: function (error) {
+    //                 reject(error);
+    //             }
+    //         });
+    //     });
+    // }
+
+    function validateForm() {
+        event.preventDefault();
+        reset();
+        var isErr = false;
+
+        if (hoTen.value.trim() === '') {
+            hoTenErr.innerText = 'Vui lòng nhập họ tên';
+            isErr = true;
+        }
+
+        if (ngaySinh.value.trim() === '') {
+            ngaySinhErr.innerText = 'Vui lòng chọn ngày sinh';
+            isErr = true;
+        } else if (ngaySinh.value.trim() != "") {
+            var currentDate = new Date();
+            var selectedDate = new Date(ngaySinh.value.trim());
+
+            if (selectedDate >= currentDate) {
+                ngaySinhErr.innerText = "Ngày sinh không được sau ngày hiện tại.";
+                isErr = true;
+            }
+        }
+
+        if (email.value.trim() === '') {
+            emailErr.innerText = 'Vui lòng nhập email';
+            isErr = true;
+        } else if (email.value.trim() !== "") {
+            var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!regex.test(email.value.trim())) {
+                emailErr.innerText = "Email không hợp lệ.";
+                isErr = true;
+            } else {
+                var data = checkEmail(email.value.trim());
+                if (data) {
+                    emailErr.innerText = "Email đã tồn tại.";
+                    isErr = true;
+                }
+            }
+        }
+
+        if (matKhau.value.trim() === '') {
+            matKhauErr.innerText = 'Vui lòng nhập mật khẩu';
+            isErr = true;
+        }
+
+        if (sdt.value.trim() === '') {
+            sdtErr.innerText = 'Vui lòng nhập SĐT';
+            isErr = true;
+        } else if (sdt.value.trim() !== '') {
+            var regex = /^(0[1-9])+([0-9]{8})$/;
+            if (!regex.test(sdt.value.trim())) {
+                sdtErr.innerText = "Số điện thoại không hợp lệ.";
+                isErr = true;
+            }
+        }
+
+        if (!isErr) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Thành công!',
+                text: 'OTP đã được gửi tới email của bạn',
+            })
+            formDk.submit();
+        }
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="form-group col-md-4">
+    <label >Cảm Giác :</label>
+    <select class="form-control" >
+        <option th:each="cg:${listCamGiac}" th:value="${cg.ma}">[[${cg.ten}]]</option>
+    </select>
+</div>
+</body>
+</html>

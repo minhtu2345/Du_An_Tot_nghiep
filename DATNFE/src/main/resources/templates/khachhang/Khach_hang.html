@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sidebar 03</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        .error-border {
+            border: 1px solid red;
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            border-radius: 50%;
+            border: 3px solid #ffffff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .avatar-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .choose-file-btn {
+            display: block;
+            text-align: center;
+            padding: 5px 10px;
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .choose-file-btn:hover {
+            background-color: #f0f0f0;
+        }
+
+        #avatarInput {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .success-message {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4caf50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+        <div class="custom-menu">
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                <i class="fa fa-bars"></i>
+                <span class="sr-only">Toggle Menu</span>
+            </button>
+        </div>
+        <div class="p-4">
+            <h1><a href="kieu_dang.html" class="logo">DLFV</a></h1>
+            <ul class="list-unstyled components mb-5">
+                <li class="active">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span
+                            class="fa fa-home mr-3"></span>Thống Kê</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="/admin/thong-ke">Thông kê doanh thu</a>
+                        </li>
+                        <li>
+                            <a href="/admin/thong-ke-top-ban-chay">Thông kê top</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="/admin/ban-hang" ><span class="fa fa-user mr-3"></span> Quản Lý Đơn Hàng</a>
+
+                </li>
+                <li>
+                    <a href="/admin/ban-hang-tai-quay"><span class="fa fa-briefcase mr-3"></span> Bán Hàng Tại Quầy</a>
+                </li>
+                <li>
+                    <a href="#homeSubmenu2"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span class="fa fa-sticky-note mr-3"></span> Quản Lý Sản Phẩm</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu2">
+                        <li>
+                            <a href="/admin/sanpham">Sản Phẩm</a>
+                        </li>
+                        <li>
+                            <a href="/admin/camgiac">Cảm Giác</a>
+                        </li>
+                        <li>
+                            <a href="/admin/chatlieu">Chất Liệu</a>
+                        </li>
+                        <li>
+                            <a href="/admin/danhmuc">Danh Mục</a>
+                        </li>
+                        <li>
+                            <a href="/admin/degiay">Đế Giày</a>
+                        </li>
+                        <li>
+                            <a href="/admin/diahinh">Địa Hình</a>
+                        </li>
+                        <li>
+                            <a href="/admin/docaogiay">Độ Cao Giày</a>
+                        </li>
+                        <li>
+                            <a href="/admin/gioitinh">Giới Tính</a>
+                        </li>
+                        <li>
+                            <a href="/admin/mausac">Màu Sắc</a>
+                        </li>
+                        <li>
+                            <a href="/admin/thoitietthichhop">Thời Tiết Thích Hợp</a>
+                        </li>
+                        <li>
+                            <a href="/admin/thuonghieu">Thương Hiệu</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#homeSubmenu3"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span class="fa fa-paper-plane mr-3"></span> Quản Lý Tài Khoản</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu3">
+                        <li>
+                            <a href="/admin/nhan-vien">Nhân Viên</a>
+                        </li>
+                        <li>
+                            <a href="/admin/khachhang">Khách Hàng</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#homeSubmenu4"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span class="fa fa-cubes mr-3"></span>Khuyến Mại</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu4">
+                        <li>
+                            <a href="/admin/chuong-trinh-giam-gia-sp">Sản Phẩm</a>
+                        </li>
+                        <li>
+                            <a href="/admin/giamgiahoadon">Hóa Đơn</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="mb-5">
+                <h3 class="h6 mb-3">Subscribe for newsletter</h3>
+                <form action="#" class="subscribe-form">
+                    <div class="form-group d-flex">
+                        <div class="icon"><span class="icon-paper-plane"></span></div>
+                        <input type="text" class="form-control" placeholder="Enter Email Address">
+                    </div>
+                </form>
+            </div>
+
+            <div class="footer">
+                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+            </div>
+
+        </div>
+    </nav>
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 pt-5 bg-secondary">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-top: -50px;">
+            <div class="container-fluid" style="display: flex;justify-content: end;">
+                <ul class="navbar-nav">
+                    <!-- Avatar -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#"
+                           id="navbarDropdownMenuLink"
+                           role="button" data-toggle="dropdown" aria-expanded="false">
+                            <img
+                                    class="rounded-circle"
+                                    th:src="@{|/images/${nhanVienLogin.anh}|}"
+                                    height="72" alt="Avatar" loading="lazy"/>
+                        </a>
+                        <div class="dropdown-menu" style="margin-left: -88px;">
+                            <a class="dropdown-item" href="#">Đăng Xuất</a>
+                            <a class="dropdown-item" href="#">Thông Tin Cá Nhân</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container-lg bg-light border">
+            <div style="padding: 15px">
+                <div style="margin: 20px">
+                    <div class="row">
+                        <div class="col-8">
+                            <h4 style="text-transform: uppercase; color: black; font-family: 'Lora'; text-align: left;">
+                                Danh Sách Khách Hàng
+                            </h4>
+                        </div>
+                        <!--                    NÚT THÊM MỚI HÓA ĐƠN-->
+                        <div class="col-4 text-right">
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                <i class="bi bi-plus-square"></i> Thêm mới
+                            </button>
+                        </div>
+                        <!--                    End  NÚT THÊM MỚI HÓA ĐƠN-->
+                    </div>
+                    <hr>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content" style="background-color: #d4d4d4">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Thêm Khách Hàng Mới</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form id="khachHangForm"  action="/admin/khachhang/save" method="post" enctype="multipart/form-data" th:object="${khachhang}">
+                                    <div class="modal-body" >
+                                        <div class="modal-body">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <input type="text" hidden th:field="*{id}">
+                                                    <div class="col-md-6">
+                                                        <div class="text-center"
+                                                             style="margin-left: 10px;margin-right: 100px;margin-block: auto">
+                                                            <div class="avatar-wrapper">
+                                                                <img id="avatarPreview" src="/images/avatar.jpg"
+                                                                     alt="Avatar" class="img-thumbnail">
+                                                                <input type="file" id="avatarInput" name="ten_url1"
+                                                                       accept=".jpg,.jpeg,.png">
+                                                            </div>
+                                                            <label for="avatarInput" class="choose-file-btn"
+                                                                   style="margin-right: 80px">Chọn ảnh</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6" style="margin-top: 120px">
+                                                        <label class="required" for="formGroupExampleInputHoten">Họ Và
+                                                            Tên</label>
+                                                        <input type="text" th:field="*{hoten}" class="form-control"
+                                                               id="formGroupExampleInputHoten" placeholder="Họ và tên">
+                                                        <div id="hotenError" class="text-danger"></div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label class="required" for="formGroupExampleInputNgaySinh">Ngày
+                                                            Sinh</label>
+                                                        <input type="date" th:field="*{ngaysinh}" class="form-control"
+                                                               id="formGroupExampleInputNgaySinh"
+                                                               placeholder="Ngày Sinh">
+                                                        <div id="ngaysinhError" class="text-danger"></div>
+                                                        <div id="ngaysinh1Error1" class="text-danger"></div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label class="required" for="formGroupExampleInputSdt">Số điện
+                                                            thoại</label>
+                                                        <input type="text" th:field="*{sdt}" class="form-control"
+                                                               id="formGroupExampleInputSdt"
+                                                               placeholder="Số điện thoại">
+                                                        <div id="sdtError" class="text-danger"></div>
+                                                        <div id="sdt1Error1" class="text-danger"></div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label class="required"
+                                                               for="formGroupExampleInputEmail">Email</label>
+                                                        <input type="email" th:field="*{email}" class="form-control"
+                                                               id="formGroupExampleInputEmail" placeholder="Email">
+                                                        <div id="emailError" class="text-danger"></div>
+                                                        <div id="email1Error1" class="text-danger"></div>
+                                                        <div id="email2Error2" class="text-danger"></div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label class="required" for="formGroupExampleInputMatKhau">Mật
+                                                            Khẩu</label>
+                                                        <input type="text" th:field="*{matkhau}" class="form-control"
+                                                               id="formGroupExampleInputMatKhau" placeholder="Mật Khẩu">
+                                                        <div id="matkhauError" class="text-danger"></div>
+                                                    </div>
+
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <legend class="col-form-label col-sm-2 pt-0 required">Trạng
+                                                                Thái :
+                                                            </legend>
+                                                            <div class="col-sm-10">
+                                                                <div class="custom-control custom-radio">
+                                                                    <input class="form-check-input" type="radio"
+                                                                           th:field="*{trangthai}" id="gridRadios1"
+                                                                           th:value="1">
+                                                                    <label class="form-check-label " for="gridRadios1">
+                                                                        Hoạt Động
+                                                                    </label>
+                                                                </div>
+                                                                <div class="custom-control custom-radio">
+                                                                    <input class="form-check-input" type="radio"
+                                                                           th:field="*{trangthai}" id="gridRadios2"
+                                                                           th:value="0">
+                                                                    <label class="form-check-label" for="gridRadios2">
+                                                                        Không Hoạt Động
+                                                                    </label>
+                                                                </div>
+                                                                <div id="trangthaiError" class="text-danger"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="submit" id="submitBtn" class="btn btn-primary">Thêm</button>
+                                        <a th:href="@{|/admin/khachhang|}">
+                                            <button type="button" class="btn btn-secondary">Close</button>
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--                    End Modal-->
+                </div>
+                <!--Begin tìm kiếm-->
+                <div class="row">
+                    <form class="form-inline" action="/admin/khachhang"  method="get"  style="margin-bottom: 20px;">
+                        <div class="form-group row">
+                            <div class="col-md-6 p-1" style="margin-left: 25px">
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="keyword" name="keyword"
+                                           placeholder="Nhập tên cần tìm kiếm">
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="col-sm-3" style="display: flex; align-items: flex-end;">
+                                    <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i></button>
+                                    <button class="btn btn-primary" type="button" style="margin-left: 10px">
+                                        <a href="/admin/khachhang" style="text-decoration: none;color: white"><i
+                                                class="bi bi-arrow-clockwise"></i></a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <table id="TablKH" class="table table-hover" style="margin: 20px 0;">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Ảnh</th>
+                        <th scope="col">Họ và Tên</th>
+                        <th scope="col">Ngày Sinh</th>
+                        <th scope="col">Số Điện Thoại</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Điểm hiện có</th>
+                        <th scope="col">Trạng Thái</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tr th:each="item,state:${listPKhachhang.content}">
+                        <td><img th:src="@{|/images/${item.avatar}|}" alt="" style="width: 50px; height: 50px"></td>
+                        <td>[[${item.hoten}]]</td>
+                        <td>[[${item.ngaysinh}]]</td>
+                        <td>[[${item.sdt}]]</td>
+                        <td>[[${item.email}]]</td>
+                        <td th:text="${item.viDiems != null ? item.viDiems.tong_diem : '0'}"></td>
+                        <td th:text="${item.trangthai == 1 ? 'Đang Hoạt Động' : 'Không Hoạt Động'}"></td>
+                        <td>
+                            <a class="btn-sm btn-warning" th:href="@{|/admin/khachhang/detail/${item.ma}|}"><i
+                                   style="color: white" class="bi bi-eye"></i></a>
+                            <a class="btn-sm btn-danger delete-btn" th:data-id="${item.id}"><i class="bi bi-trash"></i></a>
+
+                        </td>
+                    </tr>
+                </table>
+                <nav aria-label="Page navigation example" style="display: flex;justify-content: space-between;">
+                    <div style="margin-left: 20px">
+                        <p>Bạn đang xem [[${listPKhachhang.numberOfElements}]] trên tổng số
+                            [[${listPKhachhang.totalElements}]]</p>
+                    </div>
+                    <ul class="pagination" style="margin-right: 24px;">
+                        <li class="page-item">
+                            <a class="page-link"
+                               th:href="@{|/admin/khachhang?page=${listPKhachhang.number-1}&keyword=${keyword}|}"
+                               aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+
+                        <li th:each="tongtrang,status:${#numbers.sequence(1, listPKhachhang.totalPages)}"
+                            class="page-item"><a class="page-link"
+                                                 th:href="@{|/admin/khachhang?page=${status.index}&keyword=${keyword}|}">[[${status.index+1}]]</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link"
+                               th:href="@{|/admin/khachhang?page=${listPKhachhang.number+1}&keyword=${keyword}|}"
+                               aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <div id="successMessage" class="success-message" style="display: none;">
+        Khách hàng đã được thêm thành công!
+    </div>
+
+
+</div>
+<!--lấy các dự liệu trong db chuyển đổi thành mảng trong javascript-->
+<script th:inline="javascript">
+    // Chuyển đổi danh sách thành mảng JavaScript
+    var emailList = [[${emaikkhachhang}]];
+    // In ra console để kiểm tra
+    console.log(emailList);
+</script>
+<!--Validate các thuộc tính của khách hàng -->
+<script>
+    $(document).ready(function () {
+
+        $('#submitBtn').click(function (e) {
+            clearErrorMessages(); // Xóa thông báo lỗi trước khi kiểm tra lại
+
+            var hoten = $('#formGroupExampleInputHoten').val();
+            var ngaysinh = $('#formGroupExampleInputNgaySinh').val();
+            var sdt = $('#formGroupExampleInputSdt').val();
+            var email = $('#formGroupExampleInputEmail').val();
+            var matkhau = $('#formGroupExampleInputMatKhau').val();
+            var trangthai = $('input[name="trangthai"]:checked').val();
+
+            var errors = validateInput(hoten, ngaysinh, sdt, email, matkhau, trangthai);
+
+            if (errors.length > 0) {
+                displayErrorMessages(errors);
+                // displayErrorMessages1(errors);
+                e.preventDefault();
+            } else {
+                $.ajax({
+                    type: 'POST',
+                    url: '/admin/khachhang/save',
+                    data: $('#khachHangForm').serialize(),
+                    success: function (response) {
+                        $('#exampleModal').modal('show');
+                    },
+                    error: function (error) {
+                        // Xử lý lỗi nếu cần
+                    }
+                });
+
+            }
+        });
+    });
+
+    function validateInput(hoten, ngaysinh, sdt, email, matkhau, trangthai) {
+        var errors = [];
+
+        // Kiểm tra ngày sinh
+        if (!ngaysinh) {
+            errors.push('ngaysinh');
+        } else if (!isValidDate(ngaysinh)) {
+            errors.push('ngaysinh1');
+        }
+
+        // Kiểm tra số điện thoại
+        if (!sdt) {
+            errors.push('sdt');
+        } else if (!isValidPhoneNumber(sdt)) {
+            errors.push('sdt1');
+        }
+
+        // Kiểm tra email
+        if (!email) {
+            errors.push('email');
+        } else if (!isValidEmail(email)) {
+            errors.push('email1');
+        } else if (isDuplicateEmail(email)) {
+            errors.push('email2');
+        }
+
+        if (!hoten) {
+            errors.push('hoten');
+        }
+
+        if (!matkhau) {
+            errors.push('matkhau');
+        }
+
+        if (!trangthai) {
+            errors.push('trangthai');
+        }
+
+        return errors;
+    }
+
+    function isValidDate(date) {
+        var selectedDate = new Date(date);
+        var currentDate = new Date();
+        return selectedDate < currentDate;
+    }
+
+    function isValidPhoneNumber(phoneNumber) {
+        // Sử dụng biểu thức chính quy để kiểm tra số điện thoại
+        var phonePattern = /^[0-9]{10}$/;
+        return phonePattern.test(phoneNumber);
+    }
+
+    function isValidEmail(email) {
+        // Sử dụng biểu thức chính quy để kiểm tra định dạng email
+        var emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+        return emailPattern.test(email);
+    }
+
+    function isDuplicateEmail(email) {
+        var existingEmails = emailList; // Lấy danh sách các địa chỉ email từ model
+        return existingEmails.includes(email);
+    }
+
+    function clearErrorMessages() {
+        var hoten = $('#formGroupExampleInputHoten').val();
+        var ngaysinh = $('#formGroupExampleInputNgaySinh').val();
+        var sdt = $('#formGroupExampleInputSdt').val();
+        var email = $('#formGroupExampleInputEmail').val();
+        var matkhau = $('#formGroupExampleInputMatKhau').val();
+        var trangthai = $('input[name="trangthai"]:checked').val();
+
+        if (hoten.trim() !== '') {
+            $('#formGroupExampleInputHoten').removeClass('error-border');
+            $('.text-danger').text('');
+        }
+        if (ngaysinh.trim() !== '') {
+            $('#formGroupExampleInputNgaySinh').removeClass('error-border');
+            $('.text-danger').text('');
+        } else if (isValidDate(ngaysinh)) {
+            $('#formGroupExampleInputNgaySinh').removeClass('error-border');
+            $('.text-danger').text('');
+        }
+
+        if (sdt.trim() !== '') {
+            $('#formGroupExampleInputSdt').removeClass('error-border');
+            $('.text-danger').text('');
+        } else if (isValidPhoneNumber(sdt)) {
+            $('#formGroupExampleInputSdt').removeClass('error-border');
+            $('.text-danger').text('');
+        }
+
+        if (email.trim() !== '') {
+            $('#formGroupExampleInputEmail').removeClass('error-border');
+            $('.text-danger').text('');
+        } else if (isValidEmail(email)) {
+            $('#formGroupExampleInputEmail').removeClass('error-border');
+            $('.text-danger').text('');
+        } else if (!isDuplicateEmail(email)) {
+            $('#formGroupExampleInputEmail').removeClass('error-border');
+            $('.text-danger').text('');
+        }
+        if (matkhau.trim() !== '') {
+            $('#formGroupExampleInputMatKhau').removeClass('error-border');
+            $('.text-danger').text('');
+        }
+
+        $('#gridRadios1').removeClass('error-border');
+        $('#gridRadios2').removeClass('error-border');
+        $('#trangthaiError').text('');
+    }
+
+    function displayErrorMessages(errors) {
+        for (var i = 0; i < errors.length; i++) {
+            var hoten = $('#formGroupExampleInputHoten').val();
+            var ngaysinh = $('#formGroupExampleInputNgaySinh').val();
+            var sdt = $('#formGroupExampleInputSdt').val();
+            var email = $('#formGroupExampleInputEmail').val();
+            var matkhau = $('#formGroupExampleInputMatKhau').val();
+            var trangthai = $('input[name="trangthai"]:checked').val();
+
+            if (hoten.trim() === '') {
+                $('#formGroupExampleInputHoten').addClass('error-border');
+                $('#' + errors[i] + 'Error').text('Không được để trống thông tin');
+            }
+
+            if (ngaysinh.trim() === '') {
+                $('#formGroupExampleInputNgaySinh').addClass('error-border');
+                $('#' + errors[i] + 'Error').text('Không được để trống thông tin');
+            } else if (!isValidDate(ngaysinh)) {
+                $('#formGroupExampleInputNgaySinh').addClass('error-border');
+                $('#' + errors[i] + 'Error1').text('Thông Tin Không Hợp Lệ');
+            }
+
+            if (sdt.trim() === '') {
+                $('#formGroupExampleInputSdt').addClass('error-border');
+                $('#' + errors[i] + 'Error').text('Không được để trống thông tin');
+            } else if (!isValidPhoneNumber(sdt)) {
+                $('#formGroupExampleInputSdt').addClass('error-border');
+                $('#' + errors[i] + 'Error1').text('Thông Tin Không Hợp Lệ');
+            }
+
+            if (email.trim() === '') {
+                $('#formGroupExampleInputEmail').addClass('error-border');
+                $('#' + errors[i] + 'Error').text('Không được để trống thông tin');
+            } else if (!isValidEmail(email)) {
+                $('#formGroupExampleInputEmail').addClass('error-border');
+                $('#' + errors[i] + 'Error1').text('Thông Tin Không Hợp Lệ');
+            } else if (isDuplicateEmail(email)) {
+                $('#formGroupExampleInputEmail').addClass('error-border');
+                $('#' + errors[i] + 'Error2').text('Email này đã tồn tại');
+            }
+            if (matkhau.trim() === '') {
+                $('#formGroupExampleInputMatKhau').addClass('error-border');
+                $('#' + errors[i] + 'Error').text('Không được để trống thông tin');
+            }
+            if (errors[i] === 'trangthai') {
+                $('#gridRadios1').addClass('error-border');
+                $('#gridRadios2').addClass('error-border');
+                $('#' + errors[i] + 'Error').text('Không được để trống thông tin');
+            }
+        }
+    }
+</script>
+
+<!--Cách xem ảnh trước khi ấn thêm -->
+<script>
+    document.getElementById('avatarInput').addEventListener('change', function () {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById('avatarPreview').src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
+</script>
+
+<!-- Bao gồm các tệp cần thiết cho SweetAlert -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+<!--Thông báo khi xóa thành công-->
+<script>
+    $(document).on('click', '.delete-btn', function(e) {
+        e.preventDefault();
+
+        var id = $(this).data('id');
+
+        Swal.fire({
+            title: 'Bạn có chắc chắn muốn xóa?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Xóa',
+            cancelButtonText: 'Hủy'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: 'DELETE',
+                    url: '/admin/khachhang/delete/' + id,
+                    success: function(response) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Xóa thành công',
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                        // Chờ 1.5 giây trước khi tải lại trang
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 1500);
+                    },
+                    error: function(xhr, status, error) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Xóa không thành công',
+                            text: 'Đã xảy ra lỗi khi xóa.',
+                            position: 'top-end'
+                        });
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Thư viện toastr -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="/assets/js/popper.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/main.js"></script>
+
+</body>
+</html>

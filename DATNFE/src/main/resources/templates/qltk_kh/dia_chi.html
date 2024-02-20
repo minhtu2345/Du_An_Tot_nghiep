@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"-->
+<!--      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"/>-->
+<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">-->
+<!--<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">-->
+<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+
+<style>
+    body {
+        background: #0b2e13;
+    }
+
+    ul li {
+        margin-bottom: 5px;
+    }
+
+    ul li a {
+        color: #3D464D;
+    }
+
+    ul li a:hover {
+        color: #FFD333;
+    }
+
+    a:hover {
+        text-underline: none;
+    }
+
+    .nav {
+        display: block !important;
+    }
+
+    #hoSo:hover {
+        text-decoration: none;
+    }
+
+    .container > .row > .col-9 {
+        background-color: white;
+        border: .0625rem solid #efefef;
+        border-radius: 5px;
+    }
+
+    .round-image {
+        border-radius: 50%;
+        overflow: hidden; /* Đảm bảo hình ảnh không vượt ra khỏi hình tròn */
+    }
+</style>
+<html th:replace="~{/layout/index :: dynamic(~{::main})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+</head>
+<body>
+<main>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item"
+                        style="border-bottom: .0625rem solid #efefef;padding-bottom: 10px;padding-top: 15px">
+                        <a href="#" id="hoSo">
+                            <div class="row">
+                                <div class="col-3 img-avart">
+                                    <img th:src="@{|/images/${khachHang.avatar}|}" alt="Avatar" class="img-thumbnail round-image">
+                                </div>
+                                <div class="col-9 ">
+                                    <div class="row">
+                                        <div style="width: 100%">
+                                            [[${khachHang.hoten}]]
+                                        </div>
+                                        <div>
+                                            <i class="fa-solid fa-pen"></i>
+                                            Sửa hồ sơ
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/qltk-kh/thong-tin">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="fa-solid fa-user fa-beat"></i>
+                                </div>
+                                <div class="col-9">
+                                    Thông tin tài khoản
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/qltk-kh/hang-thanh-vien">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="bi bi-stars"></i>
+                                </div>
+                                <div class="col-9">
+                                    Xếp Hạng Thành Viên
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/qltk-kh/doi-mat-khau">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="fa-solid fa-lock fa-beat"></i>
+                                </div>
+                                <div class="col-9">
+                                    Đổi mật khẩu
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/qltk-kh/dia-chi">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="fa-solid fa-location-dot fa-beat"></i></div>
+                                <div class="col-9">
+                                    Địa
+                                    chỉ
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/qltk-kh/don-hang">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="fa-solid fa-cart-shopping fa-beat"></i>
+                                </div>
+                                <div class="col-9">
+                                    Đơn
+                                    hàng
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/qltk-kh/dssanphamyeuthich">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="fa-regular fa-heart"></i>
+                                </div>
+                                <div class="col-9">
+                                    Yêu Thích
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-9">
+                <ul class="nav flex-column">
+                    <li class="nav-item"
+                        style="border-bottom: .0625rem solid #efefef;padding-bottom: 10px;padding-top: 15px">
+                        <div class="row">
+                            <div class="col-9">
+                                <h2>
+                                    Địa chỉ của tôi
+                                </h2>
+                            </div>
+                            <div class="col-3">
+                                <div>
+                                    <!-- modal them dia chi -->
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal">
+                                        <i class="fa-solid fa-plus fa-bounce"></i>
+                                        Thêm địa chỉ mới
+                                    </button>
+
+                                    <!-- Modal dia chi -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Địa chỉ
+                                                        mới</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"
+                                                            style="background-color: white;border: 0px;">
+                                                        <i class="fa-solid fa-xmark fa-2xl" style="color: #ff0000;"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="/qltk-kh/them-dia-chi" method="post"
+                                                          th:object="${diaChi}">
+                                                        <div class="row">
+                                                            <input th:field="*{khachHang.id}" hidden>
+
+                                                            <div class="form-group col-4">
+                                                                <label>Địa chỉ cụ thể</label>
+                                                                <input type="text" th:field="*{tendiachi}"
+                                                                       class="form-control"
+                                                                       id="formGroupExampleInput2"
+                                                                       placeholder="Địa chỉ cụ thể">
+                                                            </div>
+
+                                                            <div class="form-group col-4">
+                                                                <label>Tên người nhận</label>
+                                                                <input type="text" th:field="*{ten_nguoi_nhan}"
+                                                                       class="form-control"
+                                                                       id="formGroupExampleInput2"
+                                                                       placeholder="Tên người nhận">
+                                                            </div>
+
+                                                            <div class="form-group col-4">
+                                                                <label>Số điện thoại người nhận</label>
+                                                                <input type="text" th:field="*{sdt_nguoi_nhan}"
+                                                                       class="form-control"
+                                                                       id="formGroupExampleInput2"
+                                                                       placeholder="Số điện thoại người nhận">
+                                                            </div>
+
+                                                            <div class="form-group col-4">
+                                                                <label>Tỉnh/Thành phố</label>
+                                                                <select class="form-control" id="province"
+                                                                        th:field="*{thanhpho}">
+                                                                    <option value="">Chọn Tỉnh/Thành phố</option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="form-group col-4">
+                                                                <label>Quận/Huyện</label>
+                                                                <select class="form-control " id="district"
+                                                                        th:field="*{huyen}">
+                                                                    <option value="">Chọn Quận/Huyện</option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="form-group col-4">
+                                                                <label>Xã/Phường</label>
+                                                                <select class="form-control" id="ward" th:field="*{xa}">
+                                                                    <option value="">Chọn Xã/Phường</option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="form-check" style="margin-left: 13px">
+                                                                <input th:field="*{trangthai}" value="1"
+                                                                       class="form-check-input" type="checkbox"
+                                                                       id="flexCheckChecked" checked>
+
+                                                                <label class="form-check-label" for="flexCheckChecked">
+                                                                    Đặt địa chỉ làm mặc định
+                                                                </label>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="float-right">
+                                                            <button style="border-radius: 5px;" class="nav-link btn
+                                                                    btn-primary">Thêm địa chỉ
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div style="margin: 20px">
+                    <div>
+                        <h5>Địa chỉ</h5>
+                        <div th:each="item:${listdiachi}">
+                            <div style="border-bottom: .0625rem solid #efefef;padding-top: 12px;padding-bottom: 12px">
+                                <div class="row">
+                                    <div class="col-9">
+                                        Tên người nhận: [[${item.ten_nguoi_nhan}]] | SĐT người nhận:
+                                        [[${item.sdt_nguoi_nhan}]]
+                                    </div>
+                                    <div class="col-3">
+                                        <!-- modal ud dia chi -->
+                                        <button type="button" class="btn btn-primary btn-detail" data-bs-toggle="modal"
+                                                th:madc="${item.madc}"
+                                                data-bs-target="#exampleModal2">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+
+                                        <!-- Modalud dia chi -->
+                                        <div class="modal fade" id="exampleModal2" tabindex="-1"
+                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Địa chỉ
+                                                        </h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"
+                                                                style="background-color: white;border: 0px;">
+                                                            <i class="fa-solid fa-xmark fa-2xl"
+                                                               style="color: #ff0000;"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="/qltk-kh/cap-nhat-dia-chi" method="post"
+                                                              th:object="${diaChiUd}">
+                                                            <div class="row">
+                                                                <input th:field="*{khachHang.id}" hidden>
+                                                                <input th:field="*{id}" hidden>
+                                                                <input type="text" th:field="*{madc}"
+                                                                       class="form-control"
+                                                                       id="formGroupExampleInput2"
+                                                                       placeholder="Mã" hidden>
+
+
+                                                                <div class="form-group col-4">
+                                                                    <label>Tên người nhận</label>
+                                                                    <input type="text" th:field="*{ten_nguoi_nhan}"
+                                                                           class="form-control"
+                                                                           id="formGroupExampleInput2"
+                                                                           placeholder="Tên người nhận">
+                                                                </div>
+
+                                                                <div class="form-group col-4">
+                                                                    <label>Địa chỉ cụ thể</label>
+                                                                    <input type="text" th:field="*{tendiachi}"
+                                                                           class="form-control"
+                                                                           id="formGroupExampleInput2"
+                                                                           placeholder="Địa chỉ cụ thể">
+                                                                </div>
+
+                                                                <div class="form-group col-4">
+                                                                    <label>Số điện thoại người nhận</label>
+                                                                    <input type="text" th:field="*{sdt_nguoi_nhan}"
+                                                                           class="form-control"
+                                                                           id="formGroupExampleInput2"
+                                                                           placeholder="Số điện thoại người nhận">
+                                                                </div>
+
+                                                                <div class="form-group col-4">
+                                                                    <label>Tỉnh/Thành phố</label>
+                                                                    <select class="form-control" id="province2"
+                                                                            th:field="*{thanhpho}">
+                                                                        <option value="">Chọn Tỉnh/Thành phố</option>
+                                                                    </select>
+                                                                </div>
+
+                                                                <div class="form-group col-4">
+                                                                    <label>Quận/Huyện</label>
+                                                                    <select class="form-control " id="district2"
+                                                                            th:field="*{huyen}">
+                                                                        <option value="">Chọn Quận/Huyện</option>
+                                                                    </select>
+                                                                </div>
+
+                                                                <div class="form-group col-4">
+                                                                    <label>Xã/Phường</label>
+                                                                    <select class="form-control" id="ward2"
+                                                                            th:field="*{xa}">
+                                                                        <option value="">Chọn Xã/Phường</option>
+                                                                    </select>
+                                                                </div>
+
+                                                                <div class="form-check" style="margin-left: 13px">
+                                                                    <input th:field="*{trangthai}" value="1"
+                                                                           class="form-check-input" type="checkbox"
+                                                                           id="flexCheckChecked" checked>
+
+                                                                    <label class="form-check-label"
+                                                                           for="flexCheckChecked" >
+                                                                        Đặt địa chỉ làm mặc định
+                                                                    </label>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="float-right">
+                                                                <button style="border-radius: 5px;" class="nav-link btn
+                                                                    btn-primary">Cập nhật địa chỉ
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <a onclick="return confirm('Bạn có chắc chắn muốn xóa?')"
+                                           th:href="@{|/qltk-kh/xoa-dia-chi/${item.id}|}" th:if="${item.trangthai==0}">
+                                            <button class="btn btn-danger">
+                                                <i class="fa-regular fa-trash-can"></i>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-9">
+                                        Địa chỉ: [[${item.tendiachi}]]
+                                        <div>
+                                            [[${item.xa}]],
+                                            [[${item.huyen}]],
+                                            [[${item.thanhpho}]]
+                                        </div>
+                                    </div>
+                                    <div class="col-3" style="margin-top: 10px">
+                                        <a th:href="@{|/qltk-kh/dat-dc-mac-dinh/${item.madc}|}">
+                                            <button class="btn btn-primary"
+                                                    th:disabled="${item.trangthai==1}">
+                                                Thiết lập mặc định
+                                            </button>
+                                        </a>
+                                    </div>
+                                    <div class="col-2" th:if="${item.trangthai==1}">
+                                        <p style="border: 1px solid #FFD333;color: #FFD333;font-size: 20px" class="text-center">
+                                            Mặc định
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"
+            integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        const host = "https://provinces.open-api.vn/api/";
+        var callAPI = (api) => {
+            return axios.get(api)
+                .then((response) => {
+                    renderData(response.data, "province", "Tỉnh/Thành phố");
+                });
+        }
+        callAPI('https://provinces.open-api.vn/api/?depth=1');
+        var callApiDistrict = (api) => {
+            return axios.get(api)
+                .then((response) => {
+                    renderData(response.data.districts, "district", "Quận/Huyện");
+                });
+        }
+        var callApiWard = (api) => {
+            return axios.get(api)
+                .then((response) => {
+                    renderData(response.data.wards, "ward", "Xã/Phường");
+                });
+        }
+
+        var renderData = (array, select, type) => {
+            let row = ' <option disable value="" selected>Chọn ' + type + '</option>';
+
+            array.forEach(element => {
+                row += `<option value="${element.name}" data-code="${element.code}">${element.name}</option>`
+            });
+            document.querySelector("#" + select).innerHTML = row
+        }
+
+        $("#province").change(() => {
+            const selectedCode = $("#province option:selected").data("code");
+            callApiDistrict(host + "p/" + selectedCode + "?depth=2");
+            printResult();
+        });
+        $("#district").change(() => {
+            const selectedCode = $("#district option:selected").data("code");
+            callApiWard(host + "d/" + selectedCode + "?depth=2");
+            printResult();
+        });
+        $("#ward").change(() => {
+            printResult();
+        })
+
+        var printResult = () => {
+            if ($("#district").val() != "" && $("#province").val() != "" &&
+                $("#ward").val() != "") {
+                let result = $("#province option:selected").text() +
+                    " | " + $("#district option:selected").text() + " | " +
+                    $("#ward option:selected").text();
+                $("#result").text(result)
+            }
+        }
+
+
+        var callAPI2 = (api) => {
+            return axios.get(api)
+                .then((response) => {
+                    renderData(response.data, "province2", "Tỉnh/Thành phố");
+
+                });
+        }
+        callAPI2('https://provinces.open-api.vn/api/?depth=1');
+        var callApiDistrict2 = (api) => {
+            return axios.get(api)
+                .then((response) => {
+                    renderData(response.data.districts, "district2", "Quận/Huyện");
+                });
+        }
+        var callApiWard2 = (api) => {
+            return axios.get(api)
+                .then((response) => {
+                    renderData(response.data.wards, "ward2", "Xã/Phường");
+                });
+        }
+
+        $("#province2").change(() => {
+            const selectedCode = $("#province2 option:selected").data("code");
+            callApiDistrict2(host + "p/" + selectedCode + "?depth=2");
+            printResult2();
+        });
+        $("#district2").change(() => {
+            const selectedCode = $("#district2 option:selected").data("code");
+            callApiWard2(host + "d/" + selectedCode + "?depth=2");
+            printResult2();
+        });
+        $("#ward2").change(() => {
+            printResult2();
+        })
+
+        var printResult2 = () => {
+            if ($("#district2").val() != "" && $("#province2").val() != "" &&
+                $("#ward2").val() != "") {
+                let result = $("#province2 option:selected").text() +
+                    " | " + $("#district2 option:selected").text() + " | " +
+                    $("#ward2 option:selected").text();
+                $("#result2").text(result)
+            }
+        }
+
+        $(document).ready(function () {
+            $(".btn-detail").click(function () {
+                var madc = $(this).attr("madc");
+                var form = $("#exampleModal2"); // Chọn tất cả các thẻ <form> trên trang
+                $.ajax({
+                    url: "http://localhost:2020/rest/diachi/" + "getDiaChiByMa/" + madc,
+                    method: "GET",
+                    dataType: "json", // Kiểu dữ liệu trả về từ máy chủ (json, html, text, etc.)
+                    success: function (data) {
+                        form.find('[name="id"]').val(data.id);
+                        form.find('[name="madc"]').val(data.ma);
+                        form.find('[name="tendiachi"]').val(data.tendiachi);
+                        form.find('[name="thanhpho"]').val(data.thanhpho);
+                        let selected1 = $("#province2 option:selected").data("code");
+                        callApiDistrict2(host + "p/" + selected1 + "?depth=2");
+                        setTimeout(function () {
+                            form.find('[name="huyen"]').val(data.huyen);
+                            let selected2 = $("#district2 option:selected").data("code");
+                            callApiWard2(host + "d/" + selected2 + "?depth=2");
+                            setTimeout(function () {
+                                form.find('[name="xa"]').val(data.xa);
+                            }, 300);
+                        }, 200);
+                        form.find('[name="sdt_nguoi_nhan"]').val(data.sdt_nguoi_nhan);
+                        form.find('[name="ten_nguoi_nhan"]').val(data.ten_nguoi_nhan);
+                        form.find('[name="khachHang.id"]').val(data.khachHang.id);
+                        form.find('[name="trangthai"]').each(function () {
+                            if ($(this).val() == data.trangthai) {
+                                $(this).prop('checked', true);
+                                $(this).attr('disable', true);
+                            } else {
+                                $(this).prop('checked', false);
+                                $(this).attr('disable', false);
+                            }
+                        });
+
+                    },
+                    error: function (error) {
+                        console.log("Lỗi khi tải dữ liệu: " + error);
+                    }
+                });
+            });
+        });
+    </script>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"/>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+<!-- CSS -->
+<style>
+    ul li {
+        margin-bottom: 5px;
+    }
+
+    ul li a {
+        text-decoration: none;
+        color: #3D464D !important;
+    }
+
+    ul li a:hover {
+        color: #FFD333 !important;
+    }
+
+    .nav {
+        display: block !important;
+    }
+
+    #hoSo:hover {
+        text-decoration: none;
+    }
+
+    .container > .row > .col-9 {
+        border: .0625rem solid #efefef;
+        border-radius: 5px;
+    }
+
+    .mk{
+        margin-bottom: 8px;
+    }
+    .round-image {
+        border-radius: 50%;
+        overflow: hidden; /* Đảm bảo hình ảnh không vượt ra khỏi hình tròn */
+    }
+
+    .general-content {
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 4px;
+        font-size: 17px;
+    }
+
+    .general-content-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .general-content-top > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .user-money {
+        font-weight: 600;
+        font-size: 21px;
+    }
+
+    .username-point {
+        align-items: center;
+    }
+    .username-point img {
+        width: 48px;
+        height: 48px;
+        -o-object-fit: contain;
+        object-fit: contain;
+        -o-object-position: center;
+        object-position: center;
+    }
+    img {
+        border: 0;
+        vertical-align: top;
+        -o-object-fit: contain;
+        object-fit: contain;
+    }
+    .general-content-bottom {
+        margin-top: 12px;
+    }
+
+    .ranking-process-outer {
+        height: 12px;
+        display: block;
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        border-radius: 16px;
+    }
+
+    .raking-pointer {
+        width: 12px;
+        height: 12px;
+        border-radius: 15px;
+        display: block;
+        background-color: red;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 3;
+    }
+
+    .ranking-process-inner {
+        height: 6px;
+        display: block;
+        background-color: #ffc300;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        z-index: 2;
+    }
+
+    .ranking-target-money {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 6px;
+    }
+
+    .ranking-process-outer::after {
+        content: "";
+        width: 100%;
+        height: 6px;
+        display: block;
+        background-color: #e1e1e1;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+    }
+
+    .general-content-heading {
+        font-size: calc(19px + (21 - 19) * ((100vw - 300px)/ (1920 - 300)));
+        font-weight: 600;
+    }
+    .general-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 15px;
+        margin-top: 15px;
+    }
+
+    table {
+        border: 0;
+        border-collapse: collapse;
+        border-spacing: 0;
+        empty-cells: show;
+        font-size: 100%;
+    }
+    .general-table tr:nth-child(odd) {
+        background-color: #f8f8f8;
+    }
+    .general-table tr {
+        border-bottom: 1px solid #e1e1e1;
+    }
+    .general-table th {
+        text-align: center;
+        background-color: #f1f1f1;
+        font-weight: 600;
+    }
+    .general-table td, .general-table th {
+        padding: 12px 10px;
+        vertical-align: middle;
+    }
+    .general-table td:first-child {
+        white-space: nowrap;
+    }
+    .general-table td, .general-table th {
+        padding: 12px 10px;
+        vertical-align: middle;
+    }
+    .general-content {
+        background-color: #fff;
+        padding: 12px 16px;
+        border-radius: 4px;
+        font-size: 17px;
+    }
+
+    .general-content-heading {
+        font-size: calc(19px + (21 - 19) * ((100vw - 300px)/ (1920 - 300)));
+        font-weight: 600;
+    }
+
+    .general-content-note {
+        padding: 10px 0;
+    }
+
+    .general-content-note ul {
+        list-style: disc;
+        padding-left: 10px;
+    }
+
+    .general-table th img {
+        display: block;
+        margin: 6px auto 0;
+    }
+
+    img {
+        border: 0;
+        vertical-align: top;
+        -o-object-fit: contain;
+        object-fit: contain;
+    }
+    </style>
+
+<html th:replace="~{/layout/index :: dynamic(~{::main})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<main>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item" style="border-bottom: .0625rem solid #efefef;padding-bottom: 10px;padding-top: 15px">
+                        <a href="/qltk-kh/thong-tin" id="hoSo">
+                            <div class="row">
+                                <div class="col-3 img-avart">
+                                    <img th:src="@{|/images/${khachHang.avatar}|}" alt="Avatar" class="img-thumbnail round-image">
+                                </div>
+                                <div class="col-9 ">
+                                    <div class="row">
+                                        <div style="width: 100%">
+                                            [[${khachHang.hoten}]]
+                                        </div>
+                                        <div>
+                                            <i class="fa-solid fa-pen"></i>
+                                            Sửa hồ sơ
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/qltk-kh/thong-tin">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="fa-solid fa-user fa-beat"></i>
+                                </div>
+                                <div class="col-9">
+                                    Thông tin tài khoản
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/qltk-kh/hang-thanh-vien">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="bi bi-stars"></i>
+                                </div>
+                                <div class="col-9">
+                                   Xếp Hạng Thành Viên
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/qltk-kh/doi-mat-khau">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="fa-solid fa-lock fa-beat"></i>
+                                </div>
+                                <div class="col-9">
+                                    Đổi mật khẩu
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/qltk-kh/dia-chi">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="fa-solid fa-location-dot fa-beat"></i></div>
+                                <div class="col-9">
+                                    Địa
+                                    chỉ
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/qltk-kh/don-hang">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="fa-solid fa-cart-shopping fa-beat"></i>
+                                </div>
+                                <div class="col-9">
+                                    Đơn
+                                    hàng
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/qltk-kh/dssanphamyeuthich">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="fa-regular fa-heart"></i>
+                                </div>
+                                <div class="col-9">
+                                    Yêu Thích
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-9">
+                <div class="row">
+                    <div class="col-lg-12" style="padding: 10px">
+                        <ul class="nav flex-column">
+                            <li class="nav-item" style="border-bottom: .0625rem solid #efefef;padding-bottom: 10px;padding-top: 15px">
+                                <h5 style="margin-bottom: 0px">
+                                    Xếp Hạng Thành Viên
+                                </h5>
+                            </li>
+                        </ul>
+                        <div class="general-content">
+                            <div class="general-content-top">
+                                <div class="username-box">
+                                    <span>Số tiền bạn đã chi tiêu</span>
+                                    <span class="user-money">[[${tongTienChiTieu}]]</span>
+                                </div><div class="username-point">
+                                <span>Thành viên</span>
+                                <img th:if="${mahkh=='HKH1'}" height="48" width="48"  src="/images/hangthanhvien.png" alt="Hạng Thành viên">
+                                <img th:if="${mahkh=='HKH2'}" height="48" width="48"  src="/images/dong.png" alt="Hạng Đồng">
+                                <img th:if="${mahkh=='HKH3'}" height="48" width="48"  src="/images/bac.png" alt="Hạng Bạc">
+                                <img th:if="${mahkh=='HKH4'}" height="48" width="48"  src="/images/vang.png" alt="Hạng Vàng">
+                                <img th:if="${mahkh=='HKH5'}" height="48" width="48"  src="/images/bachkim.png" alt="Hạng Bạch Kim">
+                            </div>
+                            </div>
+                            <div class="general-content-bottom">
+                                <div class="ranking-process-bar">
+                                    <div class="ranking-process-outer">
+                                <span class="raking-pointer" style="left: 0%;">
+
+                                </span>
+                                        <div class="ranking-process-inner" style="width: 0%;">
+
+                                        </div>
+                                    </div>
+                                    <div class="ranking-target-money"> Bạn cần chi tiêu thêm
+                                        <strong style="color: red">
+                                            [[${tienchenhlech}]]
+                                        </strong>
+                                        <span>
+                                            để lên
+                                            <strong>
+                                                Hạng Đồng
+                                            </strong>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12" style="padding: 10px">
+                        <div class="general-content">
+                            <div class="general-content-heading">
+                                Điều kiện và ưu đãi cho các cấp độ thành viên
+                            </div>
+                            <div class="award-responsive">
+                                <table class="general-table">
+                                    <tbody>
+                                    <tr>
+                                        <th class="rank-name">
+
+                                        </th>
+                                        <th>
+                                            <img height="48" width="48"  src="/images/hangthanhvien.png" alt="Hạng Thành viên">
+                                            <span>
+                                                Hạng Thành viên
+                                            </span>
+                                        </th>
+                                        <th>
+                                            <img height="48" width="48"  src="/images/dong.png" alt="Hạng Đồng">
+                                            <span>
+                                                 Hạng Đồng
+                                            </span>
+                                        </th>
+                                        <th>
+                                            <img height="48" width="48"  src="/images/bac.png" alt="Hạng Bạc">
+                                            <span>
+                                                Hạng Bạc
+                                            </span>
+                                        </th>
+                                        <th>
+                                            <img height="48" width="48"  src="/images/vang.png" alt="Hạng Vàng">
+                                            <span>
+                                                Hạng Vàng
+                                            </span>
+                                        </th>
+                                        <th>
+                                            <img height="48" width="48"  src="/images/bachkim.png" alt="Hạng Bạch Kim">
+                                            <span>
+                                                Hạng Bạch Kim
+                                            </span>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td class="rank-name">
+                                            Mức chi
+                                            <span>
+                                                tối thiểu
+                                            </span>
+                                        </td>
+                                        <!---->
+                                        <td>
+                                            <span>Mức chi tiêu dưới 10 triệu</span>
+                                        </td><td>
+                                        <span>Mức chi tiêu trên 10 triệu</span>
+                                    </td><td>
+                                        <span>Mức chi tiêu 25 triệu</span>
+                                    </td><td>
+                                        <span>Mức chi tiêu 50 triệu</span>
+                                    </td><td>
+                                        <span>Mức chi tiêu 100 triệu</span>
+                                    </td></tr><tr>
+                                        <td class="rank-name">Tích điểm</td>
+                                        <td>
+                                            <svg class="member-check" fill="#2dc26d" height="22" viewBox="0 0 16 16" width="22" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+
+                                                </path>
+                                            </svg>
+                                        </td>
+                                        <td>
+                                            <svg class="member-check" fill="#2dc26d" height="22" viewBox="0 0 16 16" width="22" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+
+                                                </path>
+                                            </svg>
+                                        </td>
+                                        <td>
+                                            <svg class="member-check" fill="#2dc26d" height="22" viewBox="0 0 16 16" width="22" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+
+                                                </path>
+                                            </svg>
+                                        </td>
+                                        <td>
+                                            <svg class="member-check" fill="#2dc26d" height="22" viewBox="0 0 16 16" width="22" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+
+                                                </path>
+                                            </svg>
+                                        </td>
+                                        <td>
+                                            <svg class="member-check" fill="#2dc26d" height="22" viewBox="0 0 16 16" width="22" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+
+                                                </path>
+                                            </svg>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="rank-name">Ưu đãi</td>
+                                        <td>
+                                            Mã KM lên đến 5% Hóa Đơn
+
+                                        </td>
+                                        <td>
+                                            Mã KM lên đến 7% Hóa Đơn
+
+                                        </td>
+                                        <td>
+                                            Mã KM lên đến 10% Hóa Đơn
+
+                                        </td>
+                                        <td>
+                                            Mã KM lên đến 12% Hóa Đơn
+
+                                        </td>
+                                        <td>
+                                            Mã KM lên đến 15% Hóa Đơn
+
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="general-content">
+                                <div class="general-content-heading"> Cách xếp hạng thành viên và lưu ý </div>
+                                <div class="general-content-note">
+                                    <ul>
+                                        <li>
+                                            Hạng thành viên được tính dựa trên tổng chi tiêu tích luỹ trong vòng 12 tháng gần nhất tính tới ngày mua hàng
+                                        </li>
+                                        <li>
+                                            Các mã Code khuyến mại không được áp dụng kèm giảm giá và các khuyến mại khác
+                                            <a href="#">(quy định theo từng chương trình)</a>
+                                        </li>
+                                        <li>
+                                            Trên 1 phiếu mua hàng, khách hàng được lựa chọn hình thức khuyến mãi cao nhất
+                                        </li>
+                                        <li>
+                                            Khi mua hàng, quý khách vui lòng đăng đăng nhập tài khoản Vua Hàng Hiệu để được đảm bảo quyền lợi.
+                                        </li>
+                                        <li>
+                                            Điểm thành viên
+                                            <b>
+                                                KHÔNG ĐƯỢC
+                                            </b>
+                                            chuyển nhượng, cộng dồn quy đổi thành tiền mặt.
+                                        </li>
+                                        <li>
+                                            Ưu đãi chỉ có hiệu lực đối với các hóa đơn bán lẻ, vui lòng cung cấp thông tin số điện thoại để được hưởng ưu đãi.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+
+</body>
+</html>

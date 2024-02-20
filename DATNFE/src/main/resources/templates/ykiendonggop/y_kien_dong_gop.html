@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sidebar 03</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <style>
+        .error-border {
+            border: 1px solid red;
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            border-radius: 50%;
+            border: 3px solid #ffffff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .avatar-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .choose-file-btn {
+            display: block;
+            text-align: center;
+            padding: 5px 10px;
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .choose-file-btn:hover {
+            background-color: #f0f0f0;
+        }
+
+        #avatarInput {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+        <div class="custom-menu">
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                <i class="fa fa-bars"></i>
+                <span class="sr-only">Toggle Menu</span>
+            </button>
+        </div>
+        <div class="p-4">
+            <h1><a href="kieu_dang.html" class="logo">DLFV</a></h1>
+            <ul class="list-unstyled components mb-5">
+                <li class="active">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span
+                            class="fa fa-home mr-3"></span>Thống Kê</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="/admin/thong-ke">Thông kê doanh thu</a>
+                        </li>
+                        <li>
+                            <a href="/admin/thong-ke-top-ban-chay">Thông kê top</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="/admin/ban-hang" ><span class="fa fa-user mr-3"></span> Quản Lý Đơn Hàng</a>
+
+                </li>
+                <li>
+                    <a href="/admin/ban-hang-tai-quay"><span class="fa fa-briefcase mr-3"></span> Bán Hàng Tại Quầy</a>
+                </li>
+                <li>
+                    <a href="#homeSubmenu2"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span class="fa fa-sticky-note mr-3"></span> Quản Lý Sản Phẩm</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu2">
+                        <li>
+                            <a href="/admin/sanpham">Sản Phẩm</a>
+                        </li>
+                        <li>
+                            <a href="/admin/camgiac">Cảm Giác</a>
+                        </li>
+                        <li>
+                            <a href="/admin/chatlieu">Chất Liệu</a>
+                        </li>
+                        <li>
+                            <a href="/admin/danhmuc">Danh Mục</a>
+                        </li>
+                        <li>
+                            <a href="/admin/degiay">Đế Giày</a>
+                        </li>
+                        <li>
+                            <a href="/admin/diahinh">Địa Hình</a>
+                        </li>
+                        <li>
+                            <a href="/admin/docaogiay">Độ Cao Giày</a>
+                        </li>
+                        <li>
+                            <a href="/admin/gioitinh">Giới Tính</a>
+                        </li>
+                        <li>
+                            <a href="/admin/mausac">Màu Sắc</a>
+                        </li>
+                        <li>
+                            <a href="/admin/thoitietthichhop">Thời Tiết Thích Hợp</a>
+                        </li>
+                        <li>
+                            <a href="/admin/thuonghieu">Thương Hiệu</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#homeSubmenu3"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span class="fa fa-paper-plane mr-3"></span> Quản Lý Tài Khoản</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu3">
+                        <li>
+                            <a href="/admin/nhan-vien">Nhân Viên</a>
+                        </li>
+                        <li>
+                            <a href="/admin/khachhang">Khách Hàng</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#homeSubmenu4"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span class="fa fa-cubes mr-3"></span>Khuyến Mại</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu4">
+                        <li>
+                            <a href="/admin/chuong-trinh-giam-gia-sp">Sản Phẩm</a>
+                        </li>
+                        <li>
+                            <a href="/admin/giamgiahoadon">Hóa Đơn</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="mb-5">
+                <h3 class="h6 mb-3">Subscribe for newsletter</h3>
+                <form action="#" class="subscribe-form">
+                    <div class="form-group d-flex">
+                        <div class="icon"><span class="icon-paper-plane"></span></div>
+                        <input type="text" class="form-control" placeholder="Enter Email Address">
+                    </div>
+                </form>
+            </div>
+
+            <div class="footer">
+                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- Page Content  -->
+
+    <div id="content" class="p-4 p-md-5 pt-5 bg-secondary">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-top: -50px;">
+            <div class="container-fluid" style="display: flex;justify-content: end;">
+                <ul class="navbar-nav">
+                    <!-- Avatar -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownMenuLink"
+                           role="button" data-toggle="dropdown" aria-expanded="false">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" class="rounded-circle"
+                                 height="72" alt="Avatar" loading="lazy" />
+                        </a>
+                        <div class="dropdown-menu" style="margin-left: -88px;">
+                            <a class="dropdown-item" href="#">Đăng Xuất</a>
+                            <a class="dropdown-item" href="#">Thông Tin Cá Nhân</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container-lg bg-light border" >
+            <div style="padding: 15px">
+                <div style="margin: 20px">
+                    <div class="row">
+                        <div class="col-8">
+                            <h3 style="text-transform: uppercase; color: black; font-family: 'Lora'; text-align: left;">
+                                Danh Sách Ý Kiến Đóng Góp
+                            </h3>
+                        </div>
+                    </div>
+                    <hr style="color: black">
+                </div>
+
+                <table id="TablKH" class="table table-hover" style="margin: 20px 0;">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col"><input type="checkbox" id="cb-all"/></th>
+                        <th scope="col">Họ và Tên</th>
+                        <th scope="col">Số Điện Thoại</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Ý Kiến</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tr th:each="item,state:${dsykien.content}">
+                        <td><input type="checkbox" class="cb" th:value="${item.id}"/></td>
+                        <td>[[${item.ten}]]</td>
+                        <td>[[${item.sdt}]]</td>
+                        <td>[[${item.email}]]</td>
+                        <td>[[${item.noidung}]]</td>
+                        <td>
+                            <a onclick="return confirm('Bạn có chắc chắn muốn xóa?')" th:href="@{|/admin/delete/${item.id}|}"><i style="color: red" class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                </table>
+
+                <nav aria-label="Page navigation example" style="display: flex;justify-content: space-between;">
+                    <div style="margin-left: 20px">
+                        <p>Bạn đang xem [[${dsykien.numberOfElements}]] trên tổng số [[${dsykien.totalElements}]]</p>
+                    </div>
+                    <ul class="pagination" style="margin-right: 24px;">
+                        <li class="page-item">
+                            <a class="page-link" th:href="@{|/admin/y-kien-dong-gop?page=${dsykien.number-1}|}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+
+                        <li th:each="tongtrang,status:${#numbers.sequence(1, dsykien.totalPages)}" class="page-item"><a class="page-link" th:href="@{|/admin/y-kien-dong-gop?page=${status.index}|}">[[${status.index+1}]]</a></li>
+                        <li class="page-item">
+                            <a class="page-link" th:href="@{|/admin/y-kien-dong-gop?page=${dsykien.number+1}|}"  aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <button onclick="return confirm('Bạn có chắc chắn muốn xóa?')"  class="btn btn-danger" id="deletes"> Xóa Ý Kiến Đã Chọn</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bao gồm thư viện jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+
+<script  type="text/javascript">
+
+
+    $('#deletes').click(function () {
+        // Lấy danh sách các phần tử đã chọn (checkbox) từ HTML
+        const selectedItems = $('.cb:checked');
+        const danhGiaIds = selectedItems.map(function () {
+            return $(this).val();
+        }).get();
+
+        // Gửi AJAX request bằng jQuery
+        $.ajax({
+            type: 'POST',
+            url: '/admin/deletes',
+            contentType: 'application/json',
+            data: JSON.stringify(danhGiaIds),
+            success: function (data) {
+                window.location.reload();
+            },
+            error: function (xhr, status, error) {
+                console.error('Lỗi:', error);
+            }
+        });
+    });
+
+</script>
+
+<script>
+    // Lấy checkbox ở hàng tiêu đề và checkbox ở mỗi hàng
+    const cbAll = document.getElementById('cb-all');
+    const cbItems = document.querySelectorAll('.cb');
+
+    // Xử lý sự kiện khi checkbox ở hàng tiêu đề được thay đổi
+    cbAll.addEventListener('change', function () {
+        // Lặp qua từng checkbox ở mỗi hàng và gán trạng thái của checkbox ở hàng tiêu đề cho chúng
+        cbItems.forEach(cb => {
+            cb.checked = cbAll.checked;
+        });
+    });
+</script>
+
+<script src="/assets/js/popper.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html th:replace="~{/layout/index :: dynamic(~{::body})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- Breadcrumb Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" href="#">Home</a>
+                <a class="breadcrumb-item text-dark" href="#">Shop</a>
+                <span class="breadcrumb-item active">Checkout</span>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+
+<!-- Checkout Start -->
+<div style="width: 88%;margin: auto;">
+    <form action="/checkout" method="post">
+        <div class="row px-xl-5">
+
+            <div th:each="x:${listGHCT}" hidden="hidden">
+                <input type="checkbox" th:checked="${listGiay.contains(x.giay_chi_tiet.id)}" name="listGiay" th:value="${x.giay_chi_tiet.id}">
+                <input type="text" class="form-control form-control-sm bg-secondary border-0 text-center" th:name="${x.giay_chi_tiet.id}+'soluong'" th:value="${x.so_luong}">
+            </div>
+            <div class="col-lg-12">
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Danh
+                        Sách Sản Phẩm</span></h5>
+                <div class="bg-light p-30 mb-5"
+                     style="display: flex;justify-content: space-between;align-items: center;">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <td class="text-center td-image">Hình ảnh</td>
+                            <td class="text-left td-product">Tên sản phẩm</td>
+                            <td class="text-center td-model">Mã sản phẩm</td>
+                            <td class="text-center td-qty">Số lượng</td>
+                            <td class="text-right td-price">Giá</td>
+                            <td class="text-right td-total">Tổng</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="x:${listGHCT}">
+                            <td class="text-center td-image"><a
+                                    href="https://myshoes.vn/giay-nike-air-max-sc-nam-xanh-navy.html"><img
+                                    th:src="@{|/images/${x.giay_chi_tiet.giay.getAnhDau(x.giay_chi_tiet.giay.anhs)}|}"
+                                    style="width: 140px;"
+                                    alt="Giày Nike Air Max SC Nam - Xanh Navy"
+                                    title="Giày Nike Air Max SC Nam - Xanh Navy" class="img-thumbnail"></a></td>
+                            <td class="text-left td-product"><a
+                                    href="https://myshoes.vn/giay-nike-air-max-sc-nam-xanh-navy.html">[[${x.giay_chi_tiet.giay.ten}]]</a> <!----> <br> <small>Chọn size nam: [[${x.giay_chi_tiet.kich_co.ten}]]</small>
+                                <!----> <!----> <!----> <!----> <!---->
+                            </td>
+                            <td class="text-left td-model">[[${x.giay_chi_tiet.giay.ma}]]</td>
+                            <td class="text-left td-qty">
+                                [[${x.so_luong}]]
+                            </td>
+                            <td class="text-right td-price">[[${#numbers.formatDecimal(x.giay_chi_tiet.giay.gia_sau_khuyen_mai, 0, 'COMMA', 0, 'POINT')}]]₫</td>
+                            <td class="text-right td-total">[[${#numbers.formatDecimal(x.giay_chi_tiet.giay.tinhTong(x.giay_chi_tiet.giay.gia_sau_khuyen_mai,x.so_luong), 0, 'COMMA', 0, 'POINT')}]]₫</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="col-lg-6">
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Địa
+                            Chỉ
+                            Nhận Hàng</span></h5>
+                <div class="radio"><label><input type="radio" value="existing" name="dc" checked>
+                    Tôi muốn dùng địa chỉ này</label></div>
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="dia_chi" name="dia_chi" onchange="callAPIGHN2()" style="height: 40px;width: 605px">
+                    <option th:each="x:${list_dia_chi}" th:value="${x.madc}">
+                        [[${x.ten_nguoi_nhan}]] (+84)[[${x.sdt_nguoi_nhan}]] - [[${x.tendiachi}]] - [[${x.xa}]] - [[${x.huyen}]] - [[${x.thanhpho}]]
+                    </option>
+                </select>
+
+                <div class="radio"><label><input type="radio" value="new" name="dc">
+                    Tôi muốn dùng địa chỉ mới</label></div>
+                <div class="form-group required address-address-1">
+                    <input type="text" name="address_1" value="" placeholder="Địa chỉ:" id="input-payment-address-1"
+                           class="form-control"> <!----></div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label>Thành Phố :</label>
+                        <select class="form-control"  name="province" id="province">
+                            <option></option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Huyện :</label>
+                        <select class="form-control" name="district" id="district" >
+                            <option></option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Xã :</label>
+                        <select class="form-control" onchange="callAPIGHN();" name="ward" id="ward" >
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6 ">
+                        <input type="text" name="firstname" value="" placeholder="Họ và tên:" id="input-payment-firstname" class="form-control"> <!---->
+                    </div>
+                    <div class="form-group col-md-6 ">
+                        <input type="text" name="sdt" value="" placeholder="Số Điện Thoại:" id="input-payment-sdt" class="form-control"> <!---->
+                    </div>
+                </div>
+          </div>
+
+            <div class="col-lg-6">
+                <div style="width: 100%">
+                    <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Mã Giảm
+                        Giá</span></h5>
+                    <div class="bg-light p-30 mb-2" style="display: flex;justify-content: space-between;/* height: 298px; */">
+                        <div class="section-body" style="width: 100%;">
+                            <div class="form-group form-coupon"><label for="input-coupon" class="control-label">Nhập mã giảm
+                                giá nếu có</label>
+                                <div class="input-group"><input type="text" placeholder="Nhập mã giảm giá nếu có" name="maVC" th:value="${maGGHD}" id="input-coupon" class="form-control"> <span class="input-group-btn"><button data-loading-text="Đang Xử lý..." class="btn btn-primary" type="submit"><span>Xác nhận</span></button></span></div> <!---->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Ghi Chú</span></h5>
+                    <div class="bg-light p-30 mb-5" style="display: flex;justify-content: space-between;/* height: 298px; */">
+                        <div class="section-body" style="width: 100%;">
+                            <div class="form-group form-coupon"><label for="exampleFormControlTextarea1" class="control-label">Ghi chú cho người bán</label>
+                                <div class="input-group">
+                                    <textarea class="form-control" name="ghichu" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                </div> <!---->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-12" th:if="${tongDiemQuyDoiHienCo>5000}">
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Điểm Tích Lũy</span></h5>
+                <p>Bạn có: <input type="text" class="form-control" id="diemHienCo" readonly th:value="${tongDiemQuyDoiHienCo}"> </p>
+                <div class="bg-light p-30 mb-2" style="display: flex;justify-content: space-between;/* height: 298px; */">
+                    <div class="section-body" style="width: 100%;">
+                        <div class="form-group form-coupon">
+                            <div class="input-group"><input type="number" id="soDiemDaDung" name="soDiemDaDung" placeholder="Nhập số điểm bạn muốn sử dụng" class="form-control"> <span class="input-group-btn"><button data-loading-text="Đang Xử lý..." class="btn btn-primary" type="button" id="suDungDiemTL"><span>Sử Dụng</span></button></span></div> <!---->
+                            <span id="Error" class="error-message"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Billing
+                        Address</span></h5>
+                <div class="bg-light p-30 mb-5" style="height: 320px">
+                    <div class="checkout-section shipping-payment" style="display: flex;justify-content: space-between;">
+                        <div class="section-shipping">
+                            <div class="title section-title mb-2" style="font-size: large;font-weight: 900;
+                             color: #222;">Đơn Vị Vận Chuyển</div>
+                            <div class="section-body" ><!---->
+                                <img style="width: 250px;" src="data:image/png;base64,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" alt="">
+                            </div>
+                        </div>
+                        <div class="section-payment">
+                            <div class="title section-title mb-4" style="font-weight: 900;
+                            color: #222;">PHƯƠNG THỨC THANH TOÁN</div>
+                            <div class="section-body"><!---->
+                                <div>
+                                    <div class="radio"><label><input type="radio" name="payment_method"
+                                                                     value="vnpay_payment"> <span>Thanh toán trực tuyến với
+                                                VNPAY</span></label></div>
+                                </div>
+                                <div>
+                                    <div class="radio"><label><input type="radio" name="payment_method" value="cod" checked>
+                                        <span>Thanh toán khi nhận hàng</span></label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Order
+                        Total</span></h5>
+                <div class="bg-light p-30 mb-5">
+                    <div class="border-bottom pt-3 pb-2">
+                        <div class="d-flex justify-content-between mb-3">
+                            <h6>Thành Tiền:</h6>
+                            <h6>[[${#numbers.formatDecimal(tongTien, 0, 'COMMA', 0, 'POINT')}]]₫</h6>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <h6 class="font-weight-medium">Phí giao hàng:</h6>
+                            <h6 class="font-weight-medium" id="phiShip">[[${#numbers.formatDecimal(phiShip, 0, 'COMMA', 0, 'POINT')}]]₫</h6>
+                        </div>
+                        <div class="d-flex justify-content-between" th:if="${maGGHD!=''}">
+                            <h6 class="font-weight-medium">Mã giảm giá ([[${maGGHD}]]):</h6>
+                            <h6 class="font-weight-medium">-[[${#numbers.formatDecimal(tienGGHD, 0, 'COMMA', 0, 'POINT')}]]₫</h6>
+                        </div>
+                        <div class="d-flex justify-content-between" th:if="${tongDiemQuyDoiHienCo>5000}">
+                            <h6 class="font-weight-medium">Giảm từ quy đổi:</h6>
+                            <h6 class="font-weight-medium" id="soTienQuyDoi">0₫</h6>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <h6 class="font-weight-medium">Điểm tích lũy:</h6>
+                            <h6 class="font-weight-medium" id="soDiemCongText">[[${#numbers.formatDecimal(diemTichLuy, 0, 'COMMA', 0, 'POINT')}]]</h6>
+                        </div>
+                    </div>
+                    <div class="pt-2">
+                        <div class="d-flex justify-content-between mt-2 mb-3">
+                            <h5>Tổng:</h5>
+                            <h5 id="tienThanhToantext">[[${#numbers.formatDecimal(tienThanhToan, 0, 'COMMA', 0, 'POINT')}]]₫</h5>
+                        </div>
+                    </div>
+                    <input type="text" hidden="hidden" th:value="${tienThanhToan}" id="tienThanhToan" name="tienThanhToan">
+                    <input type="text" hidden="hidden" th:value="${phiShip}" name="phiShip" id="phiShip1">
+                    <input type="text" hidden="hidden" th:value="${tienGGHD}" name="tienGGHD">
+                    <input type="text" hidden="hidden" th:value="${diemTichLuy}" name="soDiemCong" id="soDiemCong">
+                    <input type="text" hidden="hidden" id="soTienQuyDoi1" name="soTienQuyDoi">
+                    <input type="text" hidden="hidden" th:value="${tienThanhToan}" id="tienThanhToan1" name="tienThanhToan1">
+                    <input type="text" hidden="hidden" th:value="${tien_tuong_ung}" id="tien_tuong_ung" >
+                    <input type="text" hidden="hidden" th:value="${diem_tuong_ung}" id="diem_tuong_ung" >
+                    <button class="btn btn-block btn-primary font-weight-bold py-3" formaction="/pay">Đặt Hàng</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+<!-- Checkout End -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"
+        integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    var inputField = document.getElementById('soDiemDaDung');
+    var inputField1 = document.getElementById('diemHienCo');
+
+    // Thêm sự kiện 'input' vào phần tử input
+    inputField.addEventListener('input', function() {
+        let suDungDiemTL = document.getElementById('suDungDiemTL');
+        suDungDiemTL.disabled = false;
+        clearErrorMessages();
+        if (Number.parseInt(inputField.value) < 0){
+            displayErrorMessage('Error', 'Số điểm sử dụng phải là số nguyên');
+            suDungDiemTL.disabled = true;
+        }
+        if (Number.parseInt(inputField.value) < 5000){
+            displayErrorMessage('Error', 'Số điểm sử dụng tối thiểu là 5000');
+            suDungDiemTL.disabled = true;
+        }
+        if (Number.parseInt(inputField.value) > Number.parseInt(inputField1.value)){
+            displayErrorMessage('Error', 'Số điểm sử dụng vượt quá số điểm hiện có');
+            suDungDiemTL.disabled = true;
+        }
+    });
+    function displayErrorMessage(elementId, message) {
+        var errorElement = document.getElementById(elementId);
+        errorElement.innerText = message;
+        errorElement.style.color = 'red';
+    }
+    function clearErrorMessages() {
+        var errorElements = document.querySelectorAll('.error-message');
+        errorElements.forEach(function (element) {
+            element.innerText = '';
+        });
+    }
+    function callAPIGHN() {
+        var thanhPho= $("#province option:selected").text();
+        var huyen= $("#district option:selected").text();
+        var xa= $("#ward option:selected").text();
+        $.ajax({
+            type: "POST",
+            url: "https://dev-online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/create" , // Đường dẫn của bạn để lấy thông tin chi tiết
+            headers: {
+                'Token': '50ea92cd-6b53-11ee-a6e6-e60958111f48', // Thay thế YOUR_API_TOKEN_HERE bằng token của bạn
+                'Content-Type': 'application/json',
+                'ShopId': '189834 - 0385090080'
+            },
+            data: JSON.stringify({
+                "payment_type_id": 2,
+                "note": "Tintest 123",
+                "required_note": "KHONGCHOXEMHANG",
+                "return_phone": "0332190158",
+                "return_address": "39 NTT",
+                "return_district_id": null,
+                "return_ward_code": "",
+                "client_order_code": "",
+                "from_name": "TinTest124",
+                "from_phone": "0987654321",
+                "from_address": "Hà Nội, Vietnam",
+                "from_ward_name": "Cấn Hữu",
+                "from_district_name": "Quốc Oai",
+                "from_province_name": "Hà Nội",
+                "to_name": "TinTest124",
+                "to_phone": "0987654321",
+                "to_address": "72 Thành Thái, Phường 14, Quận 10, Hồ Chí Minh, Vietnam",
+                "to_ward_name": xa,
+                "to_district_name": huyen,
+                "to_province_name": thanhPho,
+                "cod_amount": 200000,
+                "content": "Theo New York Times",
+                "weight": 2000,
+                "length": 1,
+                "width": 19,
+                "height": 10,
+                "cod_failed_amount": 2000,
+                "pick_station_id": 1444,
+                "deliver_station_id": null,
+                "insurance_value": 100000,
+                "service_id": 0,
+                "service_type_id":2,
+                "coupon":null,
+                "pickup_time":1692840132,
+                "pick_shift":[2]
+            }),
+            success: function(response) {
+                // Giả sử phản hồi trả về là một đối tượng JSON với các thuộc tính như ma, hoTen,...
+                console.log("Thành Công");
+                console.log("xa:"+xa);
+                console.log("huyen"+huyen);
+                console.log("thanh pho:"+thanhPho);
+                document.getElementById('phiShip').innerText = response.data.total_fee;
+                let tienShipChechLech = Number.parseInt(response.data.total_fee) - Number.parseInt(document.getElementById('phiShip1').value);
+
+                document.getElementById('phiShip1').value = response.data.total_fee;
+                let soDiemDaDung = document.getElementById("soDiemDaDung");
+                let tienThanhToan = document.getElementById("tienThanhToan");
+                let tienThanhToantext = document.getElementById("tienThanhToantext");
+                let soDiemCongText = document.getElementById("soDiemCongText");
+                let soDiemCong = document.getElementById("soDiemCong");
+                let tien_tuong_ung = document.getElementById("tien_tuong_ung");
+                let diem_tuong_ung = document.getElementById("diem_tuong_ung");
+                let tienThanhToan1 = document.getElementById("tienThanhToan1");
+
+                let tienThanhToanSau = 0;
+                console.log(tienShipChechLech);
+                if(tienShipChechLech>0){
+                        tienThanhToanSau = Number.parseInt(tienThanhToan.value) + tienShipChechLech;
+                    console.log("1"+tienThanhToanSau);
+
+                } else {
+                        tienThanhToanSau = Number.parseInt(tienThanhToan.value) + tienShipChechLech;
+                    console.log("2"+tienThanhToanSau);
+                }
+                console.log(tienThanhToanSau);
+                if (soDiemDaDung.value === ""){
+                    soDiemDaDung.value=0;
+                }
+                let diemCongSau = Math.round(((tienThanhToanSau/Number.parseInt(tien_tuong_ung.value))*Number.parseInt(diem_tuong_ung.value)));
+                soDiemCongText.innerHTML = diemCongSau.toLocaleString();
+                soDiemCong.value = diemCongSau;
+                tienThanhToan.value = tienThanhToanSau;
+                tienThanhToan1.value = tienThanhToanSau+Number.parseInt(soDiemDaDung.value);
+                console.log(tienThanhToan.value);
+                tienThanhToantext.innerHTML = tienThanhToanSau.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+            },
+            error: function(error) {
+                console.log(error);
+                alert("Lỗi khi lấy thông tin nhân viên");
+            }
+        });
+    }
+    function callAPIGHN2() {
+        var dia_chi= document.getElementById("dia_chi");
+        var selectedIndex = dia_chi.selectedIndex;
+        var dia_chi_text= dia_chi.options[selectedIndex].text;
+        console.log(dia_chi_text);
+        var value = dia_chi_text.split("-");
+        var thanhPho= value[4].trim();
+        var huyen= value[3].trim();
+        var xa= value[2].trim();
+        console.log(thanhPho);
+        console.log(huyen);
+        console.log(xa);
+        $.ajax({
+            type: "POST",
+            url: "https://dev-online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/create" , // Đường dẫn của bạn để lấy thông tin chi tiết
+            headers: {
+                'Token': '50ea92cd-6b53-11ee-a6e6-e60958111f48', // Thay thế YOUR_API_TOKEN_HERE bằng token của bạn
+                'Content-Type': 'application/json',
+                'ShopId': '189834 - 0385090080'
+            },
+            data: JSON.stringify({
+                "payment_type_id": 2,
+                "note": "Tintest 123",
+                "required_note": "KHONGCHOXEMHANG",
+                "return_phone": "0332190158",
+                "return_address": "39 NTT",
+                "return_district_id": null,
+                "return_ward_code": "",
+                "client_order_code": "",
+                "from_name": "TinTest124",
+                "from_phone": "0987654321",
+                "from_address": "Hà Nội, Vietnam",
+                "from_ward_name": "Cấn Hữu",
+                "from_district_name": "Quốc Oai",
+                "from_province_name": "Hà Nội",
+                "to_name": "TinTest124",
+                "to_phone": "0987654321",
+                "to_address": "72 Thành Thái, Phường 14, Quận 10, Hồ Chí Minh, Vietnam",
+                "to_ward_name": xa,
+                "to_district_name": huyen,
+                "to_province_name": thanhPho,
+                "cod_amount": 200000,
+                "content": "Theo New York Times",
+                "weight": 2000,
+                "length": 1,
+                "width": 19,
+                "height": 10,
+                "cod_failed_amount": 2000,
+                "pick_station_id": 1444,
+                "deliver_station_id": null,
+                "insurance_value": 10000,
+                "service_id": 0,
+                "service_type_id":2,
+                "coupon":null,
+                "pickup_time":1692840132,
+                "pick_shift":[2]
+            }),
+            success: function(response) {
+                // Giả sử phản hồi trả về là một đối tượng JSON với các thuộc tính như ma, hoTen,...
+                console.log("Thành Công");
+                console.log("xa:"+xa);
+                console.log("huyen"+huyen);
+                console.log("thanh pho:"+thanhPho);
+                document.getElementById('phiShip').innerText = response.data.total_fee;
+                let tienShipChechLech = Number.parseInt(response.data.total_fee) - Number.parseInt(document.getElementById('phiShip1').value);
+
+                document.getElementById('phiShip1').value = response.data.total_fee;
+                let soDiemDaDung = document.getElementById("soDiemDaDung");
+                let tienThanhToan = document.getElementById("tienThanhToan");
+                let tienThanhToantext = document.getElementById("tienThanhToantext");
+                let soDiemCongText = document.getElementById("soDiemCongText");
+                let soDiemCong = document.getElementById("soDiemCong");
+                let tien_tuong_ung = document.getElementById("tien_tuong_ung");
+                let diem_tuong_ung = document.getElementById("diem_tuong_ung");
+                let tienThanhToan1 = document.getElementById("tienThanhToan1");
+                if (soDiemDaDung.value === ""){
+                    soDiemDaDung.value=0;
+                }
+                let tienThanhToanSau = 0;
+                console.log(tienShipChechLech);
+                if(tienShipChechLech>0){
+                    tienThanhToanSau = Number.parseInt(tienThanhToan.value) + tienShipChechLech;
+                    console.log("1"+tienThanhToanSau);
+
+                } else {
+                    tienThanhToanSau = Number.parseInt(tienThanhToan.value) + tienShipChechLech;
+                    console.log("2"+tienThanhToanSau);
+                }
+                console.log(tienThanhToanSau);
+
+                let diemCongSau = Math.round(((tienThanhToanSau/Number.parseInt(tien_tuong_ung.value))*Number.parseInt(diem_tuong_ung.value)));
+                soDiemCongText.innerHTML = diemCongSau.toLocaleString();
+                soDiemCong.value = diemCongSau;
+                tienThanhToan.value = tienThanhToanSau;
+                tienThanhToan1.value = tienThanhToanSau+Number.parseInt(soDiemDaDung.value);
+                console.log(tienThanhToan.value);
+                tienThanhToantext.innerHTML = tienThanhToanSau.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+            },
+            error: function(error) {
+                console.log(error);
+                alert("Lỗi khi lấy thông tin nhân viên");
+            }
+        });
+    }
+    const host = "https://provinces.open-api.vn/api/";
+    var callAPI = (api) => {
+        return axios.get(api)
+            .then((response) => {
+                renderData(response.data, "province", "Tỉnh/Thành phố");
+            });
+    }
+    callAPI('https://provinces.open-api.vn/api/?depth=1');
+    var callApiDistrict = (api) => {
+        return axios.get(api)
+            .then((response) => {
+                renderData(response.data.districts, "district", "Quận/Huyện");
+            });
+    }
+    var callApiWard = (api) => {
+        return axios.get(api)
+            .then((response) => {
+                renderData(response.data.wards, "ward", "Xã/Phường");
+            });
+    }
+
+    var renderData = (array, select, type) => {
+        let row = ' <option disable value="" selected>Chọn ' + type + '</option>';
+
+        array.forEach(element => {
+            row += `<option value="${element.name}" data-code="${element.code}">${element.name}</option>`
+        });
+        document.querySelector("#" + select).innerHTML = row
+    }
+
+    $("#province").change(() => {
+        const selectedCode = $("#province option:selected").data("code");
+        callApiDistrict(host + "p/" + selectedCode + "?depth=2");
+        printResult();
+    });
+    $("#district").change(() => {
+        const selectedCode = $("#district option:selected").data("code");
+        callApiWard(host + "d/" + selectedCode + "?depth=2");
+        printResult();
+    });
+    $("#ward").change(() => {
+        printResult();
+    })
+
+    var printResult = () => {
+        if ($("#district").val() != "" && $("#province").val() != "" &&
+            $("#ward").val() != "") {
+            let result = $("#province option:selected").text() +
+                " | " + $("#district option:selected").text() + " | " +
+                $("#ward option:selected").text();
+            $("#result").text(result)
+        }
+    }
+
+
+    var callAPI2 = (api) => {
+        return axios.get(api)
+            .then((response) => {
+                renderData(response.data, "province2", "Tỉnh/Thành phố");
+
+            });
+    }
+    callAPI2('https://provinces.open-api.vn/api/?depth=1');
+    var callApiDistrict2 = (api) => {
+        return axios.get(api)
+            .then((response) => {
+                renderData(response.data.districts, "district2", "Quận/Huyện");
+            });
+    }
+    var callApiWard2 = (api) => {
+        return axios.get(api)
+            .then((response) => {
+                renderData(response.data.wards, "ward2", "Xã/Phường");
+            });
+    }
+
+    $("#province2").change(() => {
+        const selectedCode = $("#province2 option:selected").data("code");
+        callApiDistrict2(host + "p/" + selectedCode + "?depth=2");
+        printResult2();
+    });
+    $("#district2").change(() => {
+        const selectedCode = $("#district2 option:selected").data("code");
+        callApiWard2(host + "d/" + selectedCode + "?depth=2");
+        printResult2();
+    });
+    $("#ward2").change(() => {
+        printResult2();
+    })
+
+    var printResult2 = () => {
+        if ($("#district2").val() != "" && $("#province2").val() != "" &&
+            $("#ward2").val() != "") {
+            let result = $("#province2 option:selected").text() +
+                " | " + $("#district2 option:selected").text() + " | " +
+                $("#ward2 option:selected").text();
+            $("#result2").text(result)
+        }
+    }
+
+    $(document).ready(function () {
+        $(".btn-detail").click(function () {
+            var madc = $(this).attr("madc");
+            var form = $("#exampleModal2"); // Chọn tất cả các thẻ <form> trên trang
+            $.ajax({
+                url: "http://localhost:2020/rest/diachi/" + "getDiaChiByMa/" + madc,
+                method: "GET",
+                dataType: "json", // Kiểu dữ liệu trả về từ máy chủ (json, html, text, etc.)
+                success: function (data) {
+                    form.find('[name="id"]').val(data.id);
+                    form.find('[name="madc"]').val(data.ma);
+                    form.find('[name="tendiachi"]').val(data.tendiachi);
+                    form.find('[name="thanhpho"]').val(data.thanhpho);
+                    let selected1 = $("#province2 option:selected").data("code");
+                    callApiDistrict2(host + "p/" + selected1 + "?depth=2");
+                    setTimeout(function () {
+                        form.find('[name="huyen"]').val(data.huyen);
+                        let selected2 = $("#district2 option:selected").data("code");
+                        callApiWard2(host + "d/" + selected2 + "?depth=2");
+                        setTimeout(function () {
+                            form.find('[name="xa"]').val(data.xa);
+                        }, 300);
+                    }, 200);
+                    form.find('[name="sdt_nguoi_nhan"]').val(data.sdt_nguoi_nhan);
+                    form.find('[name="ten_nguoi_nhan"]').val(data.ten_nguoi_nhan);
+                    form.find('[name="khachHang.id"]').val(data.khachHang.id);
+                    form.find('[name="trangthai"]').each(function () {
+                        if ($(this).val() == data.trangthai) {
+                            $(this).prop('checked', true);
+                            $(this).attr('disable', true);
+                        }
+                        else {
+                            $(this).prop('checked', false);
+                            $(this).attr('disable', false);
+                        }
+                    });
+
+                },
+                error: function (error) {
+                    console.log("Lỗi khi tải dữ liệu: " + error);
+                }
+            });
+        });
+    });
+    let suDungDiemTL = document.getElementById("suDungDiemTL");
+    suDungDiemTL.addEventListener("click", function (){
+        let soDiemDaDung = document.getElementById("soDiemDaDung");
+        let soTienQuyDoi = document.getElementById("soTienQuyDoi");
+        let tienThanhToan = document.getElementById("tienThanhToan");
+        let tienThanhToan1 = document.getElementById("tienThanhToan1");
+        let tienThanhToantext = document.getElementById("tienThanhToantext");
+        let soDiemCongText = document.getElementById("soDiemCongText");
+        let soDiemCong = document.getElementById("soDiemCong");
+        let tien_tuong_ung = document.getElementById("tien_tuong_ung");
+        let diem_tuong_ung = document.getElementById("diem_tuong_ung");
+        let soTienQuyDoi1 = document.getElementById("soTienQuyDoi1");
+        if (soDiemDaDung.value === ""){
+            soDiemDaDung.value=0;
+        }
+        soTienQuyDoi.innerHTML =Number.parseInt(soDiemDaDung.value).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+        soTienQuyDoi1.value =soDiemDaDung.value;
+        let tienThanhToanSau = Number.parseInt(tienThanhToan1.value) - Number.parseInt(soTienQuyDoi1.value);
+        let diemCongSau = Math.round(((tienThanhToanSau/Number.parseInt(tien_tuong_ung.value))*Number.parseInt(diem_tuong_ung.value)));
+        soDiemCongText.innerHTML = diemCongSau.toLocaleString();
+        soDiemCong.value = diemCongSau;
+        tienThanhToan.value = tienThanhToanSau;
+        tienThanhToantext.innerHTML = tienThanhToanSau.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    });
+
+</script>
+</body>
+</html>

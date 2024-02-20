@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html th:replace="~{/layout/index :: dynamic(~{::body})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- Breadcrumb Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" href="#">Trang Chủ</a>
+                <a class="breadcrumb-item text-dark" href="#">Cửa Hàng</a>
+                <span class="breadcrumb-item active">Danh sách cửa hàng</span>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+
+
+<!-- Shop Start -->
+<div style="width: 88%;margin: auto;">
+    <div class="row px-xl-5">
+        <!-- Shop Sidebar Start -->
+        <div class="col-lg-3 col-md-4">
+            <!-- Price Start -->
+            <form action="/sanpham" method="post" th:object="${searchform}">
+                <button type="submit" class="btn btn-primary mb-2">Tìm Kiếm</button>
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Khoảng Giá</span>
+                </h5>
+                <div style="display: flex;justify-content: space-between" class="bg-light p-3 mb-30">
+                    <input type="text" class="col-md-5" placeholder="đ Từ" th:field="*{tien_min}">
+                    <span class="col-1"></span>
+                    <input type="text" class="col-md-5" placeholder="đ Đến" th:field="*{tien_max}">
+                </div>
+                <h5 class="section-title position-relative text-uppercase mb-3"><span
+                        class="bg-secondary pr-3">Tìm Theo</span>
+                </h5>
+                <!--                    Begin Filter Thương Hiệu-->
+                <div class="bg-light p-4 mb-25">
+                    <a href="#homeSubmenu1" style="color: black;text-decoration: none" data-toggle="collapse"
+                       aria-expanded="false" class="dropdown-toggle h6">
+                        Thương Hiệu
+                    </a>
+                    <ul class="collapse list-unstyled mt-3 show" id="homeSubmenu1">
+                        <form>
+                            <li class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" th:field="*{thuong_hieu}" value=""
+                                       checked id="price-all" onclick="handleCheckbox(this)">
+                                <label class="custom-control-label" for="price-all">Tất Cả</label>
+                            </li>
+                            <li class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3"
+                                th:each="x:${listThuongHieu}">
+                                <input type="checkbox" class="custom-control-input" th:field="*{thuong_hieu}"
+                                       th:id="${x.ten}" th:value="${x.ten}" onclick="handleCheckbox(this)">
+                                <label class="custom-control-label" th:for="${x.ten}"
+                                       th:value="${x.ten}">[[${x.ten}]]</label>
+                            </li>
+                        </form>
+                    </ul>
+                </div>
+                <!--                    End Filter Thương Hiệu-->
+
+                <!--                    Begin Filter Kích Cỡ-->
+                <div class="bg-light p-4 mb-25">
+                    <a href="#homeSubmenu2" style="color: black;text-decoration: none" data-toggle="collapse"
+                       aria-expanded="false" class="dropdown-toggle h6">
+                        Kích Cỡ
+                    </a>
+                    <ul class="collapse list-unstyled mt-3" id="homeSubmenu2">
+                        <form>
+                            <li class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input1" th:field="*{kich_co}" value=""
+                                       checked
+                                       id="kich_co" onclick="handleCheckbox1(this)">
+                                <label class="custom-control-label" for="kich_co">Tất Cả</label>
+                            </li>
+                            <li class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3"
+                                th:each="x:${listKichCo}">
+                                <input type="checkbox" class="custom-control-input1" th:id="${x.ten}"
+                                       th:field="*{kich_co}"
+                                       th:value="${x.ten}" onclick="handleCheckbox1(this)">
+                                <label class="custom-control-label" th:for="${x.ten}"
+                                       th:value="${x.ten}">[[${x.ten}]]</label>
+                            </li>
+                        </form>
+                    </ul>
+                </div>
+                <!--                End Filter Kích Cỡ-->
+
+                <!--                Begin Filter Chất Liệu-->
+                <div class="bg-light p-4 mb-25">
+                    <a href="#homeSubmenu3" style="color: black;text-decoration: none" data-toggle="collapse"
+                       aria-expanded="false" class="dropdown-toggle h6">
+                        Chất Liệu
+                    </a>
+                    <ul class="collapse list-unstyled mt-3" id="homeSubmenu3">
+                        <form>
+                            <li class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input2" value="" th:field="*{chat_lieu}"
+                                       checked id="chat_lieu" onclick="handleCheckbox2(this)">
+                                <label class="custom-control-label" for="chat_lieu">Tất Cả</label>
+                            </li>
+                            <li class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3"
+                                th:each="x:${listChatLieu}">
+                                <input type="checkbox" class="custom-control-input2" th:id="${x.ten}"
+                                       th:field="*{chat_lieu}" th:value="${x.ten}" onclick="handleCheckbox2(this)">
+                                <label class="custom-control-label" th:for="${x.ten}"
+                                       th:value="${x.ten}">[[${x.ten}]]</label>
+                            </li>
+                        </form>
+                    </ul>
+                </div>
+                <!--                End Filter Chất Liệu-->
+
+                <!--                Begin Filter Xuất Xứ-->
+                <div class="bg-light p-4 mb-25">
+                    <a href="#homeSubmenu4" style="color: black;text-decoration: none" data-toggle="collapse"
+                       aria-expanded="false" class="dropdown-toggle h6">
+                        Xuất Xứ
+                    </a>
+                    <ul class="collapse list-unstyled mt-3" id="homeSubmenu4">
+                        <form>
+                            <li class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input3" value="" th:field="*{xuat_xu}"
+                                       checked
+                                       id="xuat_xu" onclick="handleCheckbox3(this)">
+                                <label class="custom-control-label" for="xuat_xu">Tất Cả</label>
+                            </li>
+                            <li class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3"
+                                th:each="x:${listXuatXu}">
+                                <input type="checkbox" class="custom-control-input3" value="" th:id="${x.ten}"
+                                       th:field="*{xuat_xu}" th:value="${x.ten}" onclick="handleCheckbox3(this)">
+                                <label class="custom-control-label" th:for="${x.ten}"
+                                       th:value="${x.ten}">[[${x.ten}]]</label>
+                            </li>
+                        </form>
+                    </ul>
+                </div>
+                <!--                End Filter Xuất Xứ-->
+
+                <!--                Begin Filter Màu Sắc-->
+                <div class="bg-light p-4 mb-25">
+                    <a href="#homeSubmenu5" style="color: black;text-decoration: none" data-toggle="collapse"
+                       aria-expanded="false" class="dropdown-toggle h6">
+                        Màu Sắc
+                    </a>
+                    <ul class="collapse list-unstyled mt-3" id="homeSubmenu5">
+                        <form>
+                            <li class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input4" value="" th:field="*{mau_sac}"
+                                       checked
+                                       id="mau_sac" onclick="handleCheckbox4(this)">
+                                <label class="custom-control-label" for="mau_sac">Tất Cả</label>
+                            </li>
+                            <li class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3"
+                                th:each="x:${listMauSac}">
+                                <input type="checkbox" class="custom-control-input4" th:id="${x.ten}"
+                                       th:field="*{mau_sac}"
+                                       th:value="${x.ten}" onclick="handleCheckbox4(this)">
+                                <label class="custom-control-label" th:for="${x.ten}"
+                                       th:value="${x.ten}">[[${x.ten}]]</label>
+                            </li>
+                        </form>
+                    </ul>
+                </div>
+                <!--                End Filter Màu Sắc-->
+
+                <!--                Begin Filter Giới Tính-->
+                <div class="bg-light p-4 mb-25">
+                    <a href="#homeSubmenu6" style="color: black;text-decoration: none" data-toggle="collapse"
+                       aria-expanded="false" class="dropdown-toggle h6">
+                        Giới Tính
+                    </a>
+                    <ul class="collapse list-unstyled mt-3" id="homeSubmenu6">
+                        <form>
+                            <li class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input5" value="" th:field="*{gioi_tinh}"
+                                       checked id="gioi_tinh" onclick="handleCheckbox5(this)">
+                                <label class="custom-control-label" for="gioi_tinh">Tất Cả</label>
+                            </li>
+                            <li class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3"
+                                th:each="x:${listGioiTinh}">
+                                <input type="checkbox" class="custom-control-input5" th:id="${x.ten}"
+                                       th:field="*{gioi_tinh}" th:value="${x.ten}" onclick="handleCheckbox5(this)">
+                                <label class="custom-control-label" th:for="${x.ten}"
+                                       th:value="${x.ten}">[[${x.ten}]]</label>
+                            </li>
+                        </form>
+                    </ul>
+                </div>
+                <!--                End Filter Giới Tính-->
+
+                <!--                Begin Filter Đế Giày-->
+                <div class="bg-light p-4 mb-25">
+                    <a href="#homeSubmenu7" style="color: black;text-decoration: none" data-toggle="collapse"
+                       aria-expanded="false" class="dropdown-toggle h6">
+                        Đế Giày
+                    </a>
+                    <ul class="collapse list-unstyled mt-3" id="homeSubmenu7">
+                        <form>
+                            <li class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input6" value="" th:field="*{de_giay}"
+                                       checked
+                                       id="de_giay" onclick="handleCheckbox6(this)">
+                                <label class="custom-control-label" for="de_giay">Tất Cả</label>
+                            </li>
+                            <li class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3"
+                                th:each="x:${listDeGiay}">
+                                <input type="checkbox" class="custom-control-input6" th:id="${x.ten}"
+                                       th:field="*{de_giay}"
+                                       th:value="${x.ten}" onclick="handleCheckbox6(this)">
+                                <label class="custom-control-label" th:for="${x.ten}"
+                                       th:value="${x.ten}">[[${x.ten}]]</label>
+                            </li>
+                        </form>
+                    </ul>
+                </div>
+                <!--                End Filter Đế Giày-->
+
+                <!--                Begin Filter Kiểu Dáng-->
+                <div class="bg-light p-4 mb-25">
+                    <a href="#homeSubmenu8" style="color: black;text-decoration: none" data-toggle="collapse"
+                       aria-expanded="false" class="dropdown-toggle h6">
+                        Kiểu Dáng
+                    </a>
+                    <ul class="collapse list-unstyled mt-3" id="homeSubmenu8">
+                        <form>
+                            <li class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input7" value="" th:field="*{kieu_dang}"
+                                       checked id="kieu_dang" onclick="handleCheckbox7(this)">
+                                <label class="custom-control-label" for="kich_co">Tất Cả</label>
+                            </li>
+                            <li class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3"
+                                th:each="x:${listKieuDang}">
+                                <input type="checkbox" class="custom-control-input7" th:id="${x.ten}"
+                                       th:field="*{kieu_dang}" th:value="${x.ten}" onclick="handleCheckbox7(this)">
+                                <label class="custom-control-label" th:for="${x.ten}"
+                                       th:value="${x.ten}">[[${x.ten}]]</label>
+                            </li>
+                        </form>
+                    </ul>
+                </div>
+                <!--                End Filter Kiểu Dáng-->
+
+            </form>
+        </div>
+        <!-- Shop Sidebar End -->
+
+        <!-- Shop Product Start -->
+        <div class="col-lg-9 col-md-8">
+            <div class="row pb-3">
+                <div class="col-12 pb-1">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <div>
+                            <button class="btn btn-sm btn-light"><i class="fa fa-th-large"></i></button>
+                            <button class="btn btn-sm btn-light ml-2"><i class="fa fa-bars"></i></button>
+                        </div>
+                        <div class="ml-2">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-light dropdown-toggle"
+                                        data-toggle="dropdown">Sắp xếp
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#">Muộn nhất</a>
+                                    <a class="dropdown-item" href="#">Phổ biến</a>
+                                    <a class="dropdown-item" href="#">Đánh giá tốt nhất</a>
+                                </div>
+                            </div>
+                            <div class="btn-group ml-2">
+                                <button type="button" class="btn btn-sm btn-light dropdown-toggle"
+                                        data-toggle="dropdown">Đang hiển thị
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#">10</a>
+                                    <a class="dropdown-item" href="#">20</a>
+                                    <a class="dropdown-item" href="#">30</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div th:each="item:${items}" th:object="${item}" class="col-lg-4 col-md-6 col-sm-6 pb-1">
+                    <div class="product-item bg-light mb-4">
+                        <div class="product-img position-relative overflow-hidden">
+                            <img class="img-fluid w-100" th:src="@{|/images/*{getAnhDau(anhs)}|}" alt="">
+                            <div class="discount-badge2" th:if="${item.getCHGTHD()!=null}">🏷️ [[${item.getCHGTHD.chuongTrinhGiamGiaSP.tenKhuyenMai}]] 🏷️</div>
+                            <div class="discount-badge" th:if="${item.getCHGTHD()!=null}">[[${item.getCHGTHD.chuongTrinhGiamGiaSP.phanTramGiam}]]%</div>
+                            <div class="discount-badge1" th:if="${item.do_hot==1}">HOT</div>
+                            <div class="discount-badge3" th:if="${item.getNewGiay}">🌟 Hàng Mới Về 🌟</div>
+
+                            <div class="product-action">
+                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <a th:href="@{|/sanpham?thuong_hieu=${item.thuong_hieu.ten}|}" style="text-decoration: underline;">[[${item.thuong_hieu.ten}]]</a>
+                        </div>
+                        <div class="text-center py-4">
+                            <a class="h6 text-decoration-none text-truncate" th:href="@{|/ctsp/*{ma}-*{thuong_hieu.ten}-*{mau_sac.ten}|}"><p style="margin: auto;
+    text-align: center;
+    max-width: 226px;
+    white-space: break-spaces;color: #817d70;">[[*{ten}]]</p></a>
+                            <div class="d-flex align-items-center justify-content-center mt-2">
+                                <h5 th:if="*{gia_sau_khuyen_mai.compareTo(giaban)==0}" style="color: #ee4d2d">[[*{#numbers.formatDecimal(gia_sau_khuyen_mai, 0, 'COMMA', 0, 'POINT')}]] ₫</h5>
+                                <div th:if="*{gia_sau_khuyen_mai.compareTo(giaban)<0}">
+                                    <h5  style="color: #ee4d2d">[[*{#numbers.formatDecimal(gia_sau_khuyen_mai, 0, 'COMMA', 0, 'POINT')}]] ₫</h5><h6 class="text-muted ml-2"><del style="color: #ee4d2d">[[*{#numbers.formatDecimal(giaban, 0, 'COMMA', 0, 'POINT')}]] ₫</del></h6>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center mb-1">
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small class="fa fa-star text-primary mr-1"></small>
+                                <small>([[${item.getTongDanhGia()}]])</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 pb-3">
+                    <nav>
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled"><a class="page-link" href="#">Previous</span></a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-12" id="contentContainer" style="background: linear-gradient(to bottom, #ffffff, #cfcfcf);">
+                    <div id="initialContent" class="p-4">
+                        <h5 style="font-weight: bolder">DARLINSHOP™ MUA HÀNG CHÍNH HIỆU CHÍNH HÃNG TRỰC TUYẾN, GIÁ TỐT NHẤT</h5>
+                        <p>
+                            Sản thương mại điện tử Vua Hàng Hiệu - địa chỉ mua sắm trực tuyến uy tín, tin cậy, an toàn
+                            và miễn phil Vua Hàng Hiệu là sự lựa chọn hàng đầu khi mua sắm đồ hiệu chính hãng, sang
+                            trọng và đắt tiền tại Việt Nam. Với sự đảm bảo của chúng tôi, bạn sẽ mua hàng trực tuyến an
+                            tâm và nhanh chóng hơn bao giờ hết!
+                        </p>
+                        <h5 style="font-weight: bolder">MUA SẮM HÀNG HIỆU ONLINE ĐƠN GIẢN, NHANH CHÓNG VÀ AN TOÀN</h5>
+                        <p>
+                            Nếu bạn đang tim kiếm một sản thương mại điện tử để mua và làm đối tác bán hàng trực tuyển
+                            thi Vua Hàng Hiệu là một sự lựa chọn tuyệt vời. Tại đây, người mua sẽ dễ dàng tim kiếm các
+                            sản phẩm cao cấp mong muốn, xem các thông tin chi tiết về sản phẩm, chương trình khuyến mãi,
+                            các mã voucher giảm giá và nhận được dịch vụ chăm sóc chuyên nghiệp hàng đầu.
+                            Nhờ đó, việc mua bán trên sàn Vua Hàng Hiệu trở nên nhanh chóng và tiện lợi hơn bao giờ hết.
+                            Bạn có thể trao đổi trực tiếp với trò chuyện trực tiếp với nhà bán hàng qua các kênh như
+                            chat trên website, gọi vào hotline hoặc các kênh mạng xã hội liên kết khác như Facebook,
+                            Instagram để hỏi về mặt hàng cần mua và chắc chắn luôn được hỗ trợ nhiệt
+                            tình.
+                            Còn nếu bạn muốn tìm mua những dòng sản phẩm hàng hiệu chưa có sẵn tại website thì dịch vụ
+                            Order Hàng Quốc Tế của Vua Hàng Hiệu là sự lựa chọn lý tưởng dành cho bạn. Bạn có thể order
+                            các sản phẩm như thời trang, đồng hồ, kính mắt, túi xách, trang sức, nước hoa, mỹ phẩm...từ
+                            những thương hiệu quốc tế như Seiko, Citizen, Michael Kors, Calvin Klein, Movado, Dior,...
+                            Để bạn có thể dễ dàng khi tìm hiểu và sử dụng sản phẩm, trang Blog Vua Hàng Hiệu sẽ giúp bạn
+                            có thể tìm được cho mình các kiến thức về xu hướng thời trang, review sản phẩm, mẹo làm đẹp,
+                            tin tức khuyến mãi và deal giá tốt bất ngờ.
+                            Ngoài ra, nếu bạn ở khu vực nội thành Hà Nội và Hồ Chí Minh có thể chọn dịch vụ giao hàng
+                            nhanh 2h trong ngày với mức phí ship
+
+                        </p>
+                        <div style="display: flex; justify-content: center;">
+                            <button id="btnXemThem" class="btn btn-primary" onclick="showMore()">Xem thêm</button>
+                        </div>
+                    </div>
+                    <div id="fullContent" style="display: none;" class="p-4">
+                        <h5 style="font-weight: bolder">CÁC CHƯƠNG TRÌNH KHUYÊN MÃI, VOUCHER GIẢM GIÁ " KHỦNG"</h5>
+                        <p>
+                            Bên cạnh đó, Vua Hàng Hiệu liên tục cũng sẽ có những chương trình Flash Sale lớn hằng năm
+                            như các ngày lễ tết: Tết Dương Lịch 1/1, Tết Nguyên Đản, Valentine 14/2, Quốc tế Phụ nữ 8/3,
+                            Ngày của Mẹ, Ngày của Cha, Phụ Nữ Việt Nam 20-10, Ngày Nhà Giáo 20/11, Giáng Sinh....
+                            Không chỉ vậy, trong các tháng luôn diễn ra các sự kiện giảm giá “đỉnh cao" khác vào các
+                            ngày như: Sale 4,4, Sale 5.5, Sale 6.6, Sale 7.7, Sale 8.8, Sale 9.9, Sale 10.10, Sale
+                            11.11, Sale 12.12. Đây là thời điểm để người mua hàng có thể nhanh tay chọn ngay cho minh
+                            những mặt hàng ưa thích với mức giá giảm kỷ lục.
+                            Ngoài ra, bạn còn có thể thỏa thích săn sale vào các ngày trong tháng như Sale đồng giá giữa
+                            tháng và Sale cuối tháng.
+                        </p>
+                        <h5 style="font-weight: bolder">MUA HÀNG HIỆU LIMITED CAO CẤP GIÁ TỐT TẠI VUA HÀNG HIỆU</h5>
+                        <p>Bên cạnh mua được những sản phẩm chính hãng với mức giá tốt, tại Vua Hàng Hiệu bạn còn có thể
+                            sở hữu những món hàng hiệu phiên bản giới hạn khó tim, các mẫu mới nhất vừa được ra mắt của
+                            những thương hiệu đình đám thế giới. Bởi Vua Hàng Hiệu liên tục cập nhật những mẫu mới và
+                            "hot" nhất, nhằm đáp ứng nhu cầu của các khách hàng một cách nhanh chóng và đầy đủ nhất.
+                            Bên cạnh đó, Shopee hợp tác trực tiếp với rất nhiều thương hiệu đình đám được các nhà bán lẻ
+                            uy tín phân phối bán trên website, top sản phẩm hot deal cho bạn săn sale luôn cập nhật mỗi
+                            giờ, mỗi ngày, đem đến cho bạn sự lựa chọn đa dạng. Từ các hãng thời trang cao cấp như
+                            Gucci, Versace, Lacoste, Dolce Gabbana, Burberry, MLB, Adidas...Đến những thương hiệu mỹ
+                            phẩm nổi tiếng: Obagi, Paula's Choice, Estée Lauder, Kiehl's, Vichy, SK-II, MAC, YSL,
+                            TomFord...
+                            Tại Vua Hàng Hiệu, bạn có thể dễ dàng tìm thấy các thương hiệu nước hoa sang trọng được yêu
+                            thích như Chanel, Dior, Lancome, Le Labo, Jo Malone, Versace,...
+                            Hay các hãng giày hàng hiệu phổ biến hiện nay như: MLB, Adidas, Nike, Converse, New Balance,
+                            Vans....Hay những mẫu túi xách đắt tiền từ những cái tên nhắc tới ai cũng biết
+                            Charles & Keith, Louis Vuitton, Michael Kors, Furla, Coach,...
+                        </p>
+                        <h5 style="font-weight: bolder">BẢO MẬT THÔNG TIN KHÁCH HÀNG TUYỆT ĐỐI, ƯU ĐÃI THÀNH VIÊN HẤP DẪN</h5>
+                        <p>
+                            Mua hàng trên Vua Hàng Hiệu luôn là một trải nghiệm ấn tượng. Dù bạn đang có nhu cầu mua bất
+                            kỳ mặt hàng thời trang nam, thời trang nữ, đồng hồ, túi xách, giày dép, mũ nón, kính mắt,
+                            trang sức, mỹ phẩm, máy chăm sóc da... thì Vua Hàng Hiệu cũng sẽ đảm bảo cung cấp cho bạn
+                            những sản phẩm chất lượng ưng ý tuyệt đối.
+                            Là một kênh bán hàng trực tuyến uy tin, Vua Hàng Hiệu luôn cam kết mang lại cho khách hàng
+                            những trải nghiệm mua sắm tuyệt vời, với các sản phẩm chính hãng cùng mức giả “siêu hài".
+                            Mọi thông tin về người mua và các đối tác đều được bảo mật tuyệt đối. Các hoạt động giao
+                            dịch thanh toán tại Vua Hàng Hiệu luôn được đảm bảo diễn ra nhanh chóng,
+                            an toàn.
+                            Đến với sân thương mại điện tử Vua Hàng Hiệu ngay hôm nay để mua hàng hiệu cao cấp giá tốt
+                            và trải nghiệm dịch vụ chăm sóc khách hàng tuyệt vời tại đây. Đặc biệt khi đăng ký thành
+                            viên Vua Hàng Hiệu, bạn sẽ nhận được những ưu đãi độc quyền siêu hấp dẫn: Freeship cho mọi
+                            đơn hàng, nhận voucher 200K vào tháng sinh nhật, được mã giảm giá đến 50%, đổi điểm khi mua
+                            hàng và còn rất nhiều quà tặng thú vị khác nữa.
+                            Hãy truy cập ngay Vuahanghieu.com hoặc tải ngay ứng dụng Vua Hàng Hiệu về điện thoại ngay
+                            hôm nay
+                        </p>
+                        <div style="text-align: center;">
+                            <button class="btn btn-primary" onclick="showLess()">Thu gọn</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Shop Product End -->
+    </div>
+</div>
+<script>
+    function handleCheckbox(checkbox) {
+        // Uncheck all checkboxes in the same group
+        var checkboxes = document.querySelectorAll('.custom-control-input');
+        checkboxes.forEach(function (element) {
+            if (element !== checkbox) {
+                element.checked = false;
+            }
+        });
+    }
+    function handleCheckbox1(checkbox) {
+        // Uncheck all checkboxes in the same group
+        var checkboxes = document.querySelectorAll('.custom-control-input1');
+        checkboxes.forEach(function (element) {
+            if (element !== checkbox) {
+                element.checked = false;
+            }
+        });
+    }
+    function handleCheckbox2(checkbox) {
+        // Uncheck all checkboxes in the same group
+        var checkboxes = document.querySelectorAll('.custom-control-input2');
+        checkboxes.forEach(function (element) {
+            if (element !== checkbox) {
+                element.checked = false;
+            }
+        });
+    }
+    function handleCheckbox3(checkbox) {
+        // Uncheck all checkboxes in the same group
+        var checkboxes = document.querySelectorAll('.custom-control-input3');
+        checkboxes.forEach(function (element) {
+            if (element !== checkbox) {
+                element.checked = false;
+            }
+        });
+    }
+    function handleCheckbox4(checkbox) {
+        // Uncheck all checkboxes in the same group
+        var checkboxes = document.querySelectorAll('.custom-control-input4');
+        checkboxes.forEach(function (element) {
+            if (element !== checkbox) {
+                element.checked = false;
+            }
+        });
+    }
+    function handleCheckbox5(checkbox) {
+        // Uncheck all checkboxes in the same group
+        var checkboxes = document.querySelectorAll('.custom-control-input5');
+        checkboxes.forEach(function (element) {
+            if (element !== checkbox) {
+                element.checked = false;
+            }
+        });
+    }
+    function handleCheckbox6(checkbox) {
+        // Uncheck all checkboxes in the same group
+        var checkboxes = document.querySelectorAll('.custom-control-input6');
+        checkboxes.forEach(function (element) {
+            if (element !== checkbox) {
+                element.checked = false;
+            }
+        });
+    }
+    function handleCheckbox7(checkbox) {
+        // Uncheck all checkboxes in the same group
+        var checkboxes = document.querySelectorAll('.custom-control-input7');
+        checkboxes.forEach(function (element) {
+            if (element !== checkbox) {
+                element.checked = false;
+            }
+        });
+    }
+</script>
+<script>
+    function showMore() {
+        document.getElementById('initialContent').style.display = 'block';
+        document.getElementById('fullContent').style.display = 'block';
+        document.getElementById('btnXemThem').style.display = 'none';
+    }
+
+    function showLess() {
+        document.getElementById('initialContent').style.display = 'block';
+        document.getElementById('fullContent').style.display = 'none';
+        document.getElementById('btnXemThem').style.display = 'block';
+    }
+</script>
+<!-- Shop End -->
+</body>
+</html>

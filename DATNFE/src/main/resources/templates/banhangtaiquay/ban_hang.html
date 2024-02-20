@@ -1,0 +1,1999 @@
+<!doctype html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bán Hàng Tại Quầy</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+<div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+        <div class="custom-menu">
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                <i class="fa fa-bars"></i>
+                <span class="sr-only">Toggle Menu</span>
+            </button>
+        </div>
+        <div class="p-4">
+            <h1><a href="kieu_dang.html" class="logo">DLFV</a></h1>
+            <ul class="list-unstyled components mb-5">
+                <li class="active">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span
+                            class="fa fa-home mr-3"></span>Thống Kê</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="/admin/thong-ke">Thông kê doanh thu</a>
+                        </li>
+                        <li>
+                            <a href="/admin/thong-ke-top-ban-chay">Thông kê top</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="/admin/ban-hang" ><span class="fa fa-user mr-3"></span> Quản Lý Đơn Hàng</a>
+
+                </li>
+                <li>
+                    <a href="/admin/ban-hang-tai-quay"><span class="fa fa-briefcase mr-3"></span> Bán Hàng Tại Quầy</a>
+                </li>
+                <li>
+                    <a href="#homeSubmenu2"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span class="fa fa-sticky-note mr-3"></span> Quản Lý Sản Phẩm</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu2">
+                        <li>
+                            <a href="/admin/sanpham">Sản Phẩm</a>
+                        </li>
+                        <li>
+                            <a href="/admin/camgiac">Cảm Giác</a>
+                        </li>
+                        <li>
+                            <a href="/admin/chatlieu">Chất Liệu</a>
+                        </li>
+                        <li>
+                            <a href="/admin/danhmuc">Danh Mục</a>
+                        </li>
+                        <li>
+                            <a href="/admin/degiay">Đế Giày</a>
+                        </li>
+                        <li>
+                            <a href="/admin/diahinh">Địa Hình</a>
+                        </li>
+                        <li>
+                            <a href="/admin/docaogiay">Độ Cao Giày</a>
+                        </li>
+                        <li>
+                            <a href="/admin/gioitinh">Giới Tính</a>
+                        </li>
+                        <li>
+                            <a href="/admin/mausac">Màu Sắc</a>
+                        </li>
+                        <li>
+                            <a href="/admin/thoitietthichhop">Thời Tiết Thích Hợp</a>
+                        </li>
+                        <li>
+                            <a href="/admin/thuonghieu">Thương Hiệu</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#homeSubmenu3"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span class="fa fa-paper-plane mr-3"></span> Quản Lý Tài Khoản</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu3">
+                        <li>
+                            <a href="/admin/nhan-vien">Nhân Viên</a>
+                        </li>
+                        <li>
+                            <a href="/admin/khachhang">Khách Hàng</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#homeSubmenu4"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span class="fa fa-cubes mr-3"></span>Khuyến Mại</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu4">
+                        <li>
+                            <a href="/admin/chuong-trinh-giam-gia-sp">Sản Phẩm</a>
+                        </li>
+                        <li>
+                            <a href="/admin/giamgiahoadon">Hóa Đơn</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="mb-5">
+                <h3 class="h6 mb-3">Subscribe for newsletter</h3>
+                <form action="#" class="subscribe-form">
+                    <div class="form-group d-flex">
+                        <div class="icon"><span class="icon-paper-plane"></span></div>
+                        <input type="text" class="form-control" placeholder="Enter Email Address">
+                    </div>
+                </form>
+            </div>
+
+            <div class="footer">
+                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+            </div>
+
+        </div>
+    </nav>
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 pt-5">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-top: -50px;">
+            <div class="container-fluid" style="display: flex;justify-content: end;">
+                <ul class="navbar-nav">
+                    <!-- Avatar -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#"
+                           id="navbarDropdownMenuLink"
+                           role="button" data-toggle="dropdown" aria-expanded="false">
+                            <img
+                                    class="rounded-circle"
+                                    th:src="@{|/images/${nhanVienLogin.anh}|}"
+                                    height="72" alt="Avatar" loading="lazy"/>
+                        </a>
+                        <div class="dropdown-menu" style="margin-left: -88px;">
+                            <a class="dropdown-item" href="#">Đăng Xuất</a>
+                            <a class="dropdown-item" href="#">Thông Tin Cá Nhân</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <h1 class="page-title" style="font-size: 200%">QUẢN LÝ HÓA ĐƠN</h1>
+        <br>
+        <!--        Tab chính-->
+        <ul class="nav nav-tabs" id="mainTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="list-tab" data-bs-toggle="tab" data-bs-target="#list-tab-pane"
+                        type="button" role="tab" aria-controls="list-tab-pane" aria-selected="false">
+                    Danh sách hóa đơn
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <form id="create-order-form" action="/admin/ban-hang-tai-quay/tao-don-hang" method="post">
+                    <button class="btn btn-success">Tạo mới hóa đơn</button>
+                </form>
+            </li>
+        </ul>
+        <!--        Content các Tab-->
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="list-tab-pane" role="tabpanel" aria-labelledby="list-tab"
+                 tabindex="0">
+                <div class="row" style="margin-top: 20px">
+                    <div class="col-12">
+                        <ul class="nav nav-tabs" id="myTabList" role="tablist">
+                            <li class="nav-item navbar-expand-lg" role="presentation">
+                                <button class="nav-link active" id="confirm-tab" data-bs-toggle="tab"
+                                        data-bs-target="#confirm-tab-pane" type="button" role="tab"
+                                        aria-controls="confirm-tab-pane" aria-selected="true">
+                                    Chờ xác nhận
+                                </button>
+                            </li>
+                            <li class="nav-item navbar-expand-lg" role="presentation">
+                                <button class="nav-link" id="prepare-tab" data-bs-toggle="tab"
+                                        data-bs-target="#prepare-tab-pane" type="button" role="tab"
+                                        aria-controls="prepare-tab-pane" aria-selected="false">
+                                    Chờ giao
+                                </button>
+                            </li>
+                            <li class="nav-item navbar-expand-lg" role="presentation">
+                                <button class="nav-link" id="deliver-tab" data-bs-toggle="tab"
+                                        data-bs-target="#deliver-tab-pane" type="button" role="tab"
+                                        aria-controls="deliver-tab-pane" aria-selected="false">
+                                    Vận chuyển
+                                </button>
+                            </li>
+                            <li class="nav-item navbar-expand-lg" role="presentation">
+                                <button class="nav-link" id="complete-tab" data-bs-toggle="tab"
+                                        data-bs-target="#complete-tab-pane" type="button" role="tab"
+                                        aria-controls="complete-tab-pane" aria-selected="false">
+                                    Hoàn thành
+                                </button>
+                            </li>
+                            <li class="nav-item navbar-expand-lg" role="presentation">
+                                <button class="nav-link" id="cancel-tab" data-bs-toggle="tab"
+                                        data-bs-target="#cancel-tab-pane" type="button" role="tab"
+                                        aria-controls="cancel-tab-pane" aria-selected="false">
+                                    Đã hủy
+                                </button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabListContent">
+                            <div class="tab-pane fade show active" id="confirm-tab-pane" role="tabpanel"
+                                 aria-labelledby="confirm-tab" tabindex="0">
+                                <!--                                Tìm kiếm-->
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-inline mt-3" style="display: flex;">
+                                            <form th:action="@{/admin/ban-hang/tim-kiem-hoa-don}" method="get">
+                                                <select class="form-control" name="timTheo">
+                                                    <option value="HD" th:selected="${timTheo == 'HD'}">Mã hóa đơn
+                                                    </option>
+                                                    <option value="KH" th:selected="${timTheo == 'KH'}">Khách hàng
+                                                    </option>
+                                                    <option value="NV" th:selected="${timTheo == 'NV'}">Nhân viên
+                                                    </option>
+                                                    <option value="4" th:selected="${timTheo == '4'}">Tổng tiền(VNĐ)
+                                                    </option>
+                                                </select>
+                                                <input type="hidden" name="trangThai" value="0">
+                                                <input type="text" name="keyword" th:value="${keyword}"
+                                                       placeholder="Tìm kiếm hóa đơn"
+                                                       class="form-control form-control-lg"
+                                                       style="width: 300px; height: 40px; margin-right: 10px;margin-left: 5px"/>
+                                                <button type="submit" class="btn btn-primary">
+                                                    <span class="btn-label"><i class="bi bi-search"></i></span>
+                                                </button>
+                                            </form>
+                                            <button class="btn btn-primary" type="submit" style="margin-left: 5px">
+                                                <span class="btn-label">
+                                                    <a href="/admin/ban-hang"
+                                                       style="text-decoration: none; color: white;">
+                                                        <i class="bi bi-arrow-clockwise"></i>
+                                                    </a>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--                                End Tìm kiếm-->
+                                <div style="margin-top: 30px"></div>
+                                <!--                                Table hóa đơn đang chờ-->
+                                <form class="form-xacnhan" th:action="@{/admin/ban-hang/xac-nhan-don-hang}"
+                                      method="post">
+                                    <table id="table-dangcho"
+                                           class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline"
+                                           style="border-collapse: collapse; border-spacing: 0px; height: 200%;"
+                                           role="grid" aria-describedby="datatable-buttons_info">
+                                        <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">
+                                                <input type="checkbox" id="selectAllCheckbox1"
+                                                       style="width: 30px; height: 30px;display: flex; justify-content: center; align-items: center">
+                                            </th>
+                                            <th scope="col">Mã HĐ</th>
+                                            <th scope="col">Ngày Tạo</th>
+                                            <th scope="col">Nhân Viên</th>
+                                            <th scope="col">Khách Hàng</th>
+                                            <th scope="col">Loại HĐ</th>
+                                            <th scope="col">Tổng tiền(VNĐ)</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:if="${PageHoaDonTT0.content.isEmpty()}">
+                                            <td colspan="8">
+                                                <i style="font-size: 3rem"
+                                                   class="bi bi-inboxes d-flex justify-content-center align-items-center"></i>
+                                                <div class="text-center d-flex justify-content-center align-items-center">
+                                                    No Data
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr th:each="hd:${PageHoaDonTT0.content}">
+                                            <th>
+                                                <input type="checkbox"
+                                                       style="width: 30px; height: 30px;display: flex; justify-content: center; align-items: center"
+                                                       th:value="${hd.ma}" th:name="selectedMa1">
+                                            </th>
+                                            <th scope="row">[[${hd.ma}]]</th>
+                                            <th>
+                                            <span th:if="${hd.ngay_tao == null}"
+                                                  class="badge badge-pill badge-primary badge-danger">Đang Chờ</span>
+                                                <span th:if="${hd.ngay_tao != null}" th:text="${hd.ngay_tao}"></span>
+                                            </th>
+                                            <th>
+                                                <span th:if="${hd.nhanVien == null}"
+                                                      class="badge badge-pill badge-primary badge-warning">Chưa có tt</span>
+                                                <span th:if="${hd.nhanVien != null}"
+                                                      th:text="${hd.nhanVien.hoTen}"></span>
+                                            </th>
+                                            <th>
+                                                <span th:if="${hd.khachHang == null}"
+                                                      class="badge badge-pill badge-primary badge-primary">Khách Lẻ</span>
+                                                <span th:if="${hd.khachHang != null}"
+                                                      th:text="${hd.khachHang.hoten}"></span>
+                                            </th>
+                                            <th>
+                                                 <span th:if="${hd.hinh_thuc_mua == null}"
+                                                       class="badge badge-pill badge-warning">Chưa Có Thông Tin</span>
+                                                <span th:if="${hd.hinh_thuc_mua != null}">
+                                                    [[${hd.hinh_thuc_mua == 0 ? 'Tại cửa hàng':'Online'}]]
+                                                </span>
+                                            </th>
+                                            <th class="giaBan"
+                                                th:text="${hd.tong_tien != null ? hd.tong_tien : 0}"></th>
+                                            <th class="text-center">
+                                                <a class="btn-accept btn-sm btn-success" style="text-align: center"
+                                                   th:href="@{|/admin/ban-hang/cho-giao-don-hang/${hd.ma}|}">
+                                                    <i style="color: white" class="bi bi-check-lg"></i>
+                                                </a>
+                                                <a class="btn-sm btn-warning" style="text-align: center"
+                                                   th:href="@{|/admin/ban-hang-tai-quay/view-cart/${hd.ma}|}">
+                                                    <i style="color: white" class="bi bi-pencil"></i>
+                                                </a>
+                                                <a class="btn-delete btn-sm btn-danger" style="text-align: center"
+                                                   th:href="@{|/admin/ban-hang-tai-quay/delete/${hd.id}|}">
+                                                    <i style="color: white" class="bi bi-trash"></i>
+                                                </a>
+                                            </th>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <input type="hidden" name="huyxacnhan1" value="huy" disabled>
+                                    <button id="huyXacNhanButton" style="float: right" type="submit"
+                                            onclick="enableHuyInput1()" class="btn btn-danger">Hủy
+                                    </button>
+                                    <button id="xacNhanButton" style="float: right; margin-right: 10px" type="submit"
+                                            class="btn btn-success">Xác nhận
+                                    </button>
+                                </form>
+                                <!--                                End table hóa đơn đang chờ-->
+                                <!--            nav-->
+                                <nav aria-label="Page navigation example"
+                                     style="display: flex;justify-content: space-between;">
+                                    <div style="margin-left: 20px">
+                                        <p>Bạn đang xem [[${PageHoaDonTT0.numberOfElements}]] trên tổng số
+                                            [[${PageHoaDonTT0.totalElements}]]</p>
+                                    </div>
+                                    <ul class="pagination" style="margin-right: 24px;">
+                                        <li class="page-item">
+                                            <a class="page-link" th:if="${PageHoaDonTT0.number > 0}"
+                                               th:href="@{|/admin/ban-hang?page0=${PageHoaDonTT0.number-1}|}"
+                                               aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+
+                                        <li th:each="tongtrang,status:${#numbers.sequence(1, PageHoaDonTT0.totalPages)}"
+                                            class="page-item"><a class="page-link"
+                                                                 th:href="@{|/admin/ban-hang?page0=${status.index}|}">[[${status.index+1}]]</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link"
+                                               th:if="${PageHoaDonTT0.number < PageHoaDonTT0.totalPages - 1}"
+                                               th:href="@{|/admin/ban-hang?page0=${PageHoaDonTT0.number+1}|}"
+                                               aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                                <!--            nav-->
+                            </div>
+                            <div class="tab-pane fade" id="prepare-tab-pane" role="tabpanel"
+                                 aria-labelledby="prepare-tab" tabindex="0">
+                                <!--                                Tìm kiếm-->
+                                <div class="row">
+                                    <div class="col-xl-10">
+                                        <form th:action="@{/admin/ban-hang/tim-kiem-hoa-don1}" method="get">
+                                            <div class="form-inline mt-3" style="display: flex">
+                                                <select class="form-control" name="timTheo">
+                                                    <option value="HD" th:selected="${timTheo1 == 'HD'}">Mã hóa đơn
+                                                    </option>
+                                                    <option value="KH" th:selected="${timTheo1 == 'KH'}">Khách hàng
+                                                    </option>
+                                                    <option value="NV" th:selected="${timTheo1 == 'NV'}">Nhân viên
+                                                    </option>
+                                                    <option value="4" th:selected="${timTheo1 == '4'}">Tổng tiền(VNĐ)
+                                                    </option>
+                                                </select>
+                                                <input type="hidden" name="trangThai" value="1">
+                                                <input type="text" name="keyword" th:value="${keyword1}"
+                                                       placeholder="Tìm kiếm hóa đơn"
+                                                       class="form-control form-control-lg"
+                                                       style="width: 300px; height: 40px; margin-right: 10px;margin-left: 5px"/>
+                                                <button type="submit" class="btn btn-primary">
+                                                    <span class="btn-label"><i class="bi bi-search"></i></span>
+                                                </button>
+                                                <button class="btn btn-primary" type="button" style="margin-left: 10px">
+                                                    <a href="/admin/ban-hang"
+                                                       style="text-decoration: none;color: white"><i
+                                                            class="bi bi-arrow-clockwise"></i></a>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!--                                End Tìm kiếm-->
+                                <div style="margin-top: 30px"></div>
+                                <!--                                Table hóa đơn chờ giao-->
+                                <form class="form-xacnhan" th:action="@{/admin/ban-hang/xac-nhan-don-hang}"
+                                      method="post">
+                                    <table id="table-chogiao"
+                                           class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline"
+                                           style="border-collapse: collapse; border-spacing: 0px; height: 200%;"
+                                           role="grid" aria-describedby="datatable-buttons_info">
+                                        <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">
+                                                <input type="checkbox" id="selectAllCheckbox2"
+                                                       style="width: 30px; height: 30px;display: flex; justify-content: center; align-items: center">
+                                            </th>
+                                            <th scope="col">Mã HĐ</th>
+                                            <th scope="col">Ngày Tạo</th>
+                                            <th scope="col">Ngày Thanh Toán</th>
+                                            <th scope="col">Nhân Viên</th>
+                                            <th scope="col">Khách Hàng</th>
+                                            <th scope="col">Loại HĐ</th>
+                                            <th scope="col">Tổng tiền(VNĐ)</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:if="${PageHoaDonTT1.content.isEmpty()}">
+                                            <td colspan="9">
+                                                <i style="font-size: 3rem"
+                                                   class="bi bi-inboxes d-flex justify-content-center align-items-center"></i>
+                                                <div class="text-center d-flex justify-content-center align-items-center">
+                                                    No Data
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr th:each="hd:${PageHoaDonTT1.content}">
+                                            <th>
+                                                <input th:if="${hd.ma != null}" type="checkbox"
+                                                       style="width: 30px; height: 30px;display: flex; justify-content: center; align-items: center"
+                                                       th:value="${hd.ma}" th:name="selectedMa2">
+                                            </th>
+                                            <th>
+                                                <span th:if="${hd.ma == null}" class="badge badge-pill badge-danger">Chưa có tt</span>
+                                                <span th:if="${hd.ma != null}" th:text="${hd.ma}"></span>
+                                            </th>
+                                            <th>
+                                                <span th:if="${hd.ngay_tao == null}"
+                                                      class="badge badge-pill badge-warning">Đang Chờ</span>
+                                                <span th:if="${hd.ngay_tao != null}" th:text="${hd.ngay_tao}"></span>
+                                            </th>
+                                            <th>
+                                                <span th:if="${hd.ngay_thanh_toan == null}"
+                                                      class="badge badge-pill badge-danger">Đang Chờ</span>
+                                                <span th:if="${hd.ngay_thanh_toan != null}"
+                                                      th:text="${hd.ngay_thanh_toan}"></span>
+                                            </th>
+                                            <th>
+                                                <span th:if="${hd.nhanVien == null}"
+                                                      class="badge badge-pill badge-warning">Chưa có tt</span>
+                                                <span th:if="${hd.nhanVien != null}"
+                                                      th:text="${hd.nhanVien.hoTen}"></span>
+                                            </th>
+                                            <th>
+                                                <span th:if="${hd.khachHang == null}"
+                                                      class="badge badge-pill badge-primary">Khách Lẻ</span>
+                                                <span th:if="${hd.khachHang != null}"
+                                                      th:text="${hd.khachHang.hoten}"></span>
+                                            </th>
+                                            <th>
+                                                <span th:if="${hd.hinh_thuc_mua == null}"
+                                                      class="badge badge-pill badge-warning">Chưa có thông tin</span>
+                                                <span th:if="${hd.hinh_thuc_mua != null}">
+                                                    [[${hd.hinh_thuc_mua == 0 ? 'Tại cửa hàng':'Online'}]]
+                                                </span>
+                                            </th>
+                                            <th class="giaBan"
+                                                th:text="${hd.tong_tien != null ? hd.tong_tien : 0}"></th>
+                                            <th class="text-center">
+                                                <a class="btn-accept btn-sm btn-success"
+                                                   th:href="@{|/admin/ban-hang/van-chuyen-don-hang/${hd.ma}|}">
+                                                    <i style="color: white" class="bi bi-check-lg"></i>
+                                                </a>
+                                                <a class="btn-sm btn-warning btn-detail" th:ma="${hd.ma}"
+                                                   data-bs-toggle="modal"
+                                                   th:attr="data-bs-target='#ModalDetailHoaDon' + ${hd.ma}" href="#">
+                                                    <i style="color: white" class="bi bi-eye"></i>
+                                                </a>
+                                                <a class="btn-delete btn-sm btn-danger"
+                                                   th:href="@{|/admin/ban-hang-tai-quay/huy-hoa-don/${hd.ma}|}">
+                                                    <i style="color: white" class="bi bi-x-lg"></i>
+                                                </a>
+                                            </th>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!--                                Modal detail hóa đơn-->
+                                    <div th:each="hd:${PageHoaDonTT1.content}">
+                                        <div class="modal fade" th:id="'ModalDetailHoaDon' + ${hd.ma}" tabindex="-1"
+                                             aria-labelledby="exampleModalLabel"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title fs-5 text-center"
+                                                            id="exampleModalLabel">Xem chi tiết Hóa Đơn</h5>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <div class="row p-3">
+                                                                    <div style="margin-bottom: 10px" class="col-12">
+                                                                        <h6 style="font-weight: bold;">Thông tin Hóa
+                                                                            Đơn</h6></div>
+                                                                    <div class="col-4">
+                                                                        <label class="p-l-5" style="font-weight: bold">Mã
+                                                                            HĐ:</label>
+                                                                        <input type="text" th:if="${hd.ma != null}"
+                                                                               th:value="${hd.ma}" class="form-control"
+                                                                               readonly>
+                                                                        <input type="text" th:if="${hd.ma == null}"
+                                                                               value="Chưa có" class="form-control"
+                                                                               readonly>
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <label class="p-l-5" style="font-weight: bold">Ngày
+                                                                            tạo:</label>
+                                                                        <input type="date"
+                                                                               th:if="${hd.ngay_tao != null}"
+                                                                               th:value="${hd.ngay_tao}"
+                                                                               class="form-control" readonly>
+                                                                        <input type="date"
+                                                                               th:if="${hd.ngay_tao == null}"
+                                                                               value="Chưa có" class="form-control"
+                                                                               readonly>
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <label class="p-l-5" style="font-weight: bold">Ngày
+                                                                            thanh toán:</label>
+                                                                        <input type="date"
+                                                                               th:if="${hd.ngay_thanh_toan != null}"
+                                                                               th:value="${hd.ngay_thanh_toan}"
+                                                                               class="form-control" readonly>
+                                                                        <input type="date"
+                                                                               th:if="${hd.ngay_thanh_toan == null}"
+                                                                               value="Chưa có" class="form-control"
+                                                                               readonly>
+                                                                    </div>
+                                                                    <div style="margin-top: 10px" class="col-6">
+                                                                        <label class="p-l-5" style="font-weight: bold">Nhân
+                                                                            viên:</label>
+                                                                        <input type="text"
+                                                                               th:if="${hd.nhanVien != null}"
+                                                                               th:value="${hd.nhanVien.hoTen}"
+                                                                               class="form-control" readonly>
+                                                                        <input type="text"
+                                                                               th:if="${hd.nhanVien == null}"
+                                                                               value="Chưa có" class="form-control"
+                                                                               readonly>
+                                                                    </div>
+                                                                    <div style="margin-top: 10px" class="col-6">
+                                                                        <label class="p-l-5" style="font-weight: bold">Tổng
+                                                                            tiền:</label>
+                                                                        <input type="text" style="border: 1px solid red"
+                                                                               th:value="${hd.tong_tien != null ? hd.tong_tien : 0}"
+                                                                               class="form-control" readonly>
+                                                                    </div>
+                                                                    <div style="margin-top: 25px" class="col-12">
+                                                                        <label class="p-l-5">
+                                                                            <span style="font-weight: bold">Phương thức mua: </span>
+                                                                            <span th:if="${hd.hinh_thuc_mua != null}"> [[${hd.hinh_thuc_mua == 0 ? 'Tại cửa hàng' : 'Online'}]]</span>
+                                                                            <span th:if="${hd.hinh_thuc_mua == null}">...</span>
+                                                                            -
+                                                                            <span style="font-weight: bold">Thanh toán bằng: </span>
+                                                                            <span th:if="${hd.hinh_thuc_thanh_toan != null}">[[${hd.hinh_thuc_thanh_toan == 0 ? 'Tiền mặt' : 'Online'}]]</span>
+                                                                            <span th:if="${hd.hinh_thuc_thanh_toan == null}">...</span>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <div class="row p-3">
+                                                                    <div style="margin-bottom: 10px" class="col-12">
+                                                                        <h6 style="font-weight: bold;">Thông tin Khách
+                                                                            Hàng</h6>
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <label class="p-l-5" style="font-weight: bold">Khách
+                                                                            Hàng:</label>
+                                                                        <input type="text"
+                                                                               th:if="${hd.khachHang == null}"
+                                                                               value="Khách Lẻ" class="form-control"
+                                                                               readonly>
+                                                                        <input type="text"
+                                                                               th:if="${hd.khachHang != null}"
+                                                                               th:value="${hd.khachHang.hoten + ' - ' + hd.khachHang.email + ' - ' + hd.khachHang.sdt}"
+                                                                               class="form-control" readonly>
+                                                                    </div>
+                                                                    <div class="col-6" style="margin-top: 10px">
+                                                                        <label class="p-l-5" style="font-weight: bold">Tên
+                                                                            người nhận:</label>
+                                                                        <input type="text"
+                                                                               th:if="${hd.ten_nguoi_nhan != null}"
+                                                                               th:value="${hd.ten_nguoi_nhan}"
+                                                                               class="form-control" readonly>
+                                                                        <input type="text"
+                                                                               th:if="${hd.ten_nguoi_nhan == null}"
+                                                                               value="No data" class="form-control"
+                                                                               readonly>
+                                                                    </div>
+                                                                    <div class="col-6" style="margin-top: 10px">
+                                                                        <label class="p-l-5" style="font-weight: bold">SĐT:</label>
+                                                                        <input type="text"
+                                                                               th:if="${hd.sdt_nguoi_nhan != null}"
+                                                                               th:value="${hd.sdt_nguoi_nhan}"
+                                                                               class="form-control" readonly>
+                                                                        <input type="text"
+                                                                               th:if="${hd.sdt_nguoi_nhan == null}"
+                                                                               value="No data" class="form-control"
+                                                                               readonly>
+                                                                    </div>
+                                                                    <div style="margin-top: 10px" class="col-12">
+                                                                        <label class="p-l-5" style="font-weight: bold">Địa
+                                                                            chỉ:</label>
+                                                                        <textarea th:if="${hd.dia_chi != null}"
+                                                                                  cols="70"
+                                                                                  rows="3">[[${hd.dia_chi}]]</textarea>
+                                                                        <textarea th:if="${hd.dia_chi == null}"
+                                                                                  cols="70"
+                                                                                  rows="3">[[${hd.dia_chi}]]</textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <table id="table-hdct" class="table">
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th scope="col">Ảnh</th>
+                                                                        <th scope="col">Tên SP</th>
+                                                                        <th scope="col">Size</th>
+                                                                        <th scope="col">Số lượng</th>
+                                                                        <th scope="col">Đơn giá</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <tr>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Close
+                                                        </button>
+                                                        <button type="button" class="btn btn-primary">Save changes
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--                                End Modal detail hóa đơn -->
+                                    <input type="hidden" name="huyxacnhan2" value="huy" disabled>
+                                    <input type="hidden" name="giaoHang" value="giaohang" disabled>
+                                    <button id="huyXacNhanButton" style="float: right" type="submit"
+                                            onclick="enableHuyInput2()" class="btn btn-danger">Hủy
+                                    </button>
+                                    <button id="xacNhanButton" style="float: right; margin-right: 10px" type="submit"
+                                            onclick="enableGiaoHangInput()" class="btn btn-success">Giao Hàng
+                                    </button>
+                                </form>
+                                <!--                                End hóa đơn chờ giao-->
+                                <!--            nav-->
+                                <nav aria-label="Page navigation example"
+                                     style="display: flex;justify-content: space-between;">
+                                    <div style="margin-left: 20px">
+                                        <p>Bạn đang xem [[${PageHoaDonTT1.numberOfElements}]] trên tổng số
+                                            [[${PageHoaDonTT1.totalElements}]]</p>
+                                    </div>
+                                    <ul class="pagination" style="margin-right: 24px;">
+                                        <li class="page-item">
+                                            <a class="page-link" th:if="${PageHoaDonTT1.number > 0}"
+                                               th:href="@{|/admin/ban-hang?page1=${PageHoaDonTT1.number-1}|}"
+                                               aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+
+                                        <li th:each="tongtrang,status:${#numbers.sequence(1, PageHoaDonTT1.totalPages)}"
+                                            class="page-item"><a class="page-link"
+                                                                 th:href="@{|/admin/ban-hang?page1=${status.index}|}">[[${status.index+1}]]</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link"
+                                               th:if="${PageHoaDonTT1.number < PageHoaDonTT1.totalPages - 1}"
+                                               th:href="@{|/admin/ban-hang?page1=${PageHoaDonTT1.number+1}|}"
+                                               aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                                <!--            nav-->
+                            </div>
+                            <div class="tab-pane fade" id="deliver-tab-pane" role="tabpanel"
+                                 aria-labelledby="deliver-tab" tabindex="0">
+                                <!--                                Tìm kiếm-->
+                                <div class="row">
+                                    <div class="col-xl-10">
+                                        <form th:action="@{/admin/ban-hang/tim-kiem-hoa-don2}" method="get">
+                                            <div class="form-inline mt-3" style="display: flex">
+                                                <select class="form-control" name="timTheo">
+                                                    <option value="HD" th:selected="${timTheo2 == 'HD'}">Mã hóa đơn
+                                                    </option>
+                                                    <option value="KH" th:selected="${timTheo2 == 'KH'}">Khách hàng
+                                                    </option>
+                                                    <option value="NV" th:selected="${timTheo2 == 'NV'}">Nhân viên
+                                                    </option>
+                                                    <option value="4" th:selected="${timTheo2 == '4'}">Tổng tiền(VNĐ)
+                                                    </option>
+                                                </select>
+                                                <input type="hidden" name="trangThai" value="2">
+                                                <input type="text" name="keyword" th:value="${keyword2}"
+                                                       placeholder="Tìm kiếm hóa đơn"
+                                                       class="form-control form-control-lg"
+                                                       style="width: 300px; height: 40px; margin-right: 10px;margin-left: 5px"/>
+                                                <button type="submit" class="btn btn-primary">
+                                                    <span class="btn-label"><i class="bi bi-search"></i></span>
+                                                </button>
+                                                <button class="btn btn-primary" type="button" style="margin-left: 10px">
+                                                    <a href="/admin/ban-hang"
+                                                       style="text-decoration: none;color: white"><i
+                                                            class="bi bi-arrow-clockwise"></i></a>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!--                                End Tìm kiếm-->
+                                <div style="margin-top: 30px"></div>
+                                <!--                                Table hóa đơn vận chuyển-->
+                                <form class="form-xacnhan" th:action="@{/admin/ban-hang/xac-nhan-don-hang}"
+                                      method="post">
+                                    <table id="table-vanchuyen"
+                                           class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline"
+                                           style="border-collapse: collapse; border-spacing: 0px; height: 200%;"
+                                           role="grid" aria-describedby="datatable-buttons_info">
+                                        <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">
+                                                <input type="checkbox" id="selectAllCheckbox3"
+                                                       style="width: 30px; height: 30px;display: flex; justify-content: center; align-items: center">
+                                            </th>
+                                            <th scope="col">Mã HĐ</th>
+                                            <th scope="col">Ngày Tạo</th>
+                                            <th scope="col">Ngày Thanh Toán</th>
+                                            <th scope="col">Nhân Viên</th>
+                                            <th scope="col">Khách Hàng</th>
+                                            <th scope="col">Loại HĐ</th>
+                                            <th scope="col">Tổng tiền(VNĐ)</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:if="${PageHoaDonTT2.content.isEmpty()}">
+                                            <td colspan="9">
+                                                <i style="font-size: 3rem"
+                                                   class="bi bi-inboxes d-flex justify-content-center align-items-center"></i>
+                                                <div class="text-center d-flex justify-content-center align-items-center">
+                                                    No Data
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr th:each="hd:${PageHoaDonTT2.content}">
+                                            <th>
+                                                <input th:if="${hd.ma != null}" type="checkbox"
+                                                       style="width: 30px; height: 30px;display: flex; justify-content: center; align-items: center"
+                                                       th:value="${hd.ma}" th:name="selectedMa3">
+                                            </th>
+                                            <th>
+                                                <span th:if="${hd.ma == null}" class="badge badge-pill badge-danger">Chưa có tt</span>
+                                                <span th:if="${hd.ma != null}" th:text="${hd.ma}"></span>
+                                            </th>
+                                            <th>
+                                                <span th:if="${hd.ngay_tao == null}"
+                                                      class="badge badge-pill badge-warning">Đang Chờ</span>
+                                                <span th:if="${hd.ngay_tao != null}" th:text="${hd.ngay_tao}"></span>
+                                            </th>
+                                            <th>
+                                                <span th:if="${hd.ngay_thanh_toan == null}"
+                                                      class="badge badge-pill badge-danger">Đang Chờ</span>
+                                                <span th:if="${hd.ngay_thanh_toan != null}"
+                                                      th:text="${hd.ngay_thanh_toan}"></span>
+                                            </th>
+                                            <th>
+                                                <span th:if="${hd.nhanVien == null}"
+                                                      class="badge badge-pill badge-warning">Chưa có tt</span>
+                                                <span th:if="${hd.nhanVien != null}"
+                                                      th:text="${hd.nhanVien.hoTen}"></span>
+                                            </th>
+                                            <th>
+                                                <span th:if="${hd.khachHang == null}"
+                                                      class="badge badge-pill badge-primary">Khách Lẻ</span>
+                                                <span th:if="${hd.khachHang != null}"
+                                                      th:text="${hd.khachHang.hoten}"></span>
+                                            </th>
+                                            <th>
+                                                <span th:if="${hd.hinh_thuc_mua == null}"
+                                                      class="badge badge-pill badge-warning">Chưa có thông tin</span>
+                                                <span th:if="${hd.hinh_thuc_mua != null}">
+                                                    [[${hd.hinh_thuc_mua == 0 ? 'Tại cửa hàng':'Online'}]]
+                                                </span>
+                                            </th>
+                                            <th class="giaBan"
+                                                th:text="${hd.tong_tien != null ? hd.tong_tien : 0}"></th>
+                                            <th class="text-center">
+                                                <a class="btn-accept btn-sm btn-success" style="text-align: center"
+                                                   th:href="@{|/admin/ban-hang/hoan-thanh-don-hang/${hd.ma}|}">
+                                                    <i style="color: white" class="bi bi-check-lg"></i>
+                                                </a>
+                                                <a class="btn-sm btn-warning btn-detail"
+                                                   th:ma="${hd.ma}"
+                                                   data-bs-toggle="modal"
+                                                   th:attr="data-bs-target='#ModalDetailHoaDon' + ${hd.ma}" href="#">
+                                                    <i style="color: white" class="bi bi-eye"></i>
+                                                </a>
+                                                <a class="btn-delete btn-sm btn-danger" style="text-align: center"
+                                                   th:href="@{|/admin/ban-hang-tai-quay/huy-hoa-don/${hd.ma}|}">
+                                                    <i style="color: white" class="bi bi-x-lg"></i>
+                                                </a>
+                                            </th>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <div th:each="hd:${PageHoaDonTT2.content}">
+                                        <div class="modal fade" th:id="'ModalDetailHoaDon' + ${hd.ma}" tabindex="-1"
+                                             aria-labelledby="exampleModalLabel"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title fs-5 text-center"
+                                                            id="exampleModalLabel">Xem chi tiết Hóa Đơn</h5>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <div class="row p-3">
+                                                                    <div style="margin-bottom: 10px" class="col-12">
+                                                                        <h6 style="font-weight: bold;">Thông tin Hóa
+                                                                            Đơn</h6></div>
+                                                                    <div class="col-4">
+                                                                        <label class="p-l-5" style="font-weight: bold">Mã
+                                                                            HĐ:</label>
+                                                                        <input type="text" th:if="${hd.ma != null}"
+                                                                               th:value="${hd.ma}" class="form-control"
+                                                                               readonly>
+                                                                        <input type="text" th:if="${hd.ma == null}"
+                                                                               value="Chưa có" class="form-control"
+                                                                               readonly>
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <label class="p-l-5" style="font-weight: bold">Ngày
+                                                                            tạo:</label>
+                                                                        <input type="date"
+                                                                               th:if="${hd.ngay_tao != null}"
+                                                                               th:value="${hd.ngay_tao}"
+                                                                               class="form-control" readonly>
+                                                                        <input type="date"
+                                                                               th:if="${hd.ngay_tao == null}"
+                                                                               value="Chưa có" class="form-control"
+                                                                               readonly>
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <label class="p-l-5" style="font-weight: bold">Ngày
+                                                                            thanh toán:</label>
+                                                                        <input type="date"
+                                                                               th:if="${hd.ngay_thanh_toan != null}"
+                                                                               th:value="${hd.ngay_thanh_toan}"
+                                                                               class="form-control" readonly>
+                                                                        <input type="date"
+                                                                               th:if="${hd.ngay_thanh_toan == null}"
+                                                                               value="Chưa có" class="form-control"
+                                                                               readonly>
+                                                                    </div>
+                                                                    <div style="margin-top: 10px" class="col-6">
+                                                                        <label class="p-l-5" style="font-weight: bold">Nhân
+                                                                            viên:</label>
+                                                                        <input type="text"
+                                                                               th:if="${hd.nhanVien != null}"
+                                                                               th:value="${hd.nhanVien.hoTen}"
+                                                                               class="form-control" readonly>
+                                                                        <input type="text"
+                                                                               th:if="${hd.nhanVien == null}"
+                                                                               value="Chưa có" class="form-control"
+                                                                               readonly>
+                                                                    </div>
+                                                                    <div style="margin-top: 10px" class="col-6">
+                                                                        <label class="p-l-5" style="font-weight: bold">Tổng
+                                                                            tiền:</label>
+                                                                        <input type="text" style="border: 1px solid red"
+                                                                               th:value="${hd.tong_tien != null ? hd.tong_tien : 0}"
+                                                                               class="form-control" readonly>
+                                                                    </div>
+                                                                    <div style="margin-top: 25px" class="col-12">
+                                                                        <label class="p-l-5">
+                                                                            <span style="font-weight: bold">Phương thức mua: </span>
+                                                                            <span th:if="${hd.hinh_thuc_mua != null}"> [[${hd.hinh_thuc_mua == 0 ? 'Tại cửa hàng' : 'Online'}]]</span>
+                                                                            <span th:if="${hd.hinh_thuc_mua == null}">...</span>
+                                                                            -
+                                                                            <span style="font-weight: bold">Thanh toán bằng: </span>
+                                                                            <span th:if="${hd.hinh_thuc_thanh_toan != null}">[[${hd.hinh_thuc_thanh_toan == 0 ? 'Tiền mặt' : 'Online'}]]</span>
+                                                                            <span th:if="${hd.hinh_thuc_thanh_toan == null}">...</span>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <div class="row p-3">
+                                                                    <div style="margin-bottom: 10px" class="col-12">
+                                                                        <h6 style="font-weight: bold;">Thông tin Khách
+                                                                            Hàng</h6>
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <label class="p-l-5" style="font-weight: bold">Khách
+                                                                            Hàng:</label>
+                                                                        <input type="text"
+                                                                               th:if="${hd.khachHang == null}"
+                                                                               value="Khách Lẻ" class="form-control"
+                                                                               readonly>
+                                                                        <input type="text"
+                                                                               th:if="${hd.khachHang != null}"
+                                                                               th:value="${hd.khachHang.hoten + ' - ' + hd.khachHang.email + ' - ' + hd.khachHang.sdt}"
+                                                                               class="form-control" readonly>
+                                                                    </div>
+                                                                    <div class="col-6" style="margin-top: 10px">
+                                                                        <label class="p-l-5" style="font-weight: bold">Tên
+                                                                            người nhận:</label>
+                                                                        <input type="text"
+                                                                               th:if="${hd.ten_nguoi_nhan != null}"
+                                                                               th:value="${hd.ten_nguoi_nhan}"
+                                                                               class="form-control" readonly>
+                                                                        <input type="text"
+                                                                               th:if="${hd.ten_nguoi_nhan == null}"
+                                                                               value="No data" class="form-control"
+                                                                               readonly>
+                                                                    </div>
+                                                                    <div class="col-6" style="margin-top: 10px">
+                                                                        <label class="p-l-5" style="font-weight: bold">SĐT:</label>
+                                                                        <input type="text"
+                                                                               th:if="${hd.sdt_nguoi_nhan != null}"
+                                                                               th:value="${hd.sdt_nguoi_nhan}"
+                                                                               class="form-control" readonly>
+                                                                        <input type="text"
+                                                                               th:if="${hd.sdt_nguoi_nhan == null}"
+                                                                               value="No data" class="form-control"
+                                                                               readonly>
+                                                                    </div>
+                                                                    <div style="margin-top: 10px" class="col-12">
+                                                                        <label class="p-l-5" style="font-weight: bold">Địa
+                                                                            chỉ:</label>
+                                                                        <textarea th:if="${hd.dia_chi != null}"
+                                                                                  cols="70"
+                                                                                  rows="3">[[${hd.dia_chi}]]</textarea>
+                                                                        <textarea th:if="${hd.dia_chi == null}"
+                                                                                  cols="70"
+                                                                                  rows="3">[[${hd.dia_chi}]]</textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <table id="table-hdct" class="table">
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th scope="col">Ảnh</th>
+                                                                        <th scope="col">Tên SP</th>
+                                                                        <th scope="col">Size</th>
+                                                                        <th scope="col">Số lượng</th>
+                                                                        <th scope="col">Đơn giá</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <tr>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Close
+                                                        </button>
+                                                        <button type="button" class="btn btn-primary">Save changes
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="huyxacnhan3" value="huy" disabled>
+                                    <input type="hidden" name="hoanthanh" value="hoanthanh" disabled>
+                                    <button id="huyXacNhanButton" style="float: right" type="submit"
+                                            onclick="enableHuyInput3()" class="btn btn-danger">Hủy
+                                    </button>
+                                    <button id="xacNhanButton" style="float: right; margin-right: 10px" type="submit"
+                                            onclick="enableHoanThanhInput()" class="btn btn-success"> Xác nhận hoàn
+                                        thành
+                                    </button>
+                                </form>
+                                <!--                                End table hóa đơn vận chuyển-->
+                                <!--            nav-->
+                                <nav aria-label="Page navigation example"
+                                     style="display: flex;justify-content: space-between;">
+                                    <div style="margin-left: 20px">
+                                        <p>Bạn đang xem [[${PageHoaDonTT2.numberOfElements}]] trên tổng số
+                                            [[${PageHoaDonTT2.totalElements}]]</p>
+                                    </div>
+                                    <ul class="pagination" style="margin-right: 24px;">
+                                        <li class="page-item">
+                                            <a class="page-link" th:if="${PageHoaDonTT2.number > 0}"
+                                               th:href="@{|/admin/ban-hang?page2=${PageHoaDonTT2.number-1}|}"
+                                               aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+
+                                        <li th:each="tongtrang,status:${#numbers.sequence(1, PageHoaDonTT2.totalPages)}"
+                                            class="page-item"><a class="page-link"
+                                                                 th:href="@{|/admin/ban-hang?page2=${status.index}|}">[[${status.index+1}]]</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link"
+                                               th:if="${PageHoaDonTT2.number < PageHoaDonTT2.totalPages - 1}"
+                                               th:href="@{|/admin/ban-hang?page3=${PageHoaDonTT2.number+1}|}"
+                                               aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                                <!--            nav-->
+                            </div>
+                            <div class="tab-pane fade" id="complete-tab-pane" role="tabpanel"
+                                 aria-labelledby="complete-tab" tabindex="0">
+                                <!--                                Tìm kiếm-->
+                                <div class="row">
+                                    <div class="col-xl-10">
+                                        <form th:action="@{/admin/ban-hang/tim-kiem-hoa-don3}" method="get">
+                                            <div class="form-inline mt-3" style="display: flex">
+                                                <select class="form-control" name="timTheo">
+                                                    <option value="HD" th:selected="${timTheo3 == 'HD'}">Mã hóa đơn
+                                                    </option>
+                                                    <option value="KH" th:selected="${timTheo3 == 'KH'}">Khách hàng
+                                                    </option>
+                                                    <option value="NV" th:selected="${timTheo3 == 'NV'}">Nhân viên
+                                                    </option>
+                                                    <option value="4" th:selected="${timTheo3 == '4'}">Tổng tiền(VNĐ)
+                                                    </option>
+                                                </select>
+                                                <input type="hidden" name="trangThai" value="3">
+                                                <input type="text" name="keyword" th:value="${keyword3}"
+                                                       placeholder="Tìm kiếm hóa đơn"
+                                                       class="form-control form-control-lg"
+                                                       style="width: 300px; height: 40px; margin-right: 10px;margin-left: 5px"/>
+                                                <button type="submit" class="btn btn-primary">
+                                                    <span class="btn-label"><i class="bi bi-search"></i></span>
+                                                </button>
+                                                <button class="btn btn-primary" type="button" style="margin-left: 10px">
+                                                    <a href="/admin/ban-hang"
+                                                       style="text-decoration: none;color: white"><i
+                                                            class="bi bi-arrow-clockwise"></i></a>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!--                                End Tìm kiếm-->
+                                <div style="margin-top: 30px"></div>
+                                <!--                                Table hóa đơn hoàn thành-->
+                                <table id="table-hoanthanh"
+                                       class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline"
+                                       style="border-collapse: collapse; border-spacing: 0px; height: 200%;"
+                                       role="grid" aria-describedby="datatable-buttons_info">
+                                    <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">Mã HĐ</th>
+                                        <th scope="col">Ngày Tạo</th>
+                                        <th scope="col">Ngày Thanh Toán</th>
+                                        <th scope="col">Nhân Viên</th>
+                                        <th scope="col">Khách Hàng</th>
+                                        <th scope="col">Loại HĐ</th>
+                                        <th scope="col">Tổng Tiền(VNĐ)</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:if="${PageHoaDonTT3.content.isEmpty()}">
+                                        <td colspan="8">
+                                            <i style="font-size: 3rem"
+                                               class="bi bi-inboxes d-flex justify-content-center align-items-center"></i>
+                                            <div class="text-center d-flex justify-content-center align-items-center">
+                                                No Data
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr th:each="hd:${PageHoaDonTT3.content}">
+                                        <th>
+                                            <span th:if="${hd.ma == null}" class="badge badge-pill badge-danger">Chưa có tt</span>
+                                            <span th:if="${hd.ma != null}" th:text="${hd.ma}"></span>
+                                        </th>
+                                        <th>
+                                                <span th:if="${hd.ngay_tao == null}"
+                                                      class="badge badge-pill badge-warning">Đang Chờ</span>
+                                            <span th:if="${hd.ngay_tao != null}" th:text="${hd.ngay_tao}"></span>
+                                        </th>
+                                        <th>
+                                                <span th:if="${hd.ngay_thanh_toan == null}"
+                                                      class="badge badge-pill badge-danger">Đang Chờ</span>
+                                            <span th:if="${hd.ngay_thanh_toan != null}"
+                                                  th:text="${hd.ngay_thanh_toan}"></span>
+                                        </th>
+                                        <th>
+                                            <span th:if="${hd.nhanVien == null}" class="badge badge-pill badge-warning">Chưa có tt</span>
+                                            <span th:if="${hd.nhanVien != null}"
+                                                  th:text="${hd.nhanVien.hoTen}"></span>
+                                        </th>
+                                        <th>
+                                            <span th:if="${hd.khachHang == null}"
+                                                  class="badge badge-pill badge-primary">Khách Lẻ</span>
+                                            <span th:if="${hd.khachHang != null}"
+                                                  th:text="${hd.khachHang.hoten}"></span>
+                                        </th>
+                                        <th>
+                                            <span th:if="${hd.hinh_thuc_mua == null}"
+                                                  class="badge badge-pill badge-warning">Chưa có thông tin</span>
+                                            <span th:if="${hd.hinh_thuc_mua != null}">
+                                                    [[${hd.hinh_thuc_mua == 0 ? 'Tại cửa hàng':'Online'}]]
+                                                </span>
+                                        </th>
+                                        <th class="giaBan" th:text="${hd.tong_tien != null ? hd.tong_tien : 0}"></th>
+                                        <th>
+                                            <a class="btn-sm btn-warning btn-detail"
+                                               th:ma="${hd.ma}"
+                                               data-bs-toggle="modal"
+                                               th:attr="data-bs-target='#ModalDetailHoaDon' + ${hd.ma}" href="#">
+                                                <i style="color: white" class="bi bi-eye"></i>
+                                            </a>
+                                        </th>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <!--                                End table hóa đơn hoàn thành-->
+                                <div th:each="hd:${PageHoaDonTT3.content}">
+                                    <div class="modal fade" th:id="'ModalDetailHoaDon' + ${hd.ma}" tabindex="-1"
+                                         aria-labelledby="exampleModalLabel"
+                                         aria-hidden="true">
+                                        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title fs-5 text-center"
+                                                        id="exampleModalLabel">Xem chi tiết Hóa Đơn</h5>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="row p-3">
+                                                                <div style="margin-bottom: 10px" class="col-12">
+                                                                    <h6 style="font-weight: bold;">Thông tin Hóa
+                                                                        Đơn</h6></div>
+                                                                <div class="col-4">
+                                                                    <label class="p-l-5" style="font-weight: bold">Mã
+                                                                        HĐ:</label>
+                                                                    <input type="text" th:if="${hd.ma != null}"
+                                                                           th:value="${hd.ma}" class="form-control"
+                                                                           readonly>
+                                                                    <input type="text" th:if="${hd.ma == null}"
+                                                                           value="Chưa có" class="form-control"
+                                                                           readonly>
+                                                                </div>
+                                                                <div class="col-4">
+                                                                    <label class="p-l-5" style="font-weight: bold">Ngày
+                                                                        tạo:</label>
+                                                                    <input type="date" th:if="${hd.ngay_tao != null}"
+                                                                           th:value="${hd.ngay_tao}"
+                                                                           class="form-control" readonly>
+                                                                    <input type="date" th:if="${hd.ngay_tao == null}"
+                                                                           value="Chưa có" class="form-control"
+                                                                           readonly>
+                                                                </div>
+                                                                <div class="col-4">
+                                                                    <label class="p-l-5" style="font-weight: bold">Ngày
+                                                                        thanh toán:</label>
+                                                                    <input type="date"
+                                                                           th:if="${hd.ngay_thanh_toan != null}"
+                                                                           th:value="${hd.ngay_thanh_toan}"
+                                                                           class="form-control" readonly>
+                                                                    <input type="date"
+                                                                           th:if="${hd.ngay_thanh_toan == null}"
+                                                                           value="Chưa có" class="form-control"
+                                                                           readonly>
+                                                                </div>
+                                                                <div style="margin-top: 10px" class="col-6">
+                                                                    <label class="p-l-5" style="font-weight: bold">Nhân
+                                                                        viên:</label>
+                                                                    <input type="text"
+                                                                           th:if="${hd.nhanVien != null}"
+                                                                           th:value="${hd.nhanVien.hoTen}"
+                                                                           class="form-control" readonly>
+                                                                    <input type="text"
+                                                                           th:if="${hd.nhanVien == null}"
+                                                                           value="Chưa có" class="form-control"
+                                                                           readonly>
+                                                                </div>
+                                                                <div style="margin-top: 10px" class="col-6">
+                                                                    <label class="p-l-5" style="font-weight: bold">Tổng
+                                                                        tiền:</label>
+                                                                    <input type="text" style="border: 1px solid red"
+                                                                           th:value="${hd.tong_tien != null ? hd.tong_tien : 0}"
+                                                                           class="form-control" readonly>
+                                                                </div>
+                                                                <div style="margin-top: 25px" class="col-12">
+                                                                    <label class="p-l-5">
+                                                                        <span style="font-weight: bold">Phương thức mua: </span>
+                                                                        <span th:if="${hd.hinh_thuc_mua != null}"> [[${hd.hinh_thuc_mua == 0 ? 'Tại cửa hàng' : 'Online'}]]</span>
+                                                                        <span th:if="${hd.hinh_thuc_mua == null}">...</span>
+                                                                        -
+                                                                        <span style="font-weight: bold">Thanh toán bằng: </span>
+                                                                        <span th:if="${hd.hinh_thuc_thanh_toan != null}">[[${hd.hinh_thuc_thanh_toan == 0 ? 'Tiền mặt' : 'Online'}]]</span>
+                                                                        <span th:if="${hd.hinh_thuc_thanh_toan == null}">...</span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="row p-3">
+                                                                <div style="margin-bottom: 10px" class="col-12">
+                                                                    <h6 style="font-weight: bold;">Thông tin Khách
+                                                                        Hàng</h6>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <label class="p-l-5" style="font-weight: bold">Khách
+                                                                        Hàng:</label>
+                                                                    <input type="text" th:if="${hd.khachHang == null}"
+                                                                           value="Khách Lẻ" class="form-control"
+                                                                           readonly>
+                                                                    <input type="text" th:if="${hd.khachHang != null}"
+                                                                           th:value="${hd.khachHang.hoten + ' - ' + hd.khachHang.email + ' - ' + hd.khachHang.sdt}"
+                                                                           class="form-control" readonly>
+                                                                </div>
+                                                                <div class="col-6" style="margin-top: 10px">
+                                                                    <label class="p-l-5" style="font-weight: bold">Tên
+                                                                        người nhận:</label>
+                                                                    <input type="text"
+                                                                           th:if="${hd.ten_nguoi_nhan != null}"
+                                                                           th:value="${hd.ten_nguoi_nhan}"
+                                                                           class="form-control" readonly>
+                                                                    <input type="text"
+                                                                           th:if="${hd.ten_nguoi_nhan == null}"
+                                                                           value="No data" class="form-control"
+                                                                           readonly>
+                                                                </div>
+                                                                <div class="col-6" style="margin-top: 10px">
+                                                                    <label class="p-l-5"
+                                                                           style="font-weight: bold">SĐT:</label>
+                                                                    <input type="text"
+                                                                           th:if="${hd.sdt_nguoi_nhan != null}"
+                                                                           th:value="${hd.sdt_nguoi_nhan}"
+                                                                           class="form-control" readonly>
+                                                                    <input type="text"
+                                                                           th:if="${hd.sdt_nguoi_nhan == null}"
+                                                                           value="No data" class="form-control"
+                                                                           readonly>
+                                                                </div>
+                                                                <div style="margin-top: 10px" class="col-12">
+                                                                    <label class="p-l-5" style="font-weight: bold">Địa
+                                                                        chỉ:</label>
+                                                                    <textarea th:if="${hd.dia_chi != null}" cols="70"
+                                                                              rows="3">[[${hd.dia_chi}]]</textarea>
+                                                                    <textarea th:if="${hd.dia_chi == null}" cols="70"
+                                                                              rows="3">[[${hd.dia_chi}]]</textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <table id="table-hdct" class="table">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th scope="col">Ảnh</th>
+                                                                    <th scope="col">Tên SP</th>
+                                                                    <th scope="col">Size</th>
+                                                                    <th scope="col">Số lượng</th>
+                                                                    <th scope="col">Đơn giá</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary">Save changes
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--            nav-->
+                                <nav aria-label="Page navigation example"
+                                     style="display: flex;justify-content: space-between;">
+                                    <div style="margin-left: 20px">
+                                        <p>Bạn đang xem [[${PageHoaDonTT3.numberOfElements}]] trên tổng số
+                                            [[${PageHoaDonTT3.totalElements}]]</p>
+                                    </div>
+                                    <ul class="pagination" style="margin-right: 24px;">
+                                        <li class="page-item">
+                                            <a class="page-link" th:if="${PageHoaDonTT3.number > 0}"
+                                               th:href="@{|/admin/ban-hang?page3=${PageHoaDonTT3.number-1}|}"
+                                               aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+
+                                        <li th:each="tongtrang,status:${#numbers.sequence(1, PageHoaDonTT3.totalPages)}"
+                                            class="page-item"><a class="page-link"
+                                                                 th:href="@{|/admin/ban-hang?page3=${status.index}|}">[[${status.index+1}]]</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link"
+                                               th:if="${PageHoaDonTT3.number < PageHoaDonTT3.totalPages - 1}"
+                                               th:href="@{|/admin/ban-hang?page3=${PageHoaDonTT3.number+1}|}"
+                                               aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                                <!--            nav-->
+                            </div>
+                            <div class="tab-pane fade" id="cancel-tab-pane" role="tabpanel"
+                                 aria-labelledby="cancel-tab" tabindex="0">
+                                <!--                                Tìm kiếm-->
+                                <div class="row">
+                                    <div class="col-xl-10">
+                                        <form th:action="@{/admin/ban-hang/tim-kiem-hoa-don4}" method="get">
+                                            <div class="form-inline mt-3" style="display: flex">
+                                                <select class="form-control" name="timTheo">
+                                                    <option value="HD" th:selected="${timTheo4 == 'HD'}">Mã hóa đơn
+                                                    </option>
+                                                    <option value="KH" th:selected="${timTheo4 == 'KH'}">Khách hàng
+                                                    </option>
+                                                    <option value="NV" th:selected="${timTheo4 == 'NV'}">Nhân viên
+                                                    </option>
+                                                    <option value="4" th:selected="${timTheo4 == '4'}">Tổng tiền(VNĐ)
+                                                    </option>
+                                                </select>
+                                                <input type="hidden" name="trangThai" value="4">
+                                                <input type="text" name="keyword" th:value="${keyword4}"
+                                                       placeholder="Tìm kiếm hóa đơn"
+                                                       class="form-control form-control-lg"
+                                                       style="width: 300px; height: 40px; margin-right: 10px;margin-left: 5px"/>
+                                                <button type="submit" class="btn btn-primary">
+                                                    <span class="btn-label"><i class="bi bi-search"></i></span>
+                                                </button>
+                                                <button class="btn btn-primary" type="button" style="margin-left: 10px">
+                                                    <a href="/admin/ban-hang"
+                                                       style="text-decoration: none;color: white"><i
+                                                            class="bi bi-arrow-clockwise"></i></a>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!--                                End Tìm kiếm-->
+                                <div style="margin-top: 30px"></div>
+                                <!--                                Table hóa đơn đã hủy -->
+                                <table id="table-dahuy"
+                                       class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline"
+                                       style="border-collapse: collapse; border-spacing: 0px; height: 200%;"
+                                       role="grid" aria-describedby="datatable-buttons_info">
+                                    <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">Mã HĐ</th>
+                                        <th scope="col">Ngày Tạo</th>
+                                        <th scope="col">Ngày Thanh Toán</th>
+                                        <th scope="col">Nhân Viên</th>
+                                        <th scope="col">Khách Hàng</th>
+                                        <th scope="col">Loại HĐ</th>
+                                        <th scope="col">Tổng Tiền(VNĐ)</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:if="${PageHoaDonTT4.content.isEmpty()}">
+                                        <td colspan="8">
+                                            <i style="font-size: 3rem"
+                                               class="bi bi-inboxes d-flex justify-content-center align-items-center"></i>
+                                            <div class="text-center d-flex justify-content-center align-items-center">
+                                                No Data
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr th:each="hd:${PageHoaDonTT4.content}">
+                                        <th>
+                                            <span th:if="${hd.ma == null}" class="badge badge-pill badge-danger">Chưa có tt</span>
+                                            <span th:if="${hd.ma != null}" th:text="${hd.ma}"></span>
+                                        </th>
+                                        <th>
+                                            <span th:if="${hd.ngay_tao == null}"
+                                                  class="badge badge-pill badge-warning">Đang Chờ</span>
+                                            <span th:if="${hd.ngay_tao != null}" th:text="${hd.ngay_tao}"></span>
+                                        </th>
+                                        <th>
+                                                <span th:if="${hd.ngay_thanh_toan == null}"
+                                                      class="badge badge-pill badge-danger">Đang Chờ</span>
+                                            <span th:if="${hd.ngay_thanh_toan != null}"
+                                                  th:text="${hd.ngay_thanh_toan}"></span>
+                                        </th>
+                                        <th>
+                                            <span th:if="${hd.nhanVien == null}" class="badge badge-pill badge-warning">Chưa có tt</span>
+                                            <span th:if="${hd.nhanVien != null}"
+                                                  th:text="${hd.nhanVien.hoTen}"></span>
+                                        </th>
+                                        <th>
+                                            <span th:if="${hd.khachHang == null}"
+                                                  class="badge badge-pill badge-primary">Khách Lẻ</span>
+                                            <span th:if="${hd.khachHang != null}"
+                                                  th:text="${hd.khachHang.hoten}"></span>
+                                        </th>
+                                        <th>
+                                            <span th:if="${hd.hinh_thuc_mua == null}"
+                                                  class="badge badge-pill badge-warning">Chưa có thông tin</span>
+                                            <span th:if="${hd.hinh_thuc_mua != null}">
+                                                    [[${hd.hinh_thuc_mua == 0 ? 'Tại cửa hàng':'Online'}]]
+                                                </span>
+                                        </th>
+                                        <th class="giaBan" th:text="${hd.tong_tien != null ? hd.tong_tien : 0}"></th>
+                                        <th>
+                                            <a class="btn-sm btn-warning btn-detail"
+                                               th:ma="${hd.ma}"
+                                               data-bs-toggle="modal"
+                                               th:attr="data-bs-target='#ModalDetailHoaDon' + ${hd.ma}" href="#">
+                                                <i style="color: white" class="bi bi-eye"></i>
+                                            </a>
+                                        </th>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <!--                                End table hóa đơn đã hủy-->
+                                <div th:each="hd:${PageHoaDonTT4.content}">
+                                    <div class="modal fade" th:id="'ModalDetailHoaDon' + ${hd.ma}" tabindex="-1"
+                                         aria-labelledby="exampleModalLabel"
+                                         aria-hidden="true">
+                                        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title fs-5 text-center"
+                                                        id="exampleModalLabel">Xem chi tiết Hóa Đơn</h5>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="row p-3">
+                                                                <div style="margin-bottom: 10px" class="col-12">
+                                                                    <h6 style="font-weight: bold;">Thông tin Hóa
+                                                                        Đơn</h6></div>
+                                                                <div class="col-4">
+                                                                    <label class="p-l-5" style="font-weight: bold">Mã
+                                                                        HĐ:</label>
+                                                                    <input type="text" th:if="${hd.ma != null}"
+                                                                           th:value="${hd.ma}" class="form-control"
+                                                                           readonly>
+                                                                    <input type="text" th:if="${hd.ma == null}"
+                                                                           value="Chưa có" class="form-control"
+                                                                           readonly>
+                                                                </div>
+                                                                <div class="col-4">
+                                                                    <label class="p-l-5" style="font-weight: bold">Ngày
+                                                                        tạo:</label>
+                                                                    <input type="date" th:if="${hd.ngay_tao != null}"
+                                                                           th:value="${hd.ngay_tao}"
+                                                                           class="form-control" readonly>
+                                                                    <input type="date" th:if="${hd.ngay_tao == null}"
+                                                                           value="Chưa có" class="form-control"
+                                                                           readonly>
+                                                                </div>
+                                                                <div class="col-4">
+                                                                    <label class="p-l-5" style="font-weight: bold">Ngày
+                                                                        thanh toán:</label>
+                                                                    <input type="date"
+                                                                           th:if="${hd.ngay_thanh_toan != null}"
+                                                                           th:value="${hd.ngay_thanh_toan}"
+                                                                           class="form-control" readonly>
+                                                                    <input type="date"
+                                                                           th:if="${hd.ngay_thanh_toan == null}"
+                                                                           value="Chưa có" class="form-control"
+                                                                           readonly>
+                                                                </div>
+                                                                <div style="margin-top: 10px" class="col-6">
+                                                                    <label class="p-l-5" style="font-weight: bold">Nhân
+                                                                        viên:</label>
+                                                                    <input type="text"
+                                                                           th:if="${hd.nhanVien != null}"
+                                                                           th:value="${hd.nhanVien.hoTen}"
+                                                                           class="form-control" readonly>
+                                                                    <input type="text"
+                                                                           th:if="${hd.nhanVien == null}"
+                                                                           value="Chưa có" class="form-control"
+                                                                           readonly>
+                                                                </div>
+                                                                <div style="margin-top: 10px" class="col-6">
+                                                                    <label class="p-l-5" style="font-weight: bold">Tổng
+                                                                        tiền:</label>
+                                                                    <input type="text" style="border: 1px solid red"
+                                                                           th:value="${hd.tong_tien != null ? hd.tong_tien : 0}"
+                                                                           class="form-control" readonly>
+                                                                </div>
+                                                                <div style="margin-top: 25px" class="col-12">
+                                                                    <label class="p-l-5">
+                                                                        <span style="font-weight: bold">Phương thức mua: </span>
+                                                                        <span th:if="${hd.hinh_thuc_mua != null}"> [[${hd.hinh_thuc_mua == 0 ? 'Tại cửa hàng' : 'Online'}]]</span>
+                                                                        <span th:if="${hd.hinh_thuc_mua == null}">...</span>
+                                                                        -
+                                                                        <span style="font-weight: bold">Thanh toán bằng: </span>
+                                                                        <span th:if="${hd.hinh_thuc_thanh_toan != null}">[[${hd.hinh_thuc_thanh_toan == 0 ? 'Tiền mặt' : 'Online'}]]</span>
+                                                                        <span th:if="${hd.hinh_thuc_thanh_toan == null}">...</span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="row p-3">
+                                                                <div style="margin-bottom: 10px" class="col-12">
+                                                                    <h6 style="font-weight: bold;">Thông tin Khách
+                                                                        Hàng</h6>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <label class="p-l-5" style="font-weight: bold">Khách
+                                                                        Hàng:</label>
+                                                                    <input type="text" th:if="${hd.khachHang == null}"
+                                                                           value="Khách Lẻ" class="form-control"
+                                                                           readonly>
+                                                                    <input type="text" th:if="${hd.khachHang != null}"
+                                                                           th:value="${hd.khachHang.hoten + ' - ' + hd.khachHang.email + ' - ' + hd.khachHang.sdt}"
+                                                                           class="form-control" readonly>
+                                                                </div>
+                                                                <div class="col-6" style="margin-top: 10px">
+                                                                    <label class="p-l-5" style="font-weight: bold">Tên
+                                                                        người nhận:</label>
+                                                                    <input type="text"
+                                                                           th:if="${hd.ten_nguoi_nhan != null}"
+                                                                           th:value="${hd.ten_nguoi_nhan}"
+                                                                           class="form-control" readonly>
+                                                                    <input type="text"
+                                                                           th:if="${hd.ten_nguoi_nhan == null}"
+                                                                           value="No data" class="form-control"
+                                                                           readonly>
+                                                                </div>
+                                                                <div class="col-6" style="margin-top: 10px">
+                                                                    <label class="p-l-5"
+                                                                           style="font-weight: bold">SĐT:</label>
+                                                                    <input type="text"
+                                                                           th:if="${hd.sdt_nguoi_nhan != null}"
+                                                                           th:value="${hd.sdt_nguoi_nhan}"
+                                                                           class="form-control" readonly>
+                                                                    <input type="text"
+                                                                           th:if="${hd.sdt_nguoi_nhan == null}"
+                                                                           value="No data" class="form-control"
+                                                                           readonly>
+                                                                </div>
+                                                                <div style="margin-top: 10px" class="col-12">
+                                                                    <label class="p-l-5" style="font-weight: bold">Địa
+                                                                        chỉ:</label>
+                                                                    <textarea th:if="${hd.dia_chi != null}" cols="70"
+                                                                              rows="3">[[${hd.dia_chi}]]</textarea>
+                                                                    <textarea th:if="${hd.dia_chi == null}" cols="70"
+                                                                              rows="3">[[${hd.dia_chi}]]</textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <table id="table-hdct" class="table">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th scope="col">Ảnh</th>
+                                                                    <th scope="col">Tên SP</th>
+                                                                    <th scope="col">Size</th>
+                                                                    <th scope="col">Số lượng</th>
+                                                                    <th scope="col">Đơn giá</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary">Save changes
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--            nav-->
+                                <nav aria-label="Page navigation example"
+                                     style="display: flex;justify-content: space-between;">
+                                    <div style="margin-left: 20px">
+                                        <p>Bạn đang xem [[${PageHoaDonTT4.numberOfElements}]] trên tổng số
+                                            [[${PageHoaDonTT4.totalElements}]]</p>
+                                    </div>
+                                    <ul class="pagination" style="margin-right: 24px;">
+                                        <li class="page-item">
+                                            <a class="page-link" th:if="${PageHoaDonTT4.number > 0}"
+                                               th:href="@{|/admin/ban-hang?page4=${PageHoaDonTT4.number-1}|}"
+                                               aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+
+                                        <li th:each="tongtrang,status:${#numbers.sequence(1, PageHoaDonTT4.totalPages)}"
+                                            class="page-item"><a class="page-link"
+                                                                 th:href="@{|/admin/ban-hang?page4=${status.index}|}">[[${status.index+1}]]</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link"
+                                               th:if="${PageHoaDonTT4.number < PageHoaDonTT4.totalPages - 1}"
+                                               th:href="@{|/admin/ban-hang?page4=${PageHoaDonTT4.number+1}|}"
+                                               aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                                <!--            nav-->
+                            </div>
+                            <div class="tab-pane fade" id="tab-waiting-for-payment-pane" role="tabpanel"
+                                 aria-labelledby="tab-waiting-for" tabindex="0">
+                                <!--                                Tìm kiếm-->
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-inline mt-3" style="display: flex;">
+                                            <form th:action="@{/admin/ban-hang/tim-kiem-hoa-don5}" method="get">
+                                                <select class="form-control" name="timTheo">
+                                                    <option value="HD" th:selected="${timTheo5 == 'HD'}">Mã hóa đơn
+                                                    </option>
+                                                    <option value="KH" th:selected="${timTheo5 == 'KH'}">Khách hàng
+                                                    </option>
+                                                    <option value="NV" th:selected="${timTheo5 == 'NV'}">Nhân viên
+                                                    </option>
+                                                    <option value="4" th:selected="${timTheo5 == '4'}">Tổng tiền(VNĐ)
+                                                    </option>
+                                                </select>
+                                                <input type="hidden" name="trangThai" value="5">
+                                                <input type="text" name="keyword" th:value="${keyword5}"
+                                                       placeholder="Tìm kiếm hóa đơn"
+                                                       class="form-control form-control-lg"
+                                                       style="width: 300px; height: 40px; margin-right: 10px;margin-left: 5px"/>
+                                                <button type="submit" class="btn btn-primary">
+                                                    <span class="btn-label"><i class="bi bi-search"></i></span>
+                                                </button>
+                                            </form>
+                                            <button class="btn btn-primary" type="submit" style="margin-left: 5px">
+                                                <span class="btn-label">
+                                                    <a href="/admin/ban-hang"
+                                                       style="text-decoration: none; color: white;">
+                                                        <i class="bi bi-arrow-clockwise"></i>
+                                                    </a>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--            End Content tab danh sách hóa đơn-->
+        </div>
+        <!--        End Content các Tab-->
+        <!--        End Tab chính-->
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Thư viện toastr -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="/assets/js/popper.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/main.js"></script>
+<!--Ngăn chuyển trang nút nav-->
+<script>
+    $(document).ready(function () {
+        $('.page-link').on('click', function (e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            $.ajax({
+                type: 'GET',
+                url: url,
+                dataType: 'html',
+                success: function (data) {
+                    $('#table-dangcho').html($(data).find('#table-dangcho').html());
+                    $('#table-chogiao').html($(data).find('#table-chogiao').html());
+                    $('#table-vanchuyen').html($(data).find('#table-vanchuyen').html());
+                    $('#table-hoanthanh').html($(data).find('#table-hoanthanh').html());
+                    $('#table-dahuy').html($(data).find('#table-dahuy').html());
+                    $('#table-chothanhtoan').html($(data).find('#table-chothanhtoan').html());
+
+                },
+                error: function () {
+                    alert('Có lỗi xảy ra khi tải dữ liệu.');
+                }
+            });
+        });
+    });
+</script>
+<!--ngăn chuyển trang nút nav-->
+
+<!--Định dạng số tiền VNĐ-->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var giaBanElements = document.querySelectorAll('.giaBan');
+        giaBanElements.forEach(function (element) {
+            var giaBanText = element.textContent.trim();
+            var giaBan = parseFloat(giaBanText.replace('Giá Bán:', '').trim());
+            var giaBanFormatted = giaBan.toLocaleString('vi-VN'); // Định dạng giá
+
+            // Cập nhật lại văn bản đã định dạng trong phần tử
+            element.textContent = giaBanFormatted;
+        });
+    });
+</script>
+<!--End định dạng số tiền VNĐ-->
+
+<!--Ngăn chuyển trang lúc tìm kiếm-->
+<script>
+    $(document).ready(function () {
+        // Lắng nghe sự kiện khi tab được chọn
+        $('.nav-link').on('shown.bs.tab', function (e) {
+            var selectedTabId = $(e.target).attr('id');
+
+            // Lưu trạng thái của tab đã chọn vào local storage
+            localStorage.setItem('selectedTab', selectedTabId);
+        });
+
+        // Kiểm tra xem đã lưu trạng thái tab hay chưa
+        var selectedTab = localStorage.getItem('selectedTab');
+        if (selectedTab) {
+            // Chuyển đến tab đã lưu trạng thái
+            $('#' + selectedTab).tab('show');
+        }
+    });
+</script>
+<!--Ngăn chuyển trang lúc tìm kiém-->
+
+<!--ngăn chuyển trang nút xác nhận-->
+<script>
+    $(document).ready(function () {
+        $(".form-xacnhan").submit(function (e) {
+            e.preventDefault();
+            var formData = $(this).serialize();
+
+            $.ajax({
+                type: "POST",
+                url: $(this).attr("action"),
+                data: formData,
+                success: function (data) {
+                    // Hiển thị thông báo toast khi thành công
+                    toastr.success("Your action was successful!");
+
+                    // Cập nhật nội dung bảng sau khi xử lý thành công
+                    $('#table-dangcho').html($(data).find('#table-dangcho').html());
+                    $('#table-chogiao').html($(data).find('#table-chogiao').html());
+                    $('#table-vanchuyen').html($(data).find('#table-vanchuyen').html());
+                    $('#table-hoanthanh').html($(data).find('#table-hoanthanh').html());
+                    $('#table-dahuy').html($(data).find('#table-dahuy').html());
+                    $('#table-chothanhtoan').html($(data).find('#table-chothanhtoan').html());
+
+                }
+            });
+        });
+    });
+</script>
+<!--ngăn chuyển trang nút xác nhận-->
+
+<!--nút hủy hóa đơn 123-->
+<script>
+    function enableHuyInput1() {
+        var huyxacnhanInput = document.querySelector('input[name="huyxacnhan1"]');
+        huyxacnhanInput.removeAttribute('disabled');
+        huyxacnhanInput.value = 'huy'; // Gán giá trị 'huy' cho trường huyxacnhan
+    }
+    function enableHuyInput2() {
+        var huyxacnhanInput = document.querySelector('input[name="huyxacnhan2"]');
+        huyxacnhanInput.removeAttribute('disabled');
+        huyxacnhanInput.value = 'huy'; // Gán giá trị 'huy' cho trường huyxacnhan
+    }
+    function enableHuyInput3() {
+        var huyxacnhanInput = document.querySelector('input[name="huyxacnhan3"]');
+        huyxacnhanInput.removeAttribute('disabled');
+        huyxacnhanInput.value = 'huy'; // Gán giá trị 'huy' cho trường huyxacnhan
+    }
+</script>
+<!-- end nút hủy hóa đơn 123-->
+
+<!--nút giao hàng-->
+<script>
+    function enableGiaoHangInput() {
+        var giaoHangInput = document.querySelector('input[name="giaoHang"]');
+        giaoHangInput.removeAttribute('disabled');
+        giaoHangInput.value = 'giaohang';
+    }
+</script>
+<!--end nút giao hàng-->
+
+<!--nút hoàn thành-->
+<script>
+    function enableHoanThanhInput() {
+        var giaoHangInput = document.querySelector('input[name="hoanthanh"]');
+        giaoHangInput.removeAttribute('disabled');
+        giaoHangInput.value = 'hoanthanh';
+    }
+</script>
+<!--end nút hoàn thành-->
+
+<!--chọn tất cả checkbox 123-->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const selectAllCheckbox = document.getElementById("selectAllCheckbox1");
+        const checkboxes = document.querySelectorAll("input[type='checkbox'][name='selectedMa1']");
+        selectAllCheckbox.addEventListener("change", function () {
+            checkboxes.forEach(function (checkbox) {
+                checkbox.checked = selectAllCheckbox.checked;
+            });
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const selectAllCheckbox = document.getElementById("selectAllCheckbox2");
+        const checkboxes = document.querySelectorAll("input[type='checkbox'][name='selectedMa2']");
+        selectAllCheckbox.addEventListener("change", function () {
+            checkboxes.forEach(function (checkbox) {
+                checkbox.checked = selectAllCheckbox.checked;
+            });
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const selectAllCheckbox = document.getElementById("selectAllCheckbox3");
+        const checkboxes = document.querySelectorAll("input[type='checkbox'][name='selectedMa3']");
+        selectAllCheckbox.addEventListener("change", function () {
+            checkboxes.forEach(function (checkbox) {
+                checkbox.checked = selectAllCheckbox.checked;
+            });
+        });
+    });
+</script>
+<!--end chọn tất cả checkbox 123-->
+
+<!--ajax get data hóa đơn chi tiết-->
+<script>
+    $(document).ready(function () {
+        $('.btn-detail').on('click', function (e) {
+            e.preventDefault();
+            var ma = $(this).attr("ma");
+
+            $.ajax({
+                url: '/admin/ban-hang/getHoaDonChiTiet/' + ma,
+                method: 'GET',
+                success: function (data) {
+                    $('#table-hdct tbody').empty();
+
+                    if (data.length === 0) {
+                        $('#table-hdct tbody').append('<tr><td colspan="5"> <i style="font-size: 3rem"\n' +
+                            '                                                   class="bi bi-inboxes d-flex justify-content-center align-items-center"></i>\n' +
+                            '                                                <div class="text-center d-flex justify-content-center align-items-center">\n' +
+                            '                                                    No Data\n' +
+                            '                                                </div></td></tr>');
+                    } else {
+                        $.each(data, function (index, item) {
+                            var row = '<tr>' +
+                                '<td><img style="width: 80px" src="/images/' + item.anhDau + '" alt=""></td>' +
+                                '<td>' + item.ten + '</td>' +
+                                '<td>' + item.kichCo + '</td>' +
+                                '<td>' + item.soLuong + '</td>' +
+                                '<td>' + item.donGia + '</td>' +
+                                '</tr>';
+
+                            $('#table-hdct tbody').append(row);
+                        });
+                    }
+                },
+                error: function (error) {
+                    console.log('Error:', error);
+                }
+            });
+        });
+    });
+
+</script>
+<!--end ajax get data hóa đơn chi tiết-->
+
+<script>
+    // nút xóa
+    $(document).ready(function () {
+        $('.btn-delete').click(function (e) {
+            e.preventDefault();
+            var deleteURL = $(this).attr('href');
+            $.ajax({
+                type: 'POST',
+                url: deleteURL,
+                success: function(response) {
+                    toastr["success"]("Xóa thành công!");
+                    $('#table-dangcho').load(location.href + ' #table-dangcho');
+                    $('#table-chogiao').load(location.href + ' #table-chogiao');
+                    $('#table-vanchuyen').load(location.href + ' #table-vanchuyen');
+                    $('#table-hoanthanh').load(location.href + ' #table-hoanthanh');
+                    $('#table-dahuy').load(location.href + ' #table-dahuy');
+                },
+                error: function(xhr, status, error) {
+                    toastr["error"]("Đã xảy ra lỗi khi xóa: " + error);
+                }
+            });
+        });
+    });
+
+    //nút xác nhận
+    $(document).ready(function () {
+        $('.btn-accept').click(function (e) {
+            e.preventDefault();
+            var deleteURL = $(this).attr('href');
+            $.ajax({
+                type: 'POST',
+                url: deleteURL,
+                success: function(response) {
+                    toastr["success"]("Xác nhận thành công!");
+                    $('#table-dangcho').load(location.href + ' #table-dangcho');
+                    $('#table-chogiao').load(location.href + ' #table-chogiao');
+                    $('#table-vanchuyen').load(location.href + ' #table-vanchuyen');
+                    $('#table-hoanthanh').load(location.href + ' #table-hoanthanh');
+                    $('#table-dahuy').load(location.href + ' #table-dahuy');
+                    $('#table-chothanhtoan').load(location.href + ' #table-chothanhtoan');
+
+                },
+                error: function(xhr, status, error) {
+                    toastr["error"]("Đã xảy ra lỗi khi xóa: " + error);
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

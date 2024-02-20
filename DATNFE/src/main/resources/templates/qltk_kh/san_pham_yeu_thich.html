@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<style>
+    ul li {
+        margin-bottom: 5px;
+    }
+
+    ul li a {
+        color: #3D464D;
+    }
+
+    ul li a:hover {
+        color: #FFD333;
+    }
+
+    .nav {
+        display: block !important;
+    }
+
+    .container .row .col-9 form div.row {
+        margin-bottom: 10px;
+    }
+
+    .container > .row > .col-9 {
+        background-color: white;
+        border: .0625rem solid #efefef;
+        border-radius: 5px;
+    }
+
+    #hoSo:hover {
+        text-decoration: none;
+    }
+    .round-image {
+        border-radius: 50%;
+        overflow: hidden; /* Đảm bảo hình ảnh không vượt ra khỏi hình tròn */
+    }
+</style>
+
+<html th:replace="~{/layout/index :: dynamic(~{::main})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+<main>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item" style="border-bottom: .0625rem solid #efefef;padding-bottom: 10px;padding-top: 15px">
+                        <a href="/qltk-kh/thong-tin" id="hoSo">
+                            <div class="row">
+                                <div class="col-3 img-avart">
+                                    <img th:src="@{|/images/${khachHang.avatar}|}" alt="Avatar" class="img-thumbnail round-image">
+                                </div>
+                                <div class="col-9 ">
+                                    <div class="row">
+                                        <div style="width: 100%">
+                                            [[${khachHang.hoten}]]
+                                        </div>
+                                        <div>
+                                            <i class="fa-solid fa-pen"></i>
+                                            Sửa hồ sơ
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/qltk-kh/thong-tin">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="fa-solid fa-user fa-beat"></i>
+                                </div>
+                                <div class="col-9">
+                                    Thông tin tài khoản
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/qltk-kh/hang-thanh-vien">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="bi bi-stars"></i>
+                                </div>
+                                <div class="col-9">
+                                    Xếp Hạng Thành Viên
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/qltk-kh/doi-mat-khau">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="fa-solid fa-lock fa-beat"></i>
+                                </div>
+                                <div class="col-9">
+                                    Đổi mật khẩu
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/qltk-kh/dia-chi">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="fa-solid fa-location-dot fa-beat"></i></div>
+                                <div class="col-9">
+                                    Địa
+                                    chỉ
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/qltk-kh/don-hang">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="fa-solid fa-cart-shopping fa-beat"></i>
+                                </div>
+                                <div class="col-9">
+                                    Đơn
+                                    hàng
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/qltk-kh/dssanphamyeuthich">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="fa-regular fa-heart"></i>
+                                </div>
+                                <div class="col-9">
+                                  Yêu Thích
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-9" style="background-color: #F5F5F5">
+                <ul class="nav flex-column">
+                    <li class="nav-item" style="border-bottom: .0625rem solid #efefef;padding-bottom: 10px;padding-top: 15px">
+                        <h5 style="margin-bottom: 0px">Sản Phẩm Yêu Thích</h5>
+                    </li>
+                </ul>
+                <div class="row px-xl-6">
+                <div th:each="item:${dssanphamyeuthich}" class="col-lg-4 col-md-4 col-sm-4 pb-1">
+                    <div class="product-item bg-light mb-4">
+                        <div class="product-img position-relative overflow-hidden">
+
+                            <div class="discount-badge">20%</div>
+                            <div class="product-action">
+                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center py-4" >
+                            <div class="product-img position-relative overflow-hidden">
+                                <img class="img-fluid w-100" th:src="@{|/images/${item.giay.getAnhDau(item.giay.anhs)}|}" alt="">
+                                <div class="discount-badge2" th:if="${item.giay.getCHGTHD()!=null}">
+                                    🏷️ [[${item.giay.getCHGTHD.chuongTrinhGiamGiaSP.tenKhuyenMai}]] 🏷️
+                                </div>
+                                <div class="discount-badge" th:if="${item.giay.getCHGTHD()!=null}">
+                                    [[${item.giay.getCHGTHD.chuongTrinhGiamGiaSP.phanTramGiam}]]%
+                                </div>
+                                <div class="discount-badge1" th:if="${item.giay.do_hot==1}">HOT</div>
+                                <div class="discount-badge3" th:if="${item.giay.getNewGiay}">🌟 Hàng Mới Về 🌟</div>
+
+                                <div class="product-action">
+                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center mt-2">
+                                <a  style="position: absolute;bottom: 197px;left: 145px;text-decoration: underline" >
+                                    [[${item.giay.thuong_hieu.ten}]]</a>
+                                <div class="text-center py-4">
+                                    <a class="h6 text-decoration-none text-truncate" th:href="@{|/ctsp/${item.giay.ma}-${item.giay.thuong_hieu.ten}-${item.giay.mau_sac.ten}|}">
+                                        <p style="margin: auto;text-align: center;max-width: 250px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;color: #817d70;">
+                                            [[${item.giay.ten}]]
+                                        </p>
+                                    </a>
+                                    <div class="d-flex align-items-center justify-content-center mt-2">
+                                        <h5 style="color: #ee4d2d" th:if="${item.giay.gia_sau_khuyen_mai.compareTo(item.giay.giaban)==0 or item.giay.gia_sau_khuyen_mai.compareTo(item.giay.giaban)<0}">
+                                            [[${#numbers.formatDecimal(item.giay.gia_sau_khuyen_mai, 0, 'COMMA', 0, 'POINT')}]] ₫
+                                        </h5>
+                                        <h6 class="text-muted ml-2" th:if="${item.giay.gia_sau_khuyen_mai.compareTo(item.giay.giaban)<0}">
+                                            <del style="color: #ee4d2d">
+                                                [[${#numbers.formatDecimal(item.giay.giaban, 0, 'COMMA', 0, 'POINT')}]] ₫
+                                            </del>
+                                        </h6>
+                                    </div>
+
+                                    <div class="d-flex align-items-center justify-content-center mb-1">
+                                        <small class="fa fa-star text-primary mr-1"></small>
+                                        <small class="fa fa-star text-primary mr-1"></small>
+                                        <small class="fa fa-star text-primary mr-1"></small>
+                                        <small class="fa fa-star text-primary mr-1"></small>
+                                        <small class="fa fa-star text-primary mr-1"></small>
+                                        <small>(99)</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

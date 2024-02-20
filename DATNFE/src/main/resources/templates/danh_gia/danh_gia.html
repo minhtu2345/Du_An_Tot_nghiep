@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Đánh giá</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+
+<div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+        <div class="custom-menu">
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                <i class="fa fa-bars"></i>
+                <span class="sr-only">Toggle Menu</span>
+            </button>
+        </div>
+        <div class="p-4">
+            <h1><a href="kieu_dang.html" class="logo">DLFV</a></h1>
+            <ul class="list-unstyled components mb-5">
+                <li class="active">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span
+                            class="fa fa-home mr-3"></span>Thống Kê</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="/admin/thong-ke">Thông kê doanh thu</a>
+                        </li>
+                        <li>
+                            <a href="/admin/thong-ke-top-ban-chay">Thông kê top</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="/admin/ban-hang" ><span class="fa fa-user mr-3"></span> Quản Lý Đơn Hàng</a>
+
+                </li>
+                <li>
+                    <a href="/admin/ban-hang-tai-quay"><span class="fa fa-briefcase mr-3"></span> Bán Hàng Tại Quầy</a>
+                </li>
+                <li>
+                    <a href="#homeSubmenu2"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span class="fa fa-sticky-note mr-3"></span> Quản Lý Sản Phẩm</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu2">
+                        <li>
+                            <a href="/admin/sanpham">Sản Phẩm</a>
+                        </li>
+                        <li>
+                            <a href="/admin/camgiac">Cảm Giác</a>
+                        </li>
+                        <li>
+                            <a href="/admin/chatlieu">Chất Liệu</a>
+                        </li>
+                        <li>
+                            <a href="/admin/danhmuc">Danh Mục</a>
+                        </li>
+                        <li>
+                            <a href="/admin/degiay">Đế Giày</a>
+                        </li>
+                        <li>
+                            <a href="/admin/diahinh">Địa Hình</a>
+                        </li>
+                        <li>
+                            <a href="/admin/docaogiay">Độ Cao Giày</a>
+                        </li>
+                        <li>
+                            <a href="/admin/gioitinh">Giới Tính</a>
+                        </li>
+                        <li>
+                            <a href="/admin/mausac">Màu Sắc</a>
+                        </li>
+                        <li>
+                            <a href="/admin/thoitietthichhop">Thời Tiết Thích Hợp</a>
+                        </li>
+                        <li>
+                            <a href="/admin/thuonghieu">Thương Hiệu</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#homeSubmenu3"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span class="fa fa-paper-plane mr-3"></span> Quản Lý Tài Khoản</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu3">
+                        <li>
+                            <a href="/admin/nhan-vien">Nhân Viên</a>
+                        </li>
+                        <li>
+                            <a href="/admin/khachhang">Khách Hàng</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#homeSubmenu4"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span class="fa fa-cubes mr-3"></span>Khuyến Mại</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu4">
+                        <li>
+                            <a href="/admin/chuong-trinh-giam-gia-sp">Sản Phẩm</a>
+                        </li>
+                        <li>
+                            <a href="/admin/giamgiahoadon">Hóa Đơn</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="mb-5">
+                <h3 class="h6 mb-3">Subscribe for newsletter</h3>
+                <form action="#" class="subscribe-form">
+                    <div class="form-group d-flex">
+                        <div class="icon"><span class="icon-paper-plane"></span></div>
+                        <input type="text" class="form-control" placeholder="Enter Email Address">
+                    </div>
+                </form>
+            </div>
+
+            <div class="footer">
+                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- Page Content  -->
+
+    <div id="content" class="p-4 p-md-5 pt-5">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-top: -50px;">
+            <div class="container-fluid" style="display: flex;justify-content: end;">
+                <ul class="navbar-nav">
+                    <!-- Avatar -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#"
+                           id="navbarDropdownMenuLink"
+                           role="button" data-toggle="dropdown" aria-expanded="false">
+                            <img
+                                    class="rounded-circle"
+                                    th:src="@{|/images/${nhanVienLogin.anh}|}"
+                                    height="72" alt="Avatar" loading="lazy"/>
+                        </a>
+                        <div class="dropdown-menu" style="margin-left: -88px;">
+                            <a class="dropdown-item" href="#">Đăng Xuất</a>
+                            <a class="dropdown-item" href="#">Thông Tin Cá Nhân</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container"
+             style="border: 1px solid black;border-radius: 10px;padding: 20px;margin: 20px;padding-bottom: 200px">
+            <div>
+
+                <h1 style="text-transform: uppercase;
+    color: #000000;font-family: 'Lora';text-align: center;">Danh sách đánh giá</h1>
+                <table class="table" style="margin: 20px 0;">
+                    <thead class="thead-light">
+                    <tr>
+                        <th><input type="checkbox" id="cb-all"/></th>
+                        <th scope="col">Sản phẩm</th>
+                        <th scope="col">Tên người đánh giá</th>
+                        <th scope="col">Sao</th>
+                        <th scope="col">Nội dung</th>
+                        <th scope="col">Trạng thái</th>
+                        <th scope="col">Thao tác</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="item,state:${page.content}">
+                        <th><input type="checkbox" class="cb" th:value="${item.id}"/></th>
+                        <th>
+                            <img style="width: 150px"
+                                 th:src="@{|/images/${item.giay.anhs[0].ten_url}|}"
+                                 alt="">
+                            <br>
+                            [[${item.giay.ten}]]
+                        </th>
+                        <th>
+                            [[${item.tenNguoiDanhGia}]]
+                        </th>
+                        <th>
+                            [[${item.sao}]]
+                        </th>
+                        <th>
+                            [[${item.noiDung}]]
+                        </th>
+                        <th>
+                            [[${item.trangThai == 1 ? "Duyệt":"Chưa duyệt"}]]
+                        </th>
+                        <th>
+                            <a th:href="@{|/admin/danh-gia/duyet/${item.id}|}" class="btn-duyet">
+                                <button class="btn btn-success">
+                                    <i class="fa-solid fa-check"></i>
+                                    Duyệt
+                                </button>
+                            </a>
+                            <div style="margin-top: 3px">
+
+                            </div>
+                            <a th:href="@{|/admin/danh-gia/xoa/${item.id}|}" class="btn-xoa">
+                                <button class="btn btn-danger">
+                                    <i class="fa-solid fa-trash"></i>
+                                    Xóa
+                                </button>
+                            </a>
+                        </th>
+
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div th:if="${page.totalPages>0}">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                             <span>
+                                <li class="page-item">
+                                    <a class="page-link btn btn-primary"
+                                       th:href="@{|/admin/danh-gia?number=${number-1}|}"
+                                       th:if="${number>0}"
+                                       aria-label="Previous">
+                                    <span aria-hidden="true" style="color:white;">&laquo;</span>
+                                    </a>
+                                </li>
+                            </span>
+                            <span>
+                            <a th:text="${number}" th:href="@{|/admin/danh-gia?number=${number-1}|}"
+                               class="btn btn-primary" th:if="${number-1>=0}"></a>
+                    </span>
+                            <span>
+                            <a th:text="${number+1}" th:href="@{|/admin/danh-gia?number=${number}|}"
+                               class="btn btn-primary"></a>
+                    </span>
+                            <span>
+                            <a th:text="${number+2}" th:href="@{|/admin/danh-gia?number=${number+1}|}"
+                               class="btn btn-primary" th:if="${number+1<=page.totalPages-1}"></a>
+                    </span>
+                            <span>
+                           <a class="page-link btn btn-primary" th:href="@{|/admin/danh-gia?number=${number+1}|}"
+                              th:if="${number<page.totalPages-1}" aria-label="Previous">
+                            <span aria-hidden="true" style="color: white">&raquo;</span>
+                        </a>
+                    </span>
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>
+
+            <div class="float-right">
+                <a th:href="@{|/admin/danh-gia/duyet-tat-ca|}" id="btn-duyet-all">
+                    <button class="btn btn-success" style="margin-top: 5px" >
+                        <i class="fa-solid fa-check"></i>
+                        Duyệt tất cả đánh giá
+                    </button>
+                </a>
+                <br>
+                <a href="#">
+                    <button class="btn btn-success" id="duyet-nhieu" style="margin-top: 5px">
+                        <i class="fa-solid fa-check"></i>
+                        Duyệt đánh giá
+                        được chọn
+                    </button>
+                </a>
+                <br>
+                <a href="#">
+                    <button class="btn btn-danger" id="xoa-nhieu" style="margin-top: 5px">
+                        <i class="fa-solid fa-trash"></i>
+                        Xóa đánh giá được
+                        chọn
+                    </button>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Bao gồm thư viện jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript">
+    // Gọi AJAX khi người dùng thực hiện hành động nào đó, ví dụ nhấn nút "Duyệt"
+
+    $('#cb-all').click(function () {
+        const items = $('.cb');
+        if (this.checked) {
+            items.each(function () {
+                this.checked = true;
+            });
+        } else {
+            items.each(function () {
+                this.checked = false;
+            });
+        }
+    });
+
+    $('#duyet-nhieu').click(function () {
+
+        // Lấy danh sách các phần tử đã chọn (checkbox) từ HTML
+        const selectedItems = $('.cb:checked');
+        const danhGiaIds = selectedItems.map(function () {
+            return $(this).val();
+        }).get();
+
+        // Gửi AJAX request bằng jQuery
+        $.ajax({
+            type: 'POST',
+            url: '/admin/danh-gia/duyet-nhieu',
+            contentType: 'application/json',
+            data: JSON.stringify(danhGiaIds),
+            success: function (data) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Thành công!',
+                    text: 'Duyệt thành công.',
+                })
+                window.location.reload();
+            },
+            error: function (xhr, status, error) {
+                console.error('Lỗi:', error);
+            }
+        });
+    });
+
+    $('#xoa-nhieu').click(function () {
+        // Lấy danh sách các phần tử đã chọn (checkbox) từ HTML
+        Swal.fire({
+            title: 'Bạn chắc chắn xóa?',
+            text: "Bạn sẽ không thể khôi phục lại điều này!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Hủy',
+            confirmButtonText: 'Có, xóa đi!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Đã xóa!',
+                    'Đánh giá đã bị xóa.',
+                    'success'
+                )
+                const selectedItems = $('.cb:checked');
+                const danhGiaIds = selectedItems.map(function () {
+                    return $(this).val();
+                }).get();
+
+                // Gửi AJAX request bằng jQuery
+                $.ajax({
+                    type: 'POST',
+                    url: '/admin/danh-gia/xoa-nhieu',
+                    contentType: 'application/json',
+                    data: JSON.stringify(danhGiaIds),
+                    success: function (data) {
+                        window.location.reload();
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Lỗi:', error);
+                    }
+                });
+            }
+        })
+    });
+
+    $('.btn-xoa').click(function () {
+        event.preventDefault();
+        Swal.fire({
+            title: 'Bạn chắc chắn xóa?',
+            text: "Bạn sẽ không thể khôi phục lại điều này!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Hủy',
+            confirmButtonText: 'Có, xóa đi!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Đã xóa!',
+                    'Đánh giá đã bị xóa.',
+                    'success'
+                )
+                window.location.href = $(this).attr('href');
+            }
+        })
+    })
+
+    $('.btn-duyet').click(function () {
+        event.preventDefault();
+        Swal.fire({
+            icon: 'success',
+            title: 'Thành công!',
+            text: 'Duyệt thành công.',
+        })
+        window.location.href = $(this).attr('href');
+    })
+
+    $('#btn-duyet-all').click(function () {
+        event.preventDefault();
+        Swal.fire({
+            icon: 'success',
+            title: 'Thành công!',
+            text: 'Duyệt thành công.',
+        })
+        window.location.href = $(this).attr('href');
+    })
+</script>
+
+<script src="/assets/js/popper.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

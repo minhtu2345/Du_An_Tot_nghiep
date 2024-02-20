@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sidebar 03</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+</head>
+<body>
+
+<div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+        <div class="custom-menu">
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                <i class="fa fa-bars"></i>
+                <span class="sr-only">Toggle Menu</span>
+            </button>
+        </div>
+        <div class="p-4">
+            <h1><a href="kieu_dang.html" class="logo">DLFV</a></h1>
+            <ul class="list-unstyled components mb-5">
+                <li class="active">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span
+                            class="fa fa-home mr-3"></span>Thống Kê</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="/admin/thong-ke">Thông kê doanh thu</a>
+                        </li>
+                        <li>
+                            <a href="/admin/thong-ke-top-ban-chay">Thông kê top</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="/admin/ban-hang" ><span class="fa fa-user mr-3"></span> Quản Lý Đơn Hàng</a>
+
+                </li>
+                <li>
+                    <a href="/admin/ban-hang-tai-quay"><span class="fa fa-briefcase mr-3"></span> Bán Hàng Tại Quầy</a>
+                </li>
+                <li>
+                    <a href="#homeSubmenu2"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span class="fa fa-sticky-note mr-3"></span> Quản Lý Sản Phẩm</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu2">
+                        <li>
+                            <a href="/admin/sanpham">Sản Phẩm</a>
+                        </li>
+                        <li>
+                            <a href="/admin/camgiac">Cảm Giác</a>
+                        </li>
+                        <li>
+                            <a href="/admin/chatlieu">Chất Liệu</a>
+                        </li>
+                        <li>
+                            <a href="/admin/danhmuc">Danh Mục</a>
+                        </li>
+                        <li>
+                            <a href="/admin/degiay">Đế Giày</a>
+                        </li>
+                        <li>
+                            <a href="/admin/diahinh">Địa Hình</a>
+                        </li>
+                        <li>
+                            <a href="/admin/docaogiay">Độ Cao Giày</a>
+                        </li>
+                        <li>
+                            <a href="/admin/gioitinh">Giới Tính</a>
+                        </li>
+                        <li>
+                            <a href="/admin/mausac">Màu Sắc</a>
+                        </li>
+                        <li>
+                            <a href="/admin/thoitietthichhop">Thời Tiết Thích Hợp</a>
+                        </li>
+                        <li>
+                            <a href="/admin/thuonghieu">Thương Hiệu</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#homeSubmenu3"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span class="fa fa-paper-plane mr-3"></span> Quản Lý Tài Khoản</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu3">
+                        <li>
+                            <a href="/admin/nhan-vien">Nhân Viên</a>
+                        </li>
+                        <li>
+                            <a href="/admin/khachhang">Khách Hàng</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#homeSubmenu4"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><span class="fa fa-cubes mr-3"></span>Khuyến Mại</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu4">
+                        <li>
+                            <a href="/admin/chuong-trinh-giam-gia-sp">Sản Phẩm</a>
+                        </li>
+                        <li>
+                            <a href="/admin/giamgiahoadon">Hóa Đơn</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="mb-5">
+                <h3 class="h6 mb-3">Subscribe for newsletter</h3>
+                <form action="#" class="subscribe-form">
+                    <div class="form-group d-flex">
+                        <div class="icon"><span class="icon-paper-plane"></span></div>
+                        <input type="text" class="form-control" placeholder="Enter Email Address">
+                    </div>
+                </form>
+            </div>
+
+            <div class="footer">
+                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- Page Content  -->
+
+    <div id="content" class="p-4 p-md-5 pt-5">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-top: -50px;">
+            <div class="container-fluid" style="display: flex;justify-content: end;">
+                <ul class="navbar-nav">
+                    <!-- Avatar -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#"
+                           id="navbarDropdownMenuLink"
+                           role="button" data-toggle="dropdown" aria-expanded="false">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" class="rounded-circle"
+                                 height="72" alt="Avatar" loading="lazy"/>
+                        </a>
+                        <div class="dropdown-menu" style="margin-left: -88px;">
+                            <a class="dropdown-item" href="#">Đăng Xuất</a>
+                            <a class="dropdown-item" href="#">Thông Tin Cá Nhân</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container" style="border: 1px solid black;border-radius: 10px;padding: 20px">
+            <a th:href="@{|/admin/nhan-vien|}"><button class="btn btn-primary" >Quay lại</button></a>
+            <form action="/admin/nhan-vien/create" method="post" th:object="${nhanVien}">
+                <h2 style="text-transform: uppercase;
+    color: black;font-family: 'Lora';text-align: center;">Thêm nhân viên</h2>
+                <div class="row">
+                    <div class="form-group col-2">
+                        <label for="formGroupExampleInput">Mã</label>
+                        <input type="text" th:field="*{ma}" class="form-control" id="formGroupExampleInput"
+                               placeholder="Mã">
+                    </div>
+
+                    <div class="form-group col-6">
+                        <label for="formGroupExampleInput2">Họ tên</label>
+                        <input type="text" th:field="*{hoTen}" class="form-control" id="formGroupExampleInput2"
+                               placeholder="Họ tên">
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label for="formGroupExampleInput2">Ngày sinh</label>
+                        <input type="date" th:field="*{ngaySinh}" class="form-control" id="formGroupExampleInput2">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label for="formGroupExampleInput2">Địa chỉ</label>
+                        <input type="text" th:field="*{diaChi}" class="form-control" id="formGroupExampleInput2"
+                               placeholder="Địa chỉ">
+                    </div>
+
+                    <div class="form-group col-3">
+                        <label for="formGroupExampleInput2">Thành phố</label>
+                        <input type="text" th:field="*{thanhPho}" class="form-control" id="formGroupExampleInput2"
+                               placeholder="Thành phố">
+                    </div>
+
+                    <div class="form-group col-3">
+                        <label for="formGroupExampleInput2">Số điện thoại</label>
+                        <input type="text" th:field="*{sdt}" class="form-control" id="formGroupExampleInput2"
+                               placeholder="Số điện thoại">
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="form-group col-5">
+                        <label for="formGroupExampleInput2">Email</label>
+                        <input type="text" th:field="*{email}" class="form-control" id="formGroupExampleInput2"
+                               placeholder="Email">
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label for="formGroupExampleInput2">Mật khẩu</label>
+                        <input type="text" th:field="*{matKhau}" class="form-control" id="formGroupExampleInput2"
+                               placeholder="Mật khẩu">
+                    </div>
+
+                    <div class="form-group col-3">
+                        <label for="formGroupExampleInput2">Chức vụ</label>
+                        <select class="form-control" id="formGroupExampleInput2" th:field="*{chucVu.id}">
+                            <option th:each="cv : ${listChucVu}" th:value="${cv.id}" th:text="${cv.ten} "
+                            ></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="form-group col-2">
+                        <label for="formGroupExampleInput2">Ngày vào làm</label>
+                        <input type="date" th:field="*{ngayVaoLam}" class="form-control" id="formGroupExampleInput2">
+                    </div>
+
+                    <div class="form-group col-3">
+                        <label for="formGroupExampleInput2">Ngày nghỉ việc</label>
+                        <input type="date" th:field="*{ngayNghiViec}" class="form-control" id="formGroupExampleInput2">
+                    </div>
+
+                    <fieldset class="form-group col-7">
+                        <div class="row">
+                            <legend class="col-form-label col-sm-3 pt-0">Trạng Thái :</legend>
+                            <div class="col-sm-9">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" th:field="*{trangThai}"
+                                           id="gridRadios1"
+                                           th:value="1">
+                                    <label class="form-check-label" for="gridRadios1">
+                                        Hoạt động
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" th:field="*{trangThai}"
+                                           id="gridRadios2"
+                                           th:value="0">
+                                    <label class="form-check-label" for="gridRadios2">
+                                        Không hoạt động
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <button class="btn btn-primary" type="submit">Thêm mới</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/popper.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html th:replace="~{/layout/index :: dynamic(~{::body})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+</head>
+<body>
+<!-- Breadcrumb Start -->
+<div th:object="${item}">
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            <div class="col-12">
+                <nav class="breadcrumb bg-light mb-30">
+                    <a class="breadcrumb-item text-dark" href="#">Trang Chủ</a>
+                    <a class="breadcrumb-item text-dark" href="#">Cửa Hàng</a>
+                    <span class="breadcrumb-item active">Chi tiếp sản phẩm</span>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+
+    <!-- Shop Detail Start -->
+    <div class="container-fluid pb-5">
+        <div class="row px-xl-5">
+            <div class="col-lg-5 mb-30">
+                <div id="product-carousel" class="carousel slide h-100 bg-light p-30" data-ride="carousel">
+                    <div class="carousel-inner bg-light">
+                        <div style="height: 620px" class="carousel-item " th:each="image,iterStat :*{anhs}"
+                             th:class="${iterStat.first} ? 'carousel-item active' : 'carousel-item'">
+                            <img class="w-100 h-100" th:src="@{|/images/${image.ten_url}|}" alt="Image">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
+                        <i class="fa fa-2x fa-angle-left text-dark"></i>
+                    </a>
+                    <a class="carousel-control-next" href="#product-carousel" data-slide="next">
+                        <i class="fa fa-2x fa-angle-right text-dark"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-7 h-auto mb-30">
+                <div class="h-100 bg-light p-30">
+                    <div class="col-lg-12">
+                        <h3 th:text="*{ten}"></h3>
+                    </div>
+                    <br>
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                Mã SP: <span th:text="*{ma}"></span>
+                            </div>
+                            <div class="col-lg-6">
+                                Xuất Xứ: <span th:text="*{xuat_xu.ten}"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-lg-12">
+                        <div class="d-flex mb-3"> Đánh Giá:
+                        <div style="margin-left: 10px" class="text-primary mr-2">
+                            <small class="fas fa-star"></small>
+                            <small class="fas fa-star"></small>
+                            <small class="fas fa-star"></small>
+                            <small class="fas fa-star-half-alt"></small>
+                            <small class="far fa-star"></small>
+                        </div>
+                        <small class="pt-1" th:text="(${item.getTongDanhGia()})"></small>
+                        <a style="margin-left: 20px; color: #6C757D" href="">Viết Đánh Giá</a>
+                    </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <span th:if="*{gia_sau_khuyen_mai.compareTo(giaban)==0}" style="color: #ee4d2d; font-size: 31px">[[*{#numbers.formatDecimal(gia_sau_khuyen_mai, 0, 'COMMA', 0, 'POINT')}]] ₫</span>
+                                <div style="color: #aaa" th:if="*{gia_sau_khuyen_mai.compareTo(giaban)<0}">
+                                    <div  style="color: #ee4d2d; font-size: 31px">
+                                        [[*{#numbers.formatDecimal(gia_sau_khuyen_mai, 0, 'COMMA', 0, 'POINT')}]] ₫
+                                    </div>
+                                    <span class="text-muted ml-2">
+                                    <del style="color: #ee4d2d; font-size: 23px">
+                                        [[*{#numbers.formatDecimal(giaban, 0, 'COMMA', 0, 'POINT')}]] ₫
+                                    </del>
+                                </span>
+                                </div>
+
+                                <div class="attr-detail-box">
+                                    Giới Tính: <span class="title" th:text="*{gioi_tinh.ten}"></span>
+                                </div>
+
+                                <div class="attr-detail-box">
+                                    Màu Sắc: <span class="title" th:text="*{mau_sac.ten}"></span>
+                                </div>
+
+                                <div class="attr-detail-box">
+                                    Kiểu dáng: <span class="title" th:text="*{kieu_dang.ten}"></span>
+                                </div>
+
+                                <div class="attr-detail-box">
+                                    Chất liệu: <span class="title" th:text="*{chat_lieu.ten}"></span>
+                                </div>
+
+                                <div class="attr-detail-box">
+                                    Gọi đặt mua: <span class="title" style="color: red">039.7371.1868</span> <small style="color:#777;font-size: 90%;margin-left: 7px">(7:30 - 22:00)</small>
+                                </div>
+                                <form action="/cart/add" method="post">
+                                    <div class="d-flex mb-3">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <strong class="text-dark mr-3">Sizes:</strong>
+                                                <input type="text" th:hidden="true" th:name="ma_giay" th:value="*{ma}">
+                                                <div class="size-options">
+                                                    <div class="size-option" th:each="size,iterStat:*{giayChiTiets}">
+                                                        <input type="radio" th:id="${size.kich_co.ten}" th:name="size_giay"
+                                                               th:value="${size.kich_co.ma}" th:selected="${iterStat.first}">
+                                                        <label class="custlabel"
+                                                               th:for="${size.kich_co.ten}">[[${size.kich_co.ten}]]</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <button type="button" class="bang-size" data-toggle="modal" data-target="#exampleModal">
+                                                    <span style="font-size: 15px">Bảng quy đổi kích cỡ  <i class="bi bi-chevron-compact-right"></i> </span>
+                                                </button>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Bảng size</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <img src="/images/Bang size.png" alt="" width="100%">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center mb-4 pt-2">
+                                        <div class="input-group quantity mr-3" style="width: 130px;">
+                                            <div class="input-group-btn" style="font-size: 10px">
+                                                <button class="btn btn-primary btn-minus" type="button">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                            </div>
+                                            <input type="text" class="form-control bg-secondary border-0 text-center"
+                                                   th:name="so_luong" value="1">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-primary btn-plus" type="button">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i>
+                                            Thêm vào giỏ hàng
+                                        </button>
+<!--                                        <button class="btn btn-primary px-3" style="margin: 0 20px;background-color: red;"-->
+<!--                                                formaction="/checkout"><i class="fa fa-shopping-cart mr-1"></i> Mua Ngay-->
+<!--                                        </button>-->
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-lg-5">
+                                <div  class="prodInfoSidebar">
+                                    <div  class="product-special-content-box">
+                                    <ul  class="special-action">
+                                        <li>
+                                            <div class="special-icon">
+                                                <img  alt="contact" src="https://asset.vuahanghieu.com/assets/images/shop.svg">
+                                            </div>
+                                            <div  class="special-text">
+                                                <a class="store-name" href="/trangchu">Thiên Đường Hàng Hiệu</a>
+                                                <div  class="product-rating">
+                                                    <div  class="rating-star-list" style="--ratingStar: 5">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li >
+                                            <div class="special-icon">
+                                                <img  alt="verify" src="https://asset.vuahanghieu.com/assets/images/verify.svg">
+                                            </div>
+                                            <div  class="special-text">
+                                                <span>Gian hàng đảm bảo</span>
+                                            </div>
+                                        </li><!---->
+                                        <li class="product-verify">
+                                            <div class="verifyItem">
+                                                <img  alt="checkmark" height="16" src="https://asset.vuahanghieu.com/assets/images/checkbox.svg" width="16"><!---->
+                                                <span > Miễn phí đổi trả trong 7 ngày
+                                                    <a  class="verify-link" rel="nofollow" target="_blank" href="/tin-tuc/chinh-sach-doi-tra">xem chi tiết</a>
+                                                </span><!---->
+                                            </div>
+                                        </li>
+                                        <li  class="product-verify">
+                                            <div class="verifyItem">
+                                                <img  alt="checkmark" height="16" src="https://asset.vuahanghieu.com/assets/images/checkbox.svg" width="16">
+                                                <span> Kiểm tra hàng trước khi nhận </span>
+                                            </div>
+                                        </li>
+                                        <li  class="product-verify">
+                                            <div  class="verifyItem">
+                                                <img alt="checkmark" height="16" src="https://asset.vuahanghieu.com/assets/images/checkbox.svg" width="16">
+                                                <span > Hoàn tiền nếu phát hiện hàng giả </span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="sell-with-us"><a class="seller-attribute" href="/trangchu"> Xem shop </a>
+                                        <div > Bán hàng cùng Darlin Shop?
+                                            <a  href="/dang-ky-khach-hang" rel="nofollow" target="_blank">Đăng ký</a>
+                                        </div>
+                                    </div>
+                                </div><!---->
+                                    <p class="cart-report-box" style="justify-content: center; width: 100%;">
+                                        <img alt="Báo lỗi" src="https://asset.vuahanghieu.com/assets/images/report-icon.svg">
+                                        <span>Bạn không thêm được sản phẩm vào giỏ hàng? Hãy
+                                            <span class="link">
+                                                báo lỗi
+                                            </span>
+                                            cho chúng tôi.
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex pt-2">
+                        <strong class="text-dark mr-2">Share on:</strong>
+                        <div class="d-inline-flex">
+                            <a class="text-dark px-2" href="">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a class="text-dark px-2" href="">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a class="text-dark px-2" href="">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a class="text-dark px-2" href="">
+                                <i class="fab fa-pinterest"></i>
+                            </a>
+                        </div>
+                        <span style="margin-left: 20px; margin-right: 20px; border-left: 1px solid rgba(0,0,0,.09)"></span>
+                        <div class="d-inline-flex product-detail">
+                            <form th:action="@{/add-san-pham-yeu-thich}" method="post" id="like-form">
+                                <input hidden  class="form-control" th:name="Url_sanpham" th:value="${x} + '-' + ${giaythuonghieu} + '-' + ${giaymausac}">
+                                <input hidden  class="form-control" th:name="Magiay" th:value="${x}" id="magiay">
+                                <input type="hidden" class="form-control" th:value="${taikhoan}" id="taikhoan">
+
+                                <!-- Thêm điều kiện kiểm tra trạng thái đăng nhập -->
+                                <div th:if="${#authorization.expression('isAuthenticated()')}">
+                                    <!-- Hiển thị nút yêu thích nếu đã đăng nhập -->
+                                    <button type="submit" id="like-button" style="border: #FFFFFF; background: #FFFFFF">
+                                        <svg width="24" height="20" class="heart">
+                                            <path d="M19.469 1.262c-5.284-1.53-7.47 4.142-7.47 4.142S9.815-.269 4.532 1.262C-1.937 3.138.44 13.832 12 19.333c11.559-5.501 13.938-16.195 7.469-18.07z" stroke="#FF424F" stroke-width="1.5" fill="#FFFFFF" fill-rule="evenodd" stroke-linejoin="round" class="like-active"></path>
+                                        </svg>
+                                        <span style="margin-left: 10px" id="like-count">Đã Thích ()</span>
+                                    </button>
+                                </div>
+
+                                <div th:if="${not #authorization.expression('isAuthenticated()')}">
+                                    <!-- Hiển thị thông báo hoặc nút đăng nhập nếu chưa đăng nhập -->
+                                    <a th:href="@{/login}">Đăng nhập để yêu thích sản phẩm</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Products Start -->
+        <div class="container-fluid py-5">
+            <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Có Thể Bạn Cũng Thích</span>
+            </h2>
+            <div class="row px-xl-5">
+                <div class="col">
+                    <div class="owl-carousel related-carousel">
+                        <div class="product-item bg-light" th:each="giaythuonghieu:${ListGiayTheoThuongHieu}" th:object="${giaythuonghieu}" >
+                            <div class="product-img position-relative overflow-hidden">
+                                <img class="img-fluid w-100" src="img/image1.jpeg" alt="">
+                                <div class="product-action">
+                                    <a class="btn btn-outline-dark btn-square" href=""><i
+                                            class="fa fa-shopping-cart"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                                </div>
+                            </div>
+                            <div class="text-center py-4" >
+                                <div class="product-img position-relative overflow-hidden">
+                                <img class="img-fluid w-100" th:src="@{|/images/${giaythuonghieu.getAnhDau(giaythuonghieu.anhs)}|}" alt="">
+                                <div class="discount-badge2" th:if="${giaythuonghieu.getCHGTHD()!=null}">
+                                    🏷️ [[${item.getCHGTHD.chuongTrinhGiamGiaSP.tenKhuyenMai}]] 🏷️
+                                </div>
+                                <div class="discount-badge" th:if="${giaythuonghieu.getCHGTHD()!=null}">
+                                    [[${item.getCHGTHD.chuongTrinhGiamGiaSP.phanTramGiam}]]%
+                                </div>
+                                <div class="discount-badge1" th:if="${giaythuonghieu.do_hot==1}">HOT</div>
+                                <div class="discount-badge3" th:if="${giaythuonghieu.getNewGiay}">🌟 Hàng Mới Về 🌟</div>
+
+                                <div class="product-action">
+                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                                </div>
+                            </div>
+                                <div class="d-flex align-items-center justify-content-center mt-2">
+                                    <a  style="position: absolute;bottom: 197px;left: 145px;text-decoration: underline" >
+                                        [[${item.thuong_hieu.ten}]]</a>
+                                    <div class="text-center py-4">
+                                        <a class="h6 text-decoration-none text-truncate" th:href="@{|/ctsp/${giaythuonghieu.ma}-${giaythuonghieu.thuong_hieu.ten}-${giaythuonghieu.mau_sac.ten}|}">
+                                            <p style="margin: auto;text-align: center;max-width: 250px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;color: #817d70;">
+                                                [[*{ten}]]
+                                            </p>
+                                        </a>
+                                        <div class="d-flex align-items-center justify-content-center mt-2">
+                                            <h5 th:if="*{gia_sau_khuyen_mai.compareTo(giaban)==0}" style="color: #ee4d2d">[[*{#numbers.formatDecimal(gia_sau_khuyen_mai, 0, 'COMMA', 0, 'POINT')}]] ₫</h5>
+                                            <h6 th:if="*{gia_sau_khuyen_mai.compareTo(giaban)<0}">
+                                                <h5  style="color: #ee4d2d">[[*{#numbers.formatDecimal(gia_sau_khuyen_mai, 0, 'COMMA', 0, 'POINT')}]] ₫</h5>
+                                                <h6 class="text-muted ml-2">
+                                                    <del style="color: #ee4d2d">
+                                                        [[*{#numbers.formatDecimal(giaban, 0, 'COMMA', 0, 'POINT')}]] ₫
+                                                    </del>
+                                                </h6>
+                                            </h6>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-center mb-1">
+                                            <small class="fa fa-star text-primary mr-1"></small>
+                                            <small class="fa fa-star text-primary mr-1"></small>
+                                            <small class="fa fa-star text-primary mr-1"></small>
+                                            <small class="fa fa-star text-primary mr-1"></small>
+                                            <small class="fa fa-star text-primary mr-1"></small>
+                                            <small>([[${giaythuonghieu.getTongDanhGia()}]])</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!--Chi tiết sp, Đánh Giá-->
+        <div class="row px-xl-5">
+            <div class="col-lg-9 mb-90">
+                <div class="col">
+                    <div class="bg-light p-30">
+                        <div class="nav nav-tabs mb-4">
+                            <a class="nav-item nav-link text-dark active" data-toggle="tab"
+                               href="#tab-pane-1">Chi Tiết</a>
+                            <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-2">Thông tin</a>
+                            <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Đánh Giá([[${totalDg}]])</a>
+                        </div>
+                        <div class="tab-content product_extra-346">
+                            <div class="tab-pane fade show active " id="tab-pane-1">
+                                <div class="block-content ">
+                                    <span style="font-family:times new roman,times,serif">
+                                        <span style="font-size:16px">
+                                           [[*{ten}]] đên từ thương hiệu [[*{thuong_hieu.ten}]]. [[*{mota}]]
+                                        </span>
+                                    </span>
+                                    <p th:each="anhgiay:${listanhgiay}" style="margin-left:0px; margin-right:0px; text-align:center;">
+                                        <img style="width: 100%; height: 100%" th:src="@{|/images/${anhgiay.ten_url}|}">
+                                    </p>
+
+                                    <p>
+                                        <em>
+                                            <strong>
+                                                <span style="color:#ff0000"><span>
+                                                    <span style="font-size:16px">
+                                                        * Shop Darlin cam kết:</span>
+                                                     </span>
+                                                </span>
+                                            </strong>
+                                        </em>
+                                    </p>
+
+                                    <p>
+                                        <strong>
+                                            <span>
+                                                <span style="font-size:16px">
+                                                    - [[*{ten}]] chính hãng 100%. Phát hiện hàng Fake đền tiền gấp 2 lần giá sản phẩm.
+                                                </span>
+                                            </span>
+                                        </strong>
+                                    </p>
+
+                                    <p>
+                                        <strong>
+                                            <span>
+                                                <span style="font-size:16px">
+                                                    - Shop Darlin miễn phí giao hàng toàn quốc (với đơn hàng từ 500.000 vnđ).
+                                                </span>
+                                            </span>
+                                        </strong>
+                                    </p>
+                                    <p>
+                                        <strong>
+                                            <span>
+                                                <span style="font-size:16px">
+                                                  Đổi hàng trong 30 ngày. (Áp dụng với sản phẩm chưa sử dụng, nguyên vẹn như khi nhận hàng)
+                                                </span>
+                                            </span>
+                                        </strong>
+                                    </p>
+
+                                    <p>
+                                        <em>
+                                            <strong>
+                                                <span style="color:#ff0000"><span>
+                                                    <span style="font-size:16px">
+                                                        * Cách thức mua hàng:</span>
+                                                     </span>
+                                                </span>
+                                            </strong>
+                                        </em>
+                                    </p>
+                                    <p>
+                                        <strong>
+                                            <span>
+                                                <span style="font-size:16px">
+                                                - Khách hàng MUA HÀNG trên website hoặc gọi điện tới Hotline: 0973 711 868 để được tư vấn.
+                                                    <br>
+                                                - Khách hàng sẽ nhận được sản phẩm sau 1 - 3 ngày kể từ khi đặt hàng.
+                                                </span>
+                                            </span>
+                                        </strong>
+                                    </p>
+
+                                    <p>
+                                        <em>
+                                            <strong>
+                                                <span style="color:#ff0000"><span>
+                                                    <span style="font-size:16px">
+                                                       * Thông tin liên hệ Shop Darlin:</span>
+                                                     </span>
+                                                </span>
+                                            </strong>
+                                        </em>
+                                    </p>
+
+                                    <p>
+                                        <strong>
+                                            <span>
+                                                <span style="font-size:16px">
+                                                + Showroom:  249 Xã Đàn, Hà Nội.
+                                                    <br>
+                                                + Điện thoại: 0903 479 488 / Hotline: 0973 711 868 (Zalo, Viber)
+                                                    <br>
+                                                + Email: cskh@shopdarlin.vn
+                                                    <br>
+                                                + Website: https://shopdarlin.vn
+                                                </span>
+                                            </span>
+                                        </strong>
+                                    </p>
+                                    <p style="margin-left:0px; margin-right:0px; text-align:justify">&nbsp;</p>
+
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tab-pane-2">
+                                <h4 class="mb-3">Hướng Dẫn Bảo Quản Giày [[*{thuong_hieu.ten}]]</h4>
+                                <p>
+                                    <span>
+                                         - Nếu bạn thường xuyên đi giày nên vệ sinh 1-2 lần/1 tuần
+                                    </span>
+
+                                    <br>
+
+                                    <span>
+                                          - Không nên giặt bằng máy giặt vì sẽ làm cho đôi giày nó bị biến dạng mất form giày
+                                    </span>
+                                    <br>
+                                    <span>
+                                          - Tránh ngâm trong nước
+                                    </span>
+                                    <br>
+                                    <span>
+                                          - Tránh tiếp xúc với các chất gây loanh màu
+                                    </span>
+                                    <br>
+                                    <span>
+                                           - Nên để giày trong kệ riêng giúp bảo quản giày tốt hơn
+                                    </span>
+
+                                </p>
+                                <div class="row">
+                                    <div class="col-md-6" >
+                                        <ul class="list-group list-group-flush" >
+                                            <li class="list-group-item px-0" style="color: black">
+                                                Thương hiệu: <span style="color: #6C757D;padding: 0 10px">[[*{thuong_hieu.ten}]]</span>
+                                            </li>
+                                            <li class="list-group-item px-0"  style="color: black">
+                                                Xuất Xức : <span style="color: #6C757D;padding: 0 10px">[[*{xuat_xu.ten}]]</span>
+                                            </li>
+                                            <li class="list-group-item px-0"  style="color: black">
+                                                Kiểu Dáng : <span style="color: #6C757D;padding: 0 10px"> [[*{kieu_dang.ten}]]</span>
+                                            </li>
+                                            <li class="list-group-item px-0"  style="color: black">
+                                                Chất Liệu: <span style="color: #6C757D;padding: 0 10px">[[*{chat_lieu.ten}]]</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item px-0" style="color: black">
+                                                Tên Giày: <span style="color: #6C757D;padding: 0 10px"> [[*{ten}]]</span>
+                                            </li>
+                                            <li class="list-group-item px-0" style="color: black">
+                                                Màu Sắc : <span style="color: #6C757D;padding: 0 10px">[[*{mau_sac.ten}]]</span>
+                                            </li>
+                                            <li class="list-group-item px-0" style="color: black">
+                                                Giới Tính :  <span style="color: #6C757D;padding: 0 10px">[[*{gioi_tinh.ten}]]</span>
+                                            </li>
+                                            <li class="list-group-item px-0" style="color: black">
+                                                PROMOTION:  <span style="color: #6C757D;padding: 0 10px">Mã giảm giá </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tab-pane-3">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h4 class="mb-4">[[${totalDg}]] đánh giá cho "[[${item.ten}]]"</h4>
+                                        <div class="media mb-4" th:each="dg:${pageDg.content}">
+                                            <div class="media-body">
+                                                <h6>[[${dg.tenNguoiDanhGia}]]</h6>
+                                                <div class="text-primary mb-2">
+                                                <span th:each="i : ${#numbers.sequence(1,5)}">
+                                                    <i th:if="${dg.sao >= i}" class="fas fa-star"></i>
+                                                    <i th:if="${dg.sao < i}" class="far fa-star"></i>
+                                                </span>
+                                                </div>
+                                                <p>[[${dg.noiDung}]]</p>
+                                            </div>
+                                        </div>
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination" th:if="${pageDg.totalPages>0}">
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                       th:href="@{|/ctsp/${x}-${giaythuonghieu}-${giaymausac}?numberDg=0|}" th:if="${pageDg.number>0}">
+                                                        First
+                                                    </a>
+                                                </li>
+                                                <li class=" page-item">
+                                                    <a class="page-link"
+                                                       th:href="@{|/ctsp/${x}-${giaythuonghieu}-${giaymausac}?numberDg=${pageDg.number-1}|}"
+                                                       th:if="${pageDg.number-1>=0}">
+                                                        [[${pageDg.number}]]
+                                                    </a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                       th:href="@{|/ctsp/${x}-${giaythuonghieu}-${giaymausac}?numberDg=${pageDg.number}|}"
+                                                       th:if="${pageDg.number>=0}">
+                                                        [[${pageDg.number+1}]]
+                                                    </a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                       th:href="@{|/ctsp/${x}-${giaythuonghieu}-${giaymausac}?numberDg=${pageDg.number+1}|}"
+                                                       th:if="${pageDg.number+1<=pageDg.totalPages-1}">
+                                                        [[${pageDg.number+2}]]
+                                                    </a>
+                                                </li>
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                       th:href="@{|/ctsp/${x}-${giaythuonghieu}-${giaymausac}?numberDg=${pageDg.totalPages-1}|}"
+                                                       th:if="${pageDg.number<pageDg.totalPages-1}">
+                                                        Last
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h4 class="mb-4">Để lại đánh giá
+                                        </h4>
+                                        <small>Email của bạn sẽ không được hiển thị công khai. Các trường bắt buộc được đánh dấu
+                                            <span style="color: red">*</span></small>
+                                        <div class="d-flex my-3">
+                                            <p class="mb-0 mr-2">Đánh giá của bạn <span style="color: red">*</span> :</p>
+                                            <div class="text-primary">
+                                                <i class="far fa-star rating"></i>
+                                                <i class="far fa-star rating"></i>
+                                                <i class="far fa-star rating"></i>
+                                                <i class="far fa-star rating"></i>
+                                                <i class="far fa-star rating"></i>
+                                            </div>
+                                        </div>
+                                        <form id="form-dg" th:object="${dg}">
+                                            <div class="form-group" >
+                                                <label for="review">Bình luận của bạn <span style="color: red">*</span></label>
+                                                <textarea  id="review" cols="30" rows="5" class="form-control"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="name">Tên của bạn <span style="color: red">*</span></label>
+                                                <input type="text"  id="name" class="form-control">
+                                            </div>
+                                            <input type="text" th:field="*{trangThai}" id="trang-thai" class="form-control" hidden>
+                                            <input type="text" id="sao" class="form-control" hidden>
+                                            <input type="text" th:field="*{giay.id}" id="giay-id" class="form-control" hidden>
+                                            <div class="form-group mb-0">
+                                                <input type="submit" id="btn-dg" value="Leave Your Review" class="btn btn-primary px-3">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 mb-90">
+                <span>Sản phẩm tương tự</span>
+                    <div class="row khung" th:each="maussac:${ListGiayTheoMauSac}" th:object="${maussac}">
+                        <div class="col-lg-5 trai">
+                            <img class="img-fluid w-100" th:src="@{|/images/${maussac.getAnhDau(maussac.anhs)}|}" alt="" height="140px" width="100px">
+                        </div>
+                        <div class="col-lg-7 phai">
+                            <span>
+                                [[${maussac.thuong_hieu.ten}]]
+                            </span>
+                            <br>
+                            <a class="h6 text-decoration-none text-truncate" th:href="@{|/ctsp/${maussac.ma}-${maussac.thuong_hieu.ten}-${maussac.mau_sac.ten}|}">
+                                <p class="title-ten"  style="color: #817d70">
+                                    [[${maussac.ten}]]
+                                </p>
+                            </a>
+                            <h5 th:if="*{gia_sau_khuyen_mai.compareTo(giaban)==0}" style="color: #ee4d2d">[[*{#numbers.formatDecimal(gia_sau_khuyen_mai, 0, 'COMMA', 0, 'POINT')}]] ₫</h5>
+                            <div th:if="*{gia_sau_khuyen_mai.compareTo(giaban)<0}">
+                                <h5  style="color: #ee4d2d">[[*{#numbers.formatDecimal(gia_sau_khuyen_mai, 0, 'COMMA', 0, 'POINT')}]] ₫</h5>
+                                <h6 class="text-muted ml-2">
+                                    <del style="color: #ee4d2d">
+                                        [[*{#numbers.formatDecimal(giaban, 0, 'COMMA', 0, 'POINT')}]] ₫
+                                    </del>
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                <div class="pin-right-product">
+                    <h3 class="pin-title">
+                        [[*{ten}]]
+                    </h3>
+                    <div class="attr-detail-box">
+                        <div class="attr-title">Giới tính:</div>
+                        <div class="attr-property"> [[*{gioi_tinh.ten}]]</div>
+                    </div>
+                    <div class="attr-detail-box">
+                    <div class="attr-title">Màu sắc:</div>
+                        <div class="attr-property"> [[*{mau_sac.ten}]]</div>
+                    </div><div class="attr-detail-box">
+                    <div class="attr-title">Kiểu dáng:</div>
+                    <div class="attr-property"> [[*{kieu_dang.ten}]]</div>
+                </div>
+                    <div> Giá bán:
+                        <span class="pin-new-price"> [[*{#numbers.formatDecimal(gia_sau_khuyen_mai, 0, 'COMMA', 0, 'POINT')}]] ₫</span>
+                    </div>
+                    <button class="pin-button"  formaction="/checkout"> Mua ngay </button>
+                    <a class="pin-hotline" href="tel:0939348888">
+                        <svg fill="currentColor" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"></path>
+                        </svg>
+                        Hotline: 097.371.868 </a>
+                </div>
+                </div>
+            </div>
+        </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!--Script đánh giá-->
+<script>
+    $(document).ready(function (){
+        $('#btn-dg').click(function (){
+            event.preventDefault();
+            var form=$('#form-dg');
+            var danhGia = {
+                tenNguoiDanhGia: form.find('[id="name"]').val(),
+                noiDung: form.find('[id="review"]').val(),
+                trangThai: form.find('[id="trang-thai"]').val(),
+                sao: form.find('[id="sao"]').val(),
+                giay: {
+                    id:form.find('[id="giay-id"]').val()
+                }
+            };
+            $.ajax({
+                url: '/danh-gia', // URL của API bạn muốn gọi
+                type: 'POST', // Phương thức HTTP (GET, POST, PUT, DELETE, ...)
+                data: JSON.stringify(danhGia), // Chuyển đổi đối tượng danhGia thành chuỗi JSON
+                contentType: 'application/json',
+                dataType: 'json', // Kiểu dữ liệu trả về từ API
+                success: function(data) {
+                    location.reload();
+                },
+                error: function(error) {
+                    // Hàm này sẽ được gọi khi có lỗi xảy ra
+                    console.error(error);
+                }
+            });
+        });
+
+        $('.rating').click(function (){
+            $(this).prevAll().addBack().removeClass('far').addClass('fas');
+            $(this).nextAll().removeClass('fas').addClass('far');
+            $('#form-dg').find('[id="sao"]').val($(this).prevAll().length + 1);
+        })
+    });
+</script>
+
+<!--Script yêu thích-->
+<script>
+    $(document).ready(function() {
+        var isLiked = false; // Biến kiểm tra xem người dùng đã thích hay chưa
+        var likeCount = [[${Tongsothichsanpham}]]; // Số lượt thích ban đầu
+
+        var currentProductId = $('#magiay').val()
+        var currentProductId1 = $('#taikhoan').val()
+        // Kiểm tra trạng thái yêu thích từ Local Storage hoặc Cookies
+        var isLikedInStorage = localStorage.getItem('isLiked' + currentProductId + 'isLikeds' + currentProductId1);
+        if (isLikedInStorage === 'true') {
+            isLiked = true;
+        }
+
+        updateLikeUI();
+
+        $('#like-button').click(function(e) {
+            e.preventDefault(); // Ngăn chặn hành động mặc định của nút submit
+
+            if (isLiked) {
+                // Nếu người dùng đã thích, thực hiện hành động bỏ thích
+                $.ajax({
+                    type: 'POST',
+                    url: '/remove-san-pham-yeu-thich',
+                    data: $('#like-form').serialize(),
+                    success: function(response) {
+                        console.log(response);
+                        isLiked = false;
+                        localStorage.removeItem('isLiked'  + currentProductId +'isLikeds'  + currentProductId1); // Lưu trạng thái vào Local Storage hoặc Cookies
+                        likeCount--;
+                        updateLikeUI();
+                    },
+                    error: function(error) {
+                        console.error(error);
+                    }
+                });
+            } else {
+                // Nếu người dùng chưa thích, thực hiện hành động thích
+                $.ajax({
+                    type: 'POST',
+                    url: '/add-san-pham-yeu-thich',
+                    data: $('#like-form').serialize(),
+                    success: function(response) {
+                        console.log(response);
+                        isLiked = true;
+                        localStorage.setItem('isLiked'  + currentProductId +'isLikeds'  + currentProductId1, 'true');
+                        likeCount++;
+                        updateLikeUI();
+                    },
+                    error: function(error) {
+                        console.error(error);
+                    }
+                });
+            }
+        });
+
+        // Hàm cập nhật giao diện người dùng
+        function updateLikeUI() {
+            if (isLiked) {
+                $('#like-button .heart path.like-active').attr('fill', '#FF424F');
+            } else {
+                $('#like-button .heart path.like-active').attr('fill', '#FFFFFF');
+            }
+            $('#like-count').text('Đã Thích (' + likeCount + ')');
+        }
+    });
+</script>
+
+<!--Css-->
+<style>
+    #like-button:active,
+    #like-button:focus {
+        border: none; /* Loại bỏ border khi nút được nhấp hoặc focus */
+        outline: none; /* Loại bỏ outline khi nút được nhấp hoặc focus */
+    }
+
+    .attr-detail-box {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        color: black;
+        padding: 5px;
+
+    }
+
+    .title {
+        display: flex;
+        color: black;
+        margin-left: 20px;
+    }
+    .product-special-content-box {
+        border: 1px solid #c3cbd5;
+        padding: 16px;
+        margin: 0;
+    }
+
+    .special-action {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .special-action li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .special-icon {
+        width: 20px;
+        margin-right: 10px;
+        padding-top: 3px;
+        color: #296795;
+    }
+    .special-text {
+        width: calc(100% - 40px);
+        text-align: left;
+        font-size: 15px;
+    }
+
+    .special-action .product-verify {
+        padding: 10px 0;
+        margin-top: 2px;
+        border-top: 1px solid #ddd;
+    }
+    .sell-with-us {
+        display: block;
+        margin: 10px 0 0;
+        text-align: center;
+    }
+    .cart-report-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        width: 94%;
+        text-align: left;
+        margin: 0 auto 10px;
+        margin-top: calc(1px + (12 - 1) * ((100vw - 300px)/(1920 - 300)));
+        max-width: 340px;
+    }
+
+    .verifyItem span {
+        margin: 0 5px;
+        font-size: 12px;
+    }
+
+    .rating-star-list {
+        width: 78px;
+        min-width: 78px;
+        height: 14px;
+        display: block;
+        background-color: #ccc;
+        background: linear-gradient(90deg,rgba(255,188,89,1) 0,rgba(255,188,89,1) calc(var(--ratingStar) * 20%),rgba(214,218,223,1) calc(var(--ratingStar) * 20%),rgba(214,218,223,1) 100%);
+        mask-image: url(https://asset.vuahanghieu.com/assets/images/star-list.svg);
+        mask-size: contain;
+        mask-repeat: no-repeat;
+        -webkit-mask-image: url(https://asset.vuahanghieu.com/assets/images/star-list.svg);
+        -webkit-mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        position: relative;
+    }
+    .sell-with-us .seller-attribute {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background-color: #fff;
+        color: #000;
+        border: 2px solid #000;
+        line-height: 36px;
+        font-weight: 600;
+        width: 100%;
+        text-transform: uppercase;
+        text-decoration: none;
+    }
+    .cart-report-box img {
+        width: 30px;
+        min-width: 30px;
+        height: 30px;
+        margin-right: 10px;
+    }
+    .cart-report-box span {
+        text-align: left;
+    }
+
+    .pin-right-product {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 16px;
+        z-index: 1;
+        padding: 16px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0,0,0,.1);
+        background-color: #fff;
+        width: 100%;
+    }
+
+    .pin-title {
+        font-size: 17px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .attr-detail-box {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        font-size: 15px;
+    }
+
+    .pin-button, .pin-hotline {
+        background-color: #000;
+        border: 2px solid #000;
+        line-height: 40px;
+        padding: 0 10px;
+        text-align: center;
+        color: #fff;
+        font-weight: 600;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-transform: uppercase;
+        cursor: pointer;
+        white-space: nowrap;
+        margin-top: 10px;
+        margin-bottom: 7px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        text-decoration: none;
+    }
+
+    .col-lg-8.h-auto.mb-30 {
+        height: 100%;
+    }
+
+    .title-ten{
+        font-size: 14px; /* Thay đổi kích thước phù hợp */
+        display: inline-block; /* Để các thuộc tính width và height có thể áp dụng */
+        max-width: 200px; /* Giới hạn chiều rộng tối đa */
+        overflow: hidden; /* Ẩn phần vượt quá giới hạn */
+        text-overflow: ellipsis; /* Hiển thị dấu chấm (...) khi văn bản vượt quá kích thước */
+        white-space: nowrap; /* Ngăn không cho văn bản xuống dòng */
+    }
+
+    .khung{
+        margin: 0;
+        border: 1px solid transparent;
+        margin-bottom: 10px !important;
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .trai{
+        flex: 0 0 50%; /* Chia cột chiều rộng là 50% */
+        max-width: 40%;
+        padding: 0 5px; /* Khoảng cách giữa cột */
+        box-sizing: border-box;
+    }
+
+    .phai{
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding: 0 15px;
+        box-sizing: border-box;
+    }
+
+    .product_extra-346 .block-content {
+        column-count: 3;
+        column-rule-style: none;
+    }
+
+    .block-content {
+        position: relative;
+        border-radius: inherit;
+    }
+
+    .bang-size{
+        border: #F5F5F5;background-color: initial;
+        text-transform: capitalize;
+        cursor: pointer;
+        color:#05a;
+        size: 23px;
+    }
+    .bang-size:focus {
+        border: none; /* Loại bỏ border khi nút được nhấp hoặc focus */
+        outline: none; /* Loại bỏ outline khi nút được nhấp hoặc focus */
+    }
+
+</style>
+
+
+</body>
+</html>
